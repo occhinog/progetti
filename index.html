@@ -41,18 +41,6 @@
     <script src="projects.js"></script>
     <script>
         const grid = document.getElementById('btn-grid');
-        subdomains.forEach(entry => {
-            const a = document.createElement('a');
-            a.className = 'proj-btn';
-            a.href = entry.link;
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-            a.textContent = entry.name;
-            grid.appendChild(a);
-        });
-    </script>
-    <script>
-        const grid = document.getElementById('btn-grid');
         projects.forEach(entry => {
             const a = document.createElement('a');
             a.className = 'proj-btn';
