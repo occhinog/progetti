@@ -30,7 +30,7 @@ The root `index.html` loads `projects.js`, then generates the button grid at run
    const projects = [
        { name: "Elezioni2018", link: "elezioni18/" },
        { name: "Elezioni2023", link: "elezioni23/" },
-       { name: "TEN_M Studio", link: "startupStudio/" }
+       { name: "TEN/M", link: "startupStudio/" }
    ];
    ```
 
