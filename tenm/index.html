@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="TEN/M is a startup studio with two paths in: bring an idea or become a founder." />
+    <title>TEN/M — Build your way in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="TEN/M home"><span>/</span>TEN<span>M</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#path">The path</a>
+        <a href="#founder-route">Become a founder</a>
+        <a href="#start">Start here</a>
+      </nav>
+      <a class="nav-cta" href="#start">Find your way in <span>↗</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-inner shell">
+          <div class="hero-copy reveal">
+            <p class="eyebrow"><i></i> Startup studio · Torino / Remote</p>
+            <h1>Build your<br /><em>way</em> in.</h1>
+            <p class="hero-intro">The studio for people who have a real opportunity—or the appetite to lead one.</p>
+            <div class="route-picker" role="group" aria-label="Choose your route">
+              <a class="route-option active" href="#path" data-route-link="idea"><span>01</span><b>I have an idea</b><small>Start with VibeWell</small><em>→</em></a>
+              <a class="route-option" href="#founder-route" data-route-link="founder"><span>02</span><b>I want to be a founder</b><small>We help find your opportunity</small><em>→</em></a>
+            </div>
+          </div>
+          <div class="hero-map reveal" aria-label="Venture route diagram" role="img">
+            <div class="map-line line-a"></div><div class="map-line line-b"></div><div class="map-line line-c"></div>
+            <div class="map-node node-start"><span>01</span><b>signal</b></div>
+            <div class="map-node node-expert"><span>02</span><b>review</b></div>
+            <div class="map-node node-mentor"><span>3a</span><b>mentor</b></div>
+            <div class="map-node node-build"><span>3b</span><b>build</b></div>
+            <div class="map-node node-launch"><span>04</span><b>launch</b></div>
+            <p class="map-caption">A path, not a pitch deck.</p>
+          </div>
+        </div>
+        <a class="hero-scroll" href="#path"><span></span> Explore the path</a>
+      </section>
+
+      <section class="overview shell" id="path">
+        <div class="overview-top">
+          <p class="section-label">01 — The venture path</p>
+          <p class="overview-summary">Every path begins with a fast, useful answer. The deeper steps are earned—by the quality of the opportunity and the people behind it.</p>
+        </div>
+        <div class="progress-rail" aria-hidden="true"><span></span></div>
+
+        <div class="path-steps">
+          <article class="path-card card-vibe reveal" data-step="1">
+            <div class="card-index"><span>01</span><i></i><small>Minutes</small></div>
+            <div class="card-main"><p class="card-overline">The first signal</p><h2>VibeWell gives your idea a first <em>answer.</em></h2><p>Describe what you see. Matteo’s AI framework turns the raw thought into a structured, direct response in minutes.</p><ul><li>Problem and user signal</li><li>Opportunity read</li><li>Clear recommendation</li></ul></div>
+            <aside class="vibe-panel"><div class="vibe-head"><i></i> VibeWell <span>Live</span></div><p>“There is a real pull here. Your first test is to…”</p><div class="vibe-bars"><span></span><span></span><span></span></div><small>Instant AI assessment</small></aside>
+          </article>
+
+          <article class="path-card card-panel reveal" data-step="2">
+            <div class="card-index"><span>02</span><i></i><small>People</small></div>
+            <div class="card-main"><p class="card-overline">The human check</p><h2>Strong signals get real <em>scrutiny.</em></h2><p>If the first assessment says there is something worth pursuing, the idea moves to the studio panel for a sharper conversation.</p><div class="people"><span>DG</span><span>MO</span><span>GO</span><p>Davide · Matteo · Gabriel</p></div></div>
+            <aside class="panel-note"><b>What we test</b><p>Founder–problem fit, market timing, commitment and whether we can create a real advantage together.</p><span>Pass the panel → choose your way to work with us.</span></aside>
+          </article>
+
+          <section class="decision reveal" aria-labelledby="decision-title">
+            <div class="decision-head"><p class="section-label">03 — Your choice</p><h2 id="decision-title">Same conviction.<br /><em>Two ways</em> forward.</h2></div>
+            <div class="decision-grid">
+              <article class="decision-card mentorship"><div class="decision-number">3A</div><p class="card-overline">Mentorship</p><h3>You lead.<br />We <em>back</em> you.</h3><p>Focused advice, operating perspective and access to the studio network—without an upfront payment.</p><div class="decision-footer"><span>Deferred-fee model</span><a href="#start" data-set-route="idea">Explore mentorship <b>→</b></a></div></article>
+              <article class="decision-card collaboration"><div class="decision-number">3B</div><p class="card-overline">Collaboration</p><h3>We become<br />your <em>co-builders.</em></h3><p>We work from inside the venture: product, strategy, early execution and the founding bench.</p><div class="equity-tag">5–10% <span>startup shares</span></div><div class="decision-footer"><span>Selective studio partnership</span><a href="#start" data-set-route="idea">Build with us <b>→</b></a></div></article>
+            </div>
+          </section>
+
+          <article class="path-card card-launch reveal" data-step="4">
+            <div class="card-index"><span>04</span><i></i><small>Momentum</small></div>
+            <div class="card-main"><p class="card-overline">For co-built ventures</p><h2>Prove it in the market.<br />Get <em>pre-seed ready.</em></h2><p>Studio ventures move into real market validation, traction experiments and a pre-seed narrative that is grounded in evidence.</p></div>
+            <aside class="launch-list"><span>01</span><p>Validate demand</p><span>02</span><p>Find traction</p><span>03</span><p>Open the pre-seed conversation</p></aside>
+          </article>
+        </div>
+      </section>
+
+      <section class="founder-route" id="founder-route">
+        <div class="shell founder-inner">
+          <div class="founder-copy reveal"><p class="section-label">02 — The other way in</p><h2>You have the <em>drive.</em><br />We help find the idea.</h2><p>Not everyone arrives with a market-ready venture. Some arrive with the judgement, ambition and discipline to build one. This is the route for them.</p><a href="#start" class="outline-button" data-set-route="founder">I want to become a founder <b>→</b></a></div>
+          <div class="founder-flow reveal" aria-label="Founder programme pathway">
+            <article><span>01</span><small>Learn</small><h3>Founder<br />programme</h3><p>Build the judgment and working habits of a venture builder.</p></article>
+            <div class="flow-arrow">→</div>
+            <article><span>02</span><small>Show it</small><h3>Studio<br />challenge</h3><p>Pass the practical assessment. We look for clarity, taste and follow-through.</p></article>
+            <div class="flow-arrow">→</div>
+            <article class="flow-outcome"><span>03</span><small>Build it</small><h3>Your<br />startup</h3><p>We match the right founder to a studio opportunity and build from there.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="start" id="start">
+        <div class="shell start-inner">
+          <div class="start-copy reveal"><p class="section-label">03 — Start here</p><h2>Choose the<br /><em>first move.</em></h2><p>Bring a rough idea. Or bring the ambition to build. Either way, the first response is designed to be useful.</p><div class="route-status" id="route-status"><span>01</span> I have an idea</div></div>
+          <form class="idea-form reveal" id="idea-form">
+            <input type="hidden" name="route" id="route-input" value="idea" />
+            <label id="name-label">Your name<input required type="text" name="name" placeholder="Name" /></label>
+            <label>Email<input required type="email" name="email" placeholder="you@company.com" /></label>
+            <label id="detail-label">What opportunity are you seeing?<textarea required name="detail" rows="3" placeholder="A rough idea is enough."></textarea></label>
+            <button class="primary-button" type="submit">Send the first signal <b>→</b></button>
+            <p class="form-note">No deck. No payment. Just the first useful answer.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell"><a class="brand" href="#top"><span>/</span>TEN<span>M</span></a><p>Startup studio for people ready to make a move.</p><a href="mailto:hello@tenm.studio">hello@tenm.studio <span>↗</span></a><small>© <span id="year"></span> TEN/M</small></footer>
+    <script src="script.js"></script>
+  </body>
+</html>
