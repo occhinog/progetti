@@ -17,6 +17,7 @@ document.querySelectorAll('.main-nav a').forEach((link) => link.addEventListener
 }));
 
 function setRoute(route) {
+  if (!routeInput || !routeStatus || !detailLabel || !detailInput) return;
   const founder = route === 'founder';
   routeInput.value = route;
   routeStatus.innerHTML = founder ? '<span>02</span> I want to become a founder' : '<span>01</span> I have an idea';
@@ -50,6 +51,6 @@ document.querySelector('#year').textContent = new Date().getFullYear();
 document.querySelector('#idea-form').addEventListener('submit', (event) => {
   event.preventDefault();
   const button = event.currentTarget.querySelector('button');
-  button.innerHTML = 'First signal received <b>✓</b>';
+  button.innerHTML = document.body.classList.contains('business-page') ? 'Opportunity received <b>✓</b>' : 'First signal received <b>✓</b>';
   button.disabled = true;
 });
