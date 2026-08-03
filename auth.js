@@ -7,16 +7,48 @@
 // page, immediately followed by an inline call to ProgettiAuth.requireAuth().
 // That blocks parsing until the auth check runs, so there is no flash of
 // protected content before an unauthenticated visitor is redirected.
+//
+// Password algorithm — 10 characters, generated fresh each day:
+//   1. Two fixed capital-letter initials: GO, DR or MM (peer codes) — always first.
+//   2. The remaining 4 blocks may appear in ANY order after the initials:
+//        - the current year, digits reversed (2026 -> "6202")
+//        - one special character from ! # % & @ $
+//        - a literal dot "."
+//        - the current day, zero-padded to 2 digits
+//   Example for 2026-08-03, peer GO, special "!": GO6202!.03 (or any
+//   reordering of the last 8 characters, e.g. GO.03!6202).
 
 const ProgettiAuth = (() => {
   const COOKIE_NAME = 'progetti_auth';
   const COOKIE_EXPIRY_HOURS = 24;
   const LOGIN_PATH = '/';
   const DEFAULT_DEST = '/hub.html';
+  const PEER_CODES = ['GO', 'DR', 'MM'];
+  const SPECIAL_CHARS = ['!', '#', '%', '&', '@', '$'];
 
-  // TODO: replace with the real algorithm (see HelioH2's auth.js for the pattern)
   function validatePassword(value) {
-    return value === 'progetti2026' ? '' : 'Password errata';
+    const prefix = value.slice(0, 2);
+    if (!PEER_CODES.includes(prefix)) return 'Iniziali non valide';
+
+    const today = new Date();
+    const yearReversed = String(today.getFullYear()).split('').reverse().join('');
+    const day = String(today.getDate()).padStart(2, '0');
+    const expectedLength = 2 + yearReversed.length + 1 + 1 + day.length;
+
+    if (value.length !== expectedLength) return 'Lunghezza password non valida';
+
+    let rest = value.slice(2);
+    if (!rest.includes(yearReversed)) return 'Anno non valido';
+    rest = rest.replace(yearReversed, '');
+
+    if (!rest.includes(day)) return 'Giorno non valido';
+    rest = rest.replace(day, '');
+
+    if (rest.length !== 2 || !rest.includes('.') || ![...rest].some((c) => SPECIAL_CHARS.includes(c))) {
+      return 'Carattere speciale o punto mancante';
+    }
+
+    return '';
   }
 
   function setAuthCookie() {

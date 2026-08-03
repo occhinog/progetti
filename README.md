@@ -34,7 +34,7 @@ How it works:
 - `index.html` shows a password form. A correct password sets a `progetti_auth` cookie (24h expiry, `path=/`) and redirects onward.
 - Every other page loads `/auth.js` **synchronously as the first tag in `<head>`**, immediately followed by `ProgettiAuth.requireAuth();`. This blocks the page from rendering until the cookie is checked — an unauthenticated visitor is redirected to the login page before any protected content paints (no flash).
 - `requireAuth()` remembers the page the visitor was trying to reach (`?redirect=`) and `index.html` sends them back there after a successful login. Redirect targets are validated as same-site relative paths only, to prevent open-redirect abuse via a crafted `?redirect=` link.
-- The password is currently a hardcoded placeholder (`progetti2026`, in `auth.js`'s `validatePassword`) — a real algorithm (like HelioH2's date-based one) is planned for a later pass.
+- The password is date-based, generated fresh every day (`validatePassword` in `auth.js`, same pattern as HelioH2's): two fixed capital-letter peer initials (`GO`, `DR` or `MM`) always first, followed by four blocks — the current year with its digits reversed, one special character from `! # % & @ $`, a literal dot, and the current day zero-padded to 2 digits — in any order the user chooses. 10 characters total. Example for 2026-08-03, peer `GO`, special `!`: `GO6202!.03`.
 
 **Adding auth to a new project:** put this as the very first two tags inside `<head>`, before anything else:
 
