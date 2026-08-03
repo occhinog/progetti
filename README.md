@@ -18,7 +18,7 @@ The root `index.html` loads `projects.js`, then generates the button grid at run
 │
 ├── elezioni18/      ─┐
 ├── elezioni23/       ├── project folders, each fully self-contained
-└── startupStudio/   ─┘
+└── TenMStudio/      ─┘
 ```
 
 ## Adding a project
@@ -30,7 +30,7 @@ The root `index.html` loads `projects.js`, then generates the button grid at run
    const projects = [
        { name: "Elezioni2018", link: "elezioni18/" },
        { name: "Elezioni2023", link: "elezioni23/" },
-       { name: "TEN/M", link: "startupStudio/" }
+       { name: "TEN/M Studio", link: "TenMStudio/" }
    ];
    ```
 
@@ -45,10 +45,10 @@ Nothing else needs touching. Do not add markup for the button to `index.html`; t
 
 ## Conventions
 
-- **Folder names use `camelCase`** — `startupStudio`, `nuovoProgetto`. `elezioni18` and `elezioni23` predate this rule and stay as they are; do not rename them, their URLs are public.
+- **Folder names use descriptive mixed case** — `TenMStudio`, `nuovoProgetto`. `elezioni18` and `elezioni23` predate this rule and stay as they are; do not rename them, their URLs are public.
 - **Projects are self-contained.** Each folder carries its own CSS, JS, images and fonts. A project must never reference the root `css.css` or `hero.jpg`, and the root must never reference files inside a project folder. This keeps projects independently movable and lets them use conflicting styles.
 - **Relative paths inside projects.** Reference assets as `styles.css`, not `/styles.css` — a leading slash resolves to the domain root, not the project folder, and will break.
-- **External CDNs are fine** (Google Fonts is used by the hub and by `startupStudio`). There is no bundler to vendor them.
+- **External CDNs are fine** (Google Fonts is used by the hub and by `TenMStudio`). There is no bundler to vendor them.
 - **Folder name is the public URL.** Renaming a folder breaks any existing link to it, so pick the name before the first push.
 
 ## Deployment
