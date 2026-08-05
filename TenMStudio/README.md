@@ -1,6 +1,6 @@
 # TEN/M Startup Studio landing page
 
-A dependency-free, responsive landing page. It presents two routes into the studio: idea validation through VibeWell, and a founder programme for people without a market-ready idea. Open `index.html` in any modern browser or deploy the folder to static hosting.
+A dependency-free, responsive landing page. It presents two routes into the studio: a live [VibeWell](https://vibe-well.vercel.app) market pre-check for product ideas, and a founder programme for people without a market-ready idea. Open `index.html` in any modern browser or deploy the folder to static hosting.
 
 ## Edit points
 
