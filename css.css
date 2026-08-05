@@ -187,3 +187,102 @@
         .page-footer a:hover {
             text-decoration: underline;
         }
+
+        /* ── LOGIN ── */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 340px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            background: rgba(26, 18, 9, 0.55);
+            border: 1.5px solid var(--copper);
+            border-radius: 4px;
+            backdrop-filter: blur(6px);
+        }
+
+        .login-card__title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--cream);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-card__subtitle {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: rgba(250, 246, 240, 0.6);
+            margin-bottom: 1.75rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .login-form input {
+            padding: 0.75rem 1rem;
+            border: 1.5px solid rgba(201, 124, 77, 0.4);
+            border-radius: 4px;
+            background: rgba(250, 246, 240, 0.05);
+            color: var(--cream);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+        }
+
+        .login-form input::placeholder {
+            color: rgba(250, 246, 240, 0.35);
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--copper);
+            box-shadow: 0 0 0 3px var(--copper-glow);
+        }
+
+        .login-form button {
+            padding: 0.75rem 1.8rem;
+            border: 1.5px solid var(--copper);
+            border-radius: 4px;
+            background: var(--copper);
+            color: var(--dark);
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+        }
+
+        .login-form button:hover {
+            box-shadow: 0 0 18px var(--copper-glow);
+            transform: translateY(-2px);
+        }
+
+        .login-form button:active {
+            transform: translateY(0);
+        }
+
+        .msg {
+            margin-top: 1rem;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            letter-spacing: 0.03em;
+            min-height: 1em;
+        }
+
+        .msg.bad {
+            color: #e07a5f;
+        }

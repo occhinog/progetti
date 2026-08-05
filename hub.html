@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <script src="/auth.js"></script>
-    <script>if (ProgettiAuth.isAuthenticated()) ProgettiAuth.redirectAfterLogin();</script>
+    <script>ProgettiAuth.requireAuth();</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accesso — Occhino</title>
+    <title>Progetti — Occhino</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap"
@@ -19,7 +19,8 @@
     <section class="hero">
         <div class="hero__bg"></div>
 
-        <a class="hero__logo" href="/" aria-label="occhino.it">
+        <!-- Logo -->
+        <a class="hero__logo" href="/hub.html" aria-label="Torna alla home">
             <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="35" cy="35" r="31" fill="none" stroke="#C97C4D" stroke-width="2.5" />
                 <text x="35" y="49" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="40"
@@ -28,27 +29,29 @@
             <span class="hero__logo-label">occhino.it</span>
         </a>
 
-        <div class="login-card">
-            <h1 class="login-card__title">Area riservata</h1>
-            <p class="login-card__subtitle">Inserisci la password per continuare</p>
+        <h1 class="hero__title">I Nostri Progetti</h1>
+        <p class="hero__subtitle">Roccafiorita &middot; Sicilia</p>
 
-            <form id="login-form" class="login-form">
-                <label for="password" class="sr-only">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password" required autofocus />
-                <button type="submit">Entra</button>
-            </form>
-
-            <p id="login-message" class="msg" role="alert"></p>
-        </div>
+        <!-- Buttons injected here -->
+        <nav class="hero__buttons" id="btn-grid" aria-label="Sezioni del sito"></nav>
     </section>
 
     <footer class="page-footer">
-        &copy; <span id="year"></span> occhino.it
+        &copy; <span id="year"></span> occhino.it &middot; <a href="/hub.html">Home</a>
     </footer>
 
+    <script src="projects.js"></script>
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-        ProgettiAuth.handleLogin('login-form', 'password', 'login-message');
+        const grid = document.getElementById('btn-grid');
+        projects.forEach(entry => {
+            const a = document.createElement('a');
+            a.className = 'proj-btn';
+            a.href = entry.link;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.textContent = entry.name;
+            grid.appendChild(a);
+        });
     </script>
 </body>
 
