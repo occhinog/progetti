@@ -1,13 +1,6 @@
 # TEN/M
 
-A dependency-free, responsive site for TEN/M, sharing one `styles.css` and `script.js` across two landing pages:
-
-- **`index.html`** — Startup Studio. Two routes in: idea validation through VibeWell, or a founder programme for people without a market-ready idea.
-- **`business-studio.html`** — Business Studio. AI operating transformation for existing companies, via BusinessWell.
-
-Each page cross-links to the other (header nav + hero switch-link).
-
-Both pages sit behind the site-wide password gate (`/auth.js`, see the root README's [Access control](../README.md#access-control) section) — they must be served over `http(s)://`, not opened directly via `file://`, and won't render without a valid `progetti_auth` session cookie.
+A dependency-free, responsive landing page. It presents two routes into the studio: a live [VibeWell](https://vibe-well.vercel.app) market pre-check for product ideas, and a founder programme for people without a market-ready idea. Open `index.html` in any modern browser or deploy the folder to static hosting.
 
 ## Edit points
 
