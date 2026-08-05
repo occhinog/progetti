@@ -7,5 +7,6 @@ A dependency-free, responsive landing page. It presents two routes into the stud
 - Copy and sections per page: `index.html`, `business-studio.html`
 - Visual system and breakpoints (shared): `styles.css` — business-page-specific rules are scoped under `.business-page`
 - Menu, route switching, motion, demo form state (shared): `script.js` — branches on `document.body.classList.contains('business-page')` where the two pages diverge
+- Images: `assets/` — `well.webp` is the wishing-well art from the VibeWell home page, positioned in the VibeWell card by the `--well-w` variable on `.vibe-link`
 
 The forms currently show an on-page confirmation only; connect the submit handler in `script.js` to an inbox, CRM, or form endpoint before going live.
