@@ -142,12 +142,15 @@ body::before { animation: auraBreathe 13s ease-in-out infinite; }
 @media (max-width: 900px) { .vibe-link { --well-w: 100px; min-height: 214px; } }
 @media (max-width: 680px) { .vibe-link { --well-w: 126px; min-height: 228px; } }
 
-/* BusinessWell mill — amber counterpart of the wishing well. Geometry below is
-   derived from the asset: the wheel hub sits at 44% of its width, 62% of its height. */
+/* BusinessWell mill — amber counterpart of the wishing well. The art is 560×713, so its
+   height is 1.2732× the --mill-w knob; both glows are anchored off that. Measured on the
+   asset: the lantern sits at 41% of its width / 55% of its height, the falling water at
+   45% / 82%. Unlike the well's cyan glow these do not blend — an additive layer washes
+   out on the panel's light amber gradient, so they simply sit over the art. */
 .businesswell-panel { --mill-w: 132px; position: relative; overflow: hidden; min-height: 236px; padding-right: calc(var(--mill-w) + 10px); }
 .bwell-art { position: absolute; z-index: 1; right: 2px; bottom: -14px; width: var(--mill-w); height: auto; pointer-events: none; user-select: none; filter: drop-shadow(0 13px 19px rgba(93,52,32,.26)); }
-.businesswell-panel::after { content: ""; position: absolute; z-index: 2; right: calc(var(--mill-w) * .56 - 37px); bottom: calc(var(--mill-w) * .38 - 53px); width: 78px; height: 78px; border-radius: 50%; background: radial-gradient(circle, rgba(255,236,196,.72), rgba(255,236,196,0) 68%); mix-blend-mode: screen; pointer-events: none; animation: millSpray 5.5s ease-in-out infinite; }@keyframes millSpray { 50% { opacity: .5; transform: scale(.86); } }
-.bwell-turn { position: absolute; z-index: 3; right: calc(var(--mill-w) * .74 - 12px); bottom: calc(var(--mill-w) * .62 - 22px); display: grid; width: 28px; height: 28px; place-items: center; border: 1px solid #c07f45; border-radius: 50%; color: #a85e2d; font: 19px/1 var(--serif); animation: millTurn 9s linear infinite; }@keyframes millTurn { to { transform: rotate(360deg); } }
+.businesswell-panel::after { content: ""; position: absolute; z-index: 2; right: calc(var(--mill-w) * .545 - 37px); bottom: calc(var(--mill-w) * .229 - 53px); width: 78px; height: 78px; border-radius: 50%; background: radial-gradient(circle, rgba(255,249,232,.6), rgba(255,249,232,0) 66%); pointer-events: none; animation: millSpray 5.5s ease-in-out infinite; }@keyframes millSpray { 50% { opacity: .45; transform: scale(.88); } }
+.businesswell-panel::before { content: ""; position: absolute; z-index: 2; right: calc(var(--mill-w) * .59 - 21px); bottom: calc(var(--mill-w) * .573 - 37px); width: 46px; height: 46px; border-radius: 50%; background: radial-gradient(circle, rgba(255,206,122,.5), rgba(255,206,122,0) 68%); pointer-events: none; animation: millLantern 4.2s ease-in-out infinite; }@keyframes millLantern { 50% { opacity: .55; transform: scale(1.1); } }
 /* Must stay after the base rule above — same specificity, so source order decides. */
 @media (max-width: 900px) { .businesswell-panel { --mill-w: 100px; min-height: 214px; } }
 @media (max-width: 680px) { .businesswell-panel { --mill-w: 126px; min-height: 228px; } }
