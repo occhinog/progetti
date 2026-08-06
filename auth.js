@@ -8,15 +8,17 @@
 // That blocks parsing until the auth check runs, so there is no flash of
 // protected content before an unauthenticated visitor is redirected.
 //
-// Password algorithm — 10 characters, generated fresh each day:
-//   1. Two fixed capital-letter initials: GO, DR or MM (peer codes) — always first.
-//   2. The remaining 4 blocks may appear in ANY order after the initials:
-//        - the current year, digits reversed (2026 -> "6202")
-//        - one special character from ! # % & @ $
-//        - a literal dot "."
-//        - the current day, zero-padded to 2 digits
-//   Example for 2026-08-03, peer GO, special "!": GO6202!.03 (or any
-//   reordering of the last 8 characters, e.g. GO.03!6202).
+// Password algorithm — 9 characters in a FIXED order, generated fresh each day:
+//   1. Two capital-letter initials: GO, DR or MM (peer codes).
+//   2. A literal "$".
+//   3. The current year, digits reversed (2026 -> "6202").
+//   4. The current day, zero-padded to 2 digits.
+//   Example for 2026-08-06, peer GO: GO$620206
+//
+// Simplified from the previous 10-character scheme, which allowed any of
+// ! # % & @ $ plus a dot in any order after the initials. Fixed order and a
+// single special character make it easy to type from memory; since the whole
+// algorithm is readable in view-source, the entropy was never the point.
 
 const ProgettiAuth = (() => {
   const COOKIE_NAME = 'progetti_auth';
@@ -24,7 +26,7 @@ const ProgettiAuth = (() => {
   const LOGIN_PATH = '/';
   const DEFAULT_DEST = '/hub.html';
   const PEER_CODES = ['GO', 'DR', 'MM'];
-  const SPECIAL_CHARS = ['!', '#', '%', '&', '@', '$'];
+  const SPECIAL_CHAR = '$';
 
   function validatePassword(value) {
     const prefix = value.slice(0, 2);
@@ -33,20 +35,12 @@ const ProgettiAuth = (() => {
     const today = new Date();
     const yearReversed = String(today.getFullYear()).split('').reverse().join('');
     const day = String(today.getDate()).padStart(2, '0');
-    const expectedLength = 2 + yearReversed.length + 1 + 1 + day.length;
+    const expectedLength = prefix.length + 1 + yearReversed.length + day.length;
 
     if (value.length !== expectedLength) return 'Lunghezza password non valida';
-
-    let rest = value.slice(2);
-    if (!rest.includes(yearReversed)) return 'Anno non valido';
-    rest = rest.replace(yearReversed, '');
-
-    if (!rest.includes(day)) return 'Giorno non valido';
-    rest = rest.replace(day, '');
-
-    if (rest.length !== 2 || !rest.includes('.') || ![...rest].some((c) => SPECIAL_CHARS.includes(c))) {
-      return 'Carattere speciale o punto mancante';
-    }
+    if (value[2] !== SPECIAL_CHAR) return 'Carattere speciale non valido';
+    if (value.slice(3, 3 + yearReversed.length) !== yearReversed) return 'Anno non valido';
+    if (value.slice(3 + yearReversed.length) !== day) return 'Giorno non valido';
 
     return '';
   }
