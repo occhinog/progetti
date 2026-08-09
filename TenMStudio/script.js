@@ -21,7 +21,9 @@ function setRoute(route) {
   const founder = route === 'founder';
   routeInput.value = route;
   detailLabel.firstChild.textContent = founder ? 'What makes you want to build?' : 'What opportunity are you seeing?';
-  detailInput.placeholder = founder ? 'Tell us what kind of founder you want to become.' : 'A rough idea is enough.';
+  detailInput.placeholder = founder
+    ? 'What kind of founder you want to become, what you have already built or run, and where you think your opportunity sits. Rough is fine — vague is not.'
+    : 'Who has the problem, how you know it is real, and what you would do first. Rough is fine — vague is not. We cannot work on an idea with no evidence behind it.';
   // Both route labels are now permanent buttons inside #route-status, so the
   // selection is shown by the active class rather than by rewriting the text.
   document.querySelectorAll('[data-route-link]').forEach((link) => {
@@ -52,6 +54,27 @@ document.addEventListener('pointermove', (event) => {
 });
 
 document.querySelector('#year').textContent = new Date().getFullYear();
+
+// Word floor on the long-answer field. HTML only offers minlength (characters),
+// so the count and the block on submit are done here.
+document.querySelectorAll('textarea[data-min-words]').forEach((field) => {
+  const min = Number(field.dataset.minWords);
+  const readout = field.parentElement.querySelector('[data-word-count]');
+  const count = () => field.value.trim().split(/\s+/).filter(Boolean).length;
+
+  const sync = () => {
+    const words = count();
+    const short = words < min;
+    field.setCustomValidity(short ? `Please write at least ${min} words — ${words} so far.` : '');
+    if (readout) {
+      readout.textContent = `${words} / ${min} words minimum`;
+      readout.classList.toggle('is-short', short);
+    }
+  };
+
+  field.addEventListener('input', sync);
+  sync();
+});
 
 // Optional: the landing and who-we-are pages carry no form.
 document.querySelector('#idea-form')?.addEventListener('submit', (event) => {

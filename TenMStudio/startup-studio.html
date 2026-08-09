@@ -14,7 +14,7 @@
   </head>
   <body>
     <header class="site-header" id="top">
-      <a class="brand" href="#top" aria-label="TEN.M home"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><mask id="brandCut"><rect width="64" height="64" fill="#fff" /><text class="brand-cut" x="32" y="38" text-anchor="middle" textLength="52" lengthAdjust="spacing">TEN.M</text></mask><circle class="brand-disc" cx="32" cy="32" r="32" mask="url(#brandCut)" /></svg></a>
+      <a class="brand" href="index.html" aria-label="TEN.M home"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><mask id="brandCut"><rect width="64" height="64" fill="#fff" /><text class="brand-cut" x="32" y="38" text-anchor="middle" textLength="52" lengthAdjust="spacing">TEN.M</text></mask><circle class="brand-disc" cx="32" cy="32" r="32" mask="url(#brandCut)" /></svg></a>
       <nav class="main-nav" aria-label="Main navigation">
         <a class="nav-business-link" href="business-studio.html">Business Studio <span>↗</span></a>
         <a href="who-we-are.html">Who we are</a>
@@ -28,7 +28,7 @@
         <div class="hero-grid" aria-hidden="true"></div>
         <div class="hero-inner shell">
           <div class="hero-copy reveal">
-            <p class="eyebrow"><i></i> Startup studio · Torino / Remote</p>
+            <p class="eyebrow"><i></i> Startup Studio · Venture building &amp; founder training</p>
             <h1>Build your <em>idea</em>.<br />Improve your <em>career</em>.</h1>
             <p class="hero-intro">TEN.M is a startup studio for people who have a real opportunity—or the appetite to lead one.</p>
             <div class="route-picker" role="group" aria-label="Choose your route">
@@ -125,15 +125,15 @@
             <input type="hidden" name="route" id="route-input" value="idea" />
             <label id="name-label">Your name<input required type="text" name="name" placeholder="Name" /></label>
             <label>Email<input required type="email" name="email" placeholder="you@company.com" /></label>
-            <label id="detail-label">What opportunity are you seeing?<textarea required name="detail" rows="3" placeholder="A rough idea is enough."></textarea></label>
+            <label id="detail-label">What opportunity are you seeing?<textarea required name="detail" rows="8" data-min-words="100" placeholder="Who has the problem, how you know it is real, and what you would do first. Rough is fine — vague is not. We cannot work on an idea with no evidence behind it."></textarea><small class="word-count" data-word-count aria-live="polite">0 / 100 words minimum</small></label>
             <button class="primary-button" type="submit">Send the first signal <b>→</b></button>
-            <p class="form-note">No deck. No payment. Just the first useful answer.</p>
+            <p class="form-note">No deck. No payment. Just enough evidence for us to give a useful answer.</p>
           </form>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer shell"><a class="brand" href="#top" aria-label="TEN.M home"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><mask id="brandCutFoot"><rect width="64" height="64" fill="#fff" /><text class="brand-cut" x="32" y="38" text-anchor="middle" textLength="52" lengthAdjust="spacing">TEN.M</text></mask><circle class="brand-disc" cx="32" cy="32" r="32" mask="url(#brandCutFoot)" /></svg></a><p>Startup studio for people ready to make a move.</p><a href="mailto:hello@tenm.studio">hello@tenm.studio <span>↗</span></a><small>© <span id="year"></span> TEN.M</small></footer>
+    <footer class="site-footer shell"><a class="brand" href="index.html" aria-label="TEN.M home"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><mask id="brandCutFoot"><rect width="64" height="64" fill="#fff" /><text class="brand-cut" x="32" y="38" text-anchor="middle" textLength="52" lengthAdjust="spacing">TEN.M</text></mask><circle class="brand-disc" cx="32" cy="32" r="32" mask="url(#brandCutFoot)" /></svg></a><p>Startup studio for people ready to make a move.</p><a href="mailto:hello@tenm.studio">hello@tenm.studio <span>↗</span></a><small>© <span id="year"></span> TEN.M</small></footer>
     <script src="script.js"></script>
   </body>
 </html>
