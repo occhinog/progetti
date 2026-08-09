@@ -14,7 +14,7 @@
   </head>
   <body class="business-page">
     <header class="site-header" id="top">
-      <a class="brand" href="#top" aria-label="TEN.M home"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><mask id="brandCut"><rect width="64" height="64" fill="#fff" /><text class="brand-cut" x="32" y="38" text-anchor="middle" textLength="52" lengthAdjust="spacing">TEN.M</text></mask><circle class="brand-disc" cx="32" cy="32" r="32" mask="url(#brandCut)" /></svg></a>
+      <a class="brand" href="index.html" aria-label="TEN.M home"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><mask id="brandCut"><rect width="64" height="64" fill="#fff" /><text class="brand-cut" x="32" y="38" text-anchor="middle" textLength="52" lengthAdjust="spacing">TEN.M</text></mask><circle class="brand-disc" cx="32" cy="32" r="32" mask="url(#brandCut)" /></svg></a>
       <nav class="main-nav" aria-label="Main navigation">
         <a class="nav-studio-link" href="startup-studio.html">Startup Studio <span>↗</span></a>
         <a href="who-we-are.html">Who we are</a>
@@ -116,15 +116,15 @@
           <form class="idea-form reveal" id="idea-form">
             <label>Company<input required type="text" name="company" placeholder="Company name" /></label>
             <label>Your email<input required type="email" name="email" placeholder="you@company.com" /></label>
-            <label>What needs to work better?<textarea required name="detail" rows="3" placeholder="For example: we want to automate incoming receipts."></textarea></label>
+            <label>What needs to work better?<textarea required name="detail" rows="8" data-min-words="100" placeholder="What breaks today, who it costs, and what you have already tried. For example: incoming receipts are handled by hand, three people, four days a month."></textarea><small class="word-count" data-word-count aria-live="polite">0 / 100 words minimum</small></label>
             <button class="primary-button" type="submit">Map the opportunity <b>→</b></button>
-            <p class="form-note">No deck. No technical brief. Just a concrete business need.</p>
+            <p class="form-note">No deck. No technical brief. Just a concrete business need, with the detail behind it.</p>
           </form>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer shell"><a class="brand" href="#top" aria-label="TEN.M home"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><mask id="brandCutFoot"><rect width="64" height="64" fill="#fff" /><text class="brand-cut" x="32" y="38" text-anchor="middle" textLength="52" lengthAdjust="spacing">TEN.M</text></mask><circle class="brand-disc" cx="32" cy="32" r="32" mask="url(#brandCutFoot)" /></svg></a><p>Business Studio for companies ready to work differently.</p><a href="mailto:hello@tenm.studio">hello@tenm.studio <span>↗</span></a><small>© <span id="year"></span> TEN.M</small></footer>
+    <footer class="site-footer shell"><a class="brand" href="index.html" aria-label="TEN.M home"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><mask id="brandCutFoot"><rect width="64" height="64" fill="#fff" /><text class="brand-cut" x="32" y="38" text-anchor="middle" textLength="52" lengthAdjust="spacing">TEN.M</text></mask><circle class="brand-disc" cx="32" cy="32" r="32" mask="url(#brandCutFoot)" /></svg></a><p>Business Studio for companies ready to work differently.</p><a href="mailto:hello@tenm.studio">hello@tenm.studio <span>↗</span></a><small>© <span id="year"></span> TEN.M</small></footer>
     <script src="script.js"></script>
   </body>
 </html>
