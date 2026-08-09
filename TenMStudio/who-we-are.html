@@ -94,7 +94,7 @@
               <img class="partner-photo" src="assets/gabriel.jpg" width="300" height="300" alt="Gabriel Occhino" loading="lazy" decoding="async" />
               <p class="partner-index">III</p>
               <h3>Gabriel Occhino</h3>
-              <p class="partner-role">Co-founder · commercial lead &amp; 1st student</p>
+              <p class="partner-role">Co-founder · commercial lead</p>
               <p class="partner-bio">IT programme and project management at Intesa Sanpaolo, M.Sc. Management Engineering at Politecnico di Torino, and a run of companies founded along the way.</p>
               <div class="partner-links">
                 <a class="partner-link" href="https://www.linkedin.com/in/occhino/" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a>
@@ -219,14 +219,58 @@
             <h2>Bring the thing<br />that's <em>stuck.</em></h2>
           </div>
           <div class="about-contact-side">
-            <a class="contact-mail" href="mailto:hello@tenm.studio">hello@tenm.studio <span>↗</span></a>
-            <p>Or go straight to the studio that fits: <a href="startup-studio.html">Startup</a> · <a href="business-studio.html">Business</a>.</p>
+            <div class="spin" data-spin-root>
+              <button class="spin-button" type="button" data-spin>
+                <span class="spin-window">
+                  <img class="spin-art" data-art="mill" src="assets/mill.webp" alt="" aria-hidden="true" decoding="async" />
+                  <img class="spin-art" data-art="well" src="assets/well.webp" alt="" aria-hidden="true" decoding="async" />
+                  <img class="spin-face" data-face="davide" src="assets/raven.webp" width="358" height="420" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  <img class="spin-face" data-face="matteo" src="assets/toad.webp" width="419" height="420" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  <img class="spin-face" data-face="gabriel" src="assets/mouse.webp" width="410" height="420" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  <svg class="spin-rig spin-wheel" data-rig-for="mill" data-spin-wheel viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                    <g class="wheel-spokes">
+                      <path d="M12 100H188M100 12V188M56 56L144 144M56 144L144 56" />
+                    </g>
+                    <circle class="wheel-rim" cx="100" cy="100" r="90" />
+                    <circle class="wheel-rim wheel-rim-inner" cx="100" cy="100" r="72" />
+                    <g class="wheel-paddles">
+                      <rect x="86" y="2" width="28" height="20" rx="3" />
+                      <rect x="86" y="2" width="28" height="20" rx="3" transform="rotate(45 100 100)" />
+                      <rect x="86" y="2" width="28" height="20" rx="3" transform="rotate(90 100 100)" />
+                      <rect x="86" y="2" width="28" height="20" rx="3" transform="rotate(135 100 100)" />
+                      <rect x="86" y="2" width="28" height="20" rx="3" transform="rotate(180 100 100)" />
+                      <rect x="86" y="2" width="28" height="20" rx="3" transform="rotate(225 100 100)" />
+                      <rect x="86" y="2" width="28" height="20" rx="3" transform="rotate(270 100 100)" />
+                      <rect x="86" y="2" width="28" height="20" rx="3" transform="rotate(315 100 100)" />
+                    </g>
+                    <circle class="wheel-hub" cx="100" cy="100" r="15" />
+                  </svg>
+                  <svg class="spin-rig spin-well" data-rig-for="well" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                    <ellipse class="well-water" cx="100" cy="176" rx="58" ry="12" />
+                    <ellipse class="well-ripple" data-well-ripple cx="100" cy="176" rx="20" ry="4" />
+                    <circle class="well-spark" cx="52" cy="158" r="2.4" />
+                    <circle class="well-spark" cx="150" cy="164" r="2" />
+                    <circle class="well-spark" cx="128" cy="146" r="1.6" />
+                    <rect class="well-beam" x="56" y="10" width="88" height="10" rx="5" />
+                    <line class="well-rope" data-well-rope x1="100" y1="20" x2="100" y2="140" />
+                    <g class="well-pail" data-well-pail transform="translate(0 140)">
+                      <path class="pail-handle" d="M84 2 A17 15 0 0 1 116 2" />
+                      <path class="pail-body" d="M81 5 H119 L114 42 H86 Z" />
+                      <path class="pail-hoop" d="M82.5 17 H117.5 M84.5 30 H115.5" />
+                    </g>
+                  </svg>
+                </span>
+                <span class="spin-cta" data-spin-label>Spin the wheel</span>
+              </button>
+              <p class="spin-result" data-spin-result role="status" aria-live="polite"></p>
+              <p class="spin-note"><span data-spin-verb>Spin the wheel</span> to randomly write to one of the co-founders, or write to <a href="mailto:hello@tenm.studio">hello@tenm.studio</a>.</p>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer shell"><a class="brand" href="index.html" aria-label="TEN.M home"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><mask id="brandCutFoot"><rect width="64" height="64" fill="#fff" /><text class="brand-cut" x="32" y="38" text-anchor="middle" textLength="52" lengthAdjust="spacing">TEN.M</text></mask><circle class="brand-disc" cx="32" cy="32" r="32" mask="url(#brandCutFoot)" /></svg></a><p>Three partners for people ready to make a move.</p><a href="mailto:hello@tenm.studio">hello@tenm.studio <span>↗</span></a><small>© <span id="year"></span> TEN.M</small></footer>
+    <footer class="site-footer shell"><a class="brand" href="index.html" aria-label="TEN.M home"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><mask id="brandCutFoot"><rect width="64" height="64" fill="#fff" /><text class="brand-cut" x="32" y="38" text-anchor="middle" textLength="52" lengthAdjust="spacing">TEN.M</text></mask><circle class="brand-disc" cx="32" cy="32" r="32" mask="url(#brandCutFoot)" /></svg></a><p>Three partners for people ready to make a move.</p><small class="footer-made">Created with 💜 and AI by Davide, Gabriel and Matteo © <span id="year"></span> TEN.M</small><small class="footer-ai">This site was built with AI. All imagery is AI-generated unless stated otherwise.</small></footer>
     <script src="script.js"></script>
   </body>
 </html>
