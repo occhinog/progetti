@@ -20,10 +20,15 @@ function setRoute(route) {
   if (!routeInput || !routeStatus || !detailLabel || !detailInput) return;
   const founder = route === 'founder';
   routeInput.value = route;
-  routeStatus.innerHTML = founder ? '<span>02</span> I want to become a founder' : '<span>01</span> I have an idea';
   detailLabel.firstChild.textContent = founder ? 'What makes you want to build?' : 'What opportunity are you seeing?';
   detailInput.placeholder = founder ? 'Tell us what kind of founder you want to become.' : 'A rough idea is enough.';
-  document.querySelectorAll('[data-route-link]').forEach((link) => link.classList.toggle('active', link.dataset.routeLink === route));
+  // Both route labels are now permanent buttons inside #route-status, so the
+  // selection is shown by the active class rather than by rewriting the text.
+  document.querySelectorAll('[data-route-link]').forEach((link) => {
+    const on = link.dataset.routeLink === route;
+    link.classList.toggle('active', on);
+    if (link.tagName === 'BUTTON') link.setAttribute('aria-pressed', String(on));
+  });
 }
 
 document.querySelectorAll('[data-set-route], [data-route-link]').forEach((element) => {
@@ -48,7 +53,8 @@ document.addEventListener('pointermove', (event) => {
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 
-document.querySelector('#idea-form').addEventListener('submit', (event) => {
+// Optional: the landing and who-we-are pages carry no form.
+document.querySelector('#idea-form')?.addEventListener('submit', (event) => {
   event.preventDefault();
   const button = event.currentTarget.querySelector('button');
   button.innerHTML = document.body.classList.contains('business-page') ? 'Opportunity received <b>✓</b>' : 'First signal received <b>✓</b>';
