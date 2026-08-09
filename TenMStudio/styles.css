@@ -218,13 +218,18 @@ body::before { animation: auraBreathe 13s ease-in-out infinite; }
 /* The familiars are full scenes, not icons, so each gets a tinted panel the
    width of the card — the negative inline margin cancels the card padding.
    place-items:end plants the character on the panel floor. */
-.partner-art { width: calc(100% + 52px); height: 212px; margin: 0 -26px; display: grid; place-items: end center; }
-.partner-art img { max-height: 100%; width: auto; display: block; }
-.art-raven { background: linear-gradient(179deg, #e7e7ff, #f5f5ff); }
-.art-toad { background: linear-gradient(179deg, #ddf2f1, #eefaf9); }
-.art-mouse { background: linear-gradient(179deg, #faecd9, #fdf7ee); }
-/* Later sibling, so it paints over the panel without needing a stacking context. */
-.partner-photo { width: 74px; height: 74px; margin: -37px 0 15px; display: block; border-radius: 50%; border: 3px solid #fbfaf7; object-fit: cover; }
+/* The art is absolutely placed inside a fixed-height, clipped band. A percentage
+   max-height on a grid item resolved against an indefinite height and was
+   dropped, letting the 420px art spill over the copy — so the height is pinned
+   to the box instead. Character sits right, leaving the lower left for the
+   portrait rather than the two overlapping. */
+.partner-art { position: relative; flex: none; width: calc(100% + 52px); height: 226px; margin: 0 -26px; overflow: hidden; }
+.partner-art img { position: absolute; right: 6px; bottom: 0; height: 100%; width: auto; display: block; }
+.art-raven { background: linear-gradient(180deg, #efefff, #dcdcf8); }
+.art-toad { background: linear-gradient(180deg, #e7f7f6, #cfeceb); }
+.art-mouse { background: linear-gradient(180deg, #fdf2e4, #f7e3ca); }
+/* Positioned so it paints above the panel, which is itself positioned. */
+.partner-photo { position: relative; z-index: 1; width: 84px; height: 84px; margin: -42px 0 15px; display: block; border-radius: 50%; border: 3px solid #fbfaf7; object-fit: cover; }
 .partner-index { margin: 0 0 7px; color: #9a9aa8; font: 700 11px var(--mono); letter-spacing: .08em; }
 .partner-card h3 { margin: 0; font-size: 25px; font-weight: 600; letter-spacing: -.04em; }
 .partner-role { margin: 7px 0 0; color: #6869d4; font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
