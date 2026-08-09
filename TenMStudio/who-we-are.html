@@ -20,9 +20,10 @@
     web sources, not confirmed by them — LinkedIn blocks automated fetches (HTTP 999),
     so nothing was read from their profiles directly. Gabriel's is his own copy.
 
-    The three creature medallions are hand-drawn SVG stand-ins. When the Picsart
-    art arrives, replace each <svg class="familiar-art"> with an <img> of the
-    same box; no layout or CSS change is needed.
+    The three familiars are final generated art (assets/raven|toad|mouse.webp),
+    trimmed to their alpha bounds and shown on a tinted panel per card. Each
+    palette matches its studio: violet Davide, cyan Matteo (well / Startup),
+    amber Gabriel (mill / Business).
   -->
   <body class="about-page">
     <header class="site-header" id="top">
@@ -58,22 +59,10 @@
 
           <div class="partner-grid">
             <article class="partner-card reveal">
-              <div class="partner-figure">
-                <img class="partner-photo" src="assets/davide.jpg" width="300" height="300" alt="Davide Rovera" loading="lazy" decoding="async" />
-                <span class="familiar familiar-raven">
-                  <svg class="familiar-art" viewBox="0 0 120 120" role="img" aria-label="Codex raven, Davide's familiar">
-                    <circle class="familiar-glow" cx="60" cy="60" r="42" />
-                    <circle class="familiar-ring" cx="60" cy="60" r="54" />
-                    <path class="familiar-prop" d="M30 88 L60 81 L90 88 L90 95 L60 88 L30 95 Z" />
-                    <path class="familiar-prop" d="M60 81 L60 88" />
-                    <path class="familiar-body" d="M60 34 C71 34 78 45 78 58 C78 71 71 79 60 79 C49 79 42 71 42 58 C42 45 49 34 60 34 Z" />
-                    <path class="familiar-body" d="M45 71 L31 85 L50 78 Z" />
-                    <circle class="familiar-body" cx="61" cy="37" r="10" />
-                    <path class="familiar-beak" d="M70 36 L84 40 L70 45 Z" />
-                    <circle class="familiar-eye" cx="64" cy="35" r="2" />
-                  </svg>
-                </span>
-              </div>
+              <figure class="partner-art art-raven">
+                <img src="assets/raven.webp" width="358" height="420" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              </figure>
+              <img class="partner-photo" src="assets/davide.jpg" width="300" height="300" alt="Davide Rovera" loading="lazy" decoding="async" />
               <p class="partner-index">I</p>
               <h3>Davide Rovera</h3>
               <p class="partner-role">Co-founder · teaching lead</p>
@@ -85,22 +74,10 @@
             </article>
 
             <article class="partner-card reveal">
-              <div class="partner-figure">
-                <img class="partner-photo" src="assets/matteo.jpg" width="300" height="300" alt="Matteo Mercurio" loading="lazy" decoding="async" />
-                <span class="familiar familiar-toad">
-                  <svg class="familiar-art" viewBox="0 0 120 120" role="img" aria-label="Well toad, Matteo's familiar">
-                    <circle class="familiar-glow" cx="60" cy="60" r="42" />
-                    <circle class="familiar-ring" cx="60" cy="60" r="54" />
-                    <path class="familiar-prop" d="M26 86 Q60 76 94 86 L94 94 Q60 84 26 94 Z" />
-                    <path class="familiar-body" d="M60 45 C78 45 89 57 89 69 C89 79 76 84 60 84 C44 84 31 79 31 69 C31 57 42 45 60 45 Z" />
-                    <circle class="familiar-body" cx="47" cy="46" r="9" />
-                    <circle class="familiar-body" cx="73" cy="46" r="9" />
-                    <circle class="familiar-eye" cx="47" cy="45" r="3" />
-                    <circle class="familiar-eye" cx="73" cy="45" r="3" />
-                    <path class="familiar-mouth" d="M44 71 Q60 79 76 71" />
-                  </svg>
-                </span>
-              </div>
+              <figure class="partner-art art-toad">
+                <img src="assets/toad.webp" width="419" height="420" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              </figure>
+              <img class="partner-photo" src="assets/matteo.jpg" width="300" height="300" alt="Matteo Mercurio" loading="lazy" decoding="async" />
               <p class="partner-index">II</p>
               <h3>Matteo Mercurio</h3>
               <p class="partner-role">Co-founder · tech lead</p>
@@ -112,22 +89,10 @@
             </article>
 
             <article class="partner-card reveal">
-              <div class="partner-figure">
-                <img class="partner-photo" src="assets/gabriel.jpg" width="300" height="300" alt="Gabriel Occhino" loading="lazy" decoding="async" />
-                <span class="familiar familiar-mouse">
-                  <svg class="familiar-art" viewBox="0 0 120 120" role="img" aria-label="Mill mouse, Gabriel's familiar">
-                    <circle class="familiar-glow" cx="60" cy="60" r="42" />
-                    <circle class="familiar-ring" cx="60" cy="60" r="54" />
-                    <path class="familiar-prop" d="M28 88 L92 88" />
-                    <circle class="familiar-prop" cx="60" cy="95" r="11" />
-                    <path class="familiar-body" d="M57 50 C73 50 83 61 83 71 C83 80 72 85 57 85 C42 85 32 80 32 71 C32 61 41 50 57 50 Z" />
-                    <circle class="familiar-body" cx="43" cy="50" r="12" />
-                    <path class="familiar-beak" d="M82 68 L95 73 L82 78 Z" />
-                    <path class="familiar-mouth" d="M33 80 Q19 86 23 96" />
-                    <circle class="familiar-eye" cx="70" cy="66" r="2.4" />
-                  </svg>
-                </span>
-              </div>
+              <figure class="partner-art art-mouse">
+                <img src="assets/mouse.webp" width="410" height="420" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              </figure>
+              <img class="partner-photo" src="assets/gabriel.jpg" width="300" height="300" alt="Gabriel Occhino" loading="lazy" decoding="async" />
               <p class="partner-index">III</p>
               <h3>Gabriel Occhino</h3>
               <p class="partner-role">Co-founder · programme &amp; delivery</p>

@@ -212,22 +212,19 @@ body::before { animation: auraBreathe 13s ease-in-out infinite; }
 .about-summary { max-width: 470px; margin: 22px 0 0; color: #55566a; font-size: 17px; line-height: 1.55; }
 .about-split { display: grid; grid-template-columns: .85fr 1.15fr; gap: 64px; align-items: center; }
 
-/* Partner cards ─ portrait with the familiar medallion tucked into its corner. */
+/* Partner cards ─ art panel on top, portrait straddling its lower edge. */
 .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 66px; }
-.partner-card { display: flex; flex-direction: column; align-items: flex-start; padding: 30px 28px 32px; border: 1px solid var(--line); border-radius: 12px; background: #fbfaf7; }
-.partner-figure { position: relative; width: 128px; height: 128px; margin-bottom: 22px; }
-.partner-photo { width: 128px; height: 128px; display: block; border-radius: 50%; object-fit: cover; }
-.familiar { position: absolute; right: -14px; bottom: -10px; width: 62px; height: 62px; display: block; border-radius: 50%; border: 2px solid var(--paper); background: #14152c; }
-.familiar-art { width: 100%; height: 100%; display: block; }
-.familiar-glow { fill: currentColor; opacity: .22; }
-.familiar-ring { fill: none; stroke: currentColor; stroke-width: 3; opacity: .5; }
-.familiar-body { fill: #0f1024; stroke: currentColor; stroke-width: 3.4; stroke-linejoin: round; }
-.familiar-prop { fill: none; stroke: currentColor; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; opacity: .8; }
-.familiar-beak, .familiar-eye { fill: currentColor; }
-.familiar-mouth { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; }
-.familiar-raven { color: #9a9bff; }
-.familiar-toad { color: #6fe3e0; }
-.familiar-mouse { color: var(--business); }
+.partner-card { display: flex; flex-direction: column; align-items: flex-start; overflow: hidden; padding: 0 26px 30px; border: 1px solid var(--line); border-radius: 12px; background: #fbfaf7; }
+/* The familiars are full scenes, not icons, so each gets a tinted panel the
+   width of the card — the negative inline margin cancels the card padding.
+   place-items:end plants the character on the panel floor. */
+.partner-art { width: calc(100% + 52px); height: 212px; margin: 0 -26px; display: grid; place-items: end center; }
+.partner-art img { max-height: 100%; width: auto; display: block; }
+.art-raven { background: linear-gradient(179deg, #e7e7ff, #f5f5ff); }
+.art-toad { background: linear-gradient(179deg, #ddf2f1, #eefaf9); }
+.art-mouse { background: linear-gradient(179deg, #faecd9, #fdf7ee); }
+/* Later sibling, so it paints over the panel without needing a stacking context. */
+.partner-photo { width: 74px; height: 74px; margin: -37px 0 15px; display: block; border-radius: 50%; border: 3px solid #fbfaf7; object-fit: cover; }
 .partner-index { margin: 0 0 7px; color: #9a9aa8; font: 700 11px var(--mono); letter-spacing: .08em; }
 .partner-card h3 { margin: 0; font-size: 25px; font-weight: 600; letter-spacing: -.04em; }
 .partner-role { margin: 7px 0 0; color: #6869d4; font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
