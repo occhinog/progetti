@@ -1,5 +1,4 @@
 const projects = [
     { name: "Elezioni2018", link: "elezioni18/" },
-    { name: "Elezioni2023", link: "elezioni23/" },
-    { name: "TEN.M Studio", link: "TenMStudio/" }
+    { name: "Elezioni2023", link: "elezioni23/" }
 ];
