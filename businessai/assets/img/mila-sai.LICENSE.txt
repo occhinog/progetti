@@ -1,0 +1,83 @@
+mila-sai-idle.webp
+==================
+
+Sprite: "Mila", assistente S.AI — un axolotl lilla con cuffie blu e il badge SAI
+sul petto. Sostituisce Frosty Codex, che era un pet di terze parti e non aveva
+niente a che vedere con il marchio.
+
+Autore: Gabriel Occhino, 2026-08-09. Partito da un'immagine generata con
+ChatGPT e lavorata fino al foglio sprite completo (11 righe di stato, 8 frame
+per riga, formato v2).
+
+Diritti: materiale nostro. Nessuna licenza di terzi da rispettare, nessuna
+attribuzione dovuta a nessuno — che e' esattamente il motivo per cui sostituisce
+Frosty Codex, il cui stato di licenza non era accertabile.
+
+Disclosure: Mila e' un'illustrazione fatta con l'AI, e ricade sotto la riga che
+il footer del sito gia' porta su ogni pagina — "Parte dei contenuti di questo
+sito — testi e illustrazioni — e' realizzata con l'AI: e' il mestiere che
+insegniamo, ci pareva onesto dirlo." Non serve altro, ma se un giorno quella
+riga sparisse, questa nota resta il posto dove c'e' scritto.
+
+Sorgenti: cartella `mila-sai/`, contenente spritesheet.webp, contact-sheet.png,
+look-directions.png e pet.json. pet.json dichiara:
+    id            mila-sai
+    displayName   Mila
+    description   Mila, the warm and attentive S.AI axolotl guide.
+    spriteVersion 2
+
+Il foglio originale e' 1536x2288, una griglia esatta 8x11 di celle da 192x208.
+La riga 0 e' l'idle: 6 frame di loop piu' un frame "neutral" (il settimo e'
+vuoto). contact-sheet.png etichetta ogni riga ed e' il modo piu' veloce per
+ritrovarsi.
+
+Modifiche per il sito: estratti i 6 frame idle della riga 0, ritagliati con
+un'UNICA bounding box condivisa (14, 5, 178, 203) — non una per frame, altrimenti
+ogni frame si ricentrerebbe sulla propria sagoma e il personaggio scivolerebbe di
+lato a ogni passo — ridimensionati a 132x160 ciascuno e montati CENTRATI dentro
+celle da 144x160, con 6 px di margine trasparente a destra e a sinistra di
+ognuno. Striscia finale 864x160, WebP q90.
+
+⚠️ I 6 px di margine non sono decorativi, TENERLI. Il primo taglio era a filo
+(celle da 132, arte che toccava i bordi) e il pet perdeva pezzi: la CSS mostra la
+striscia a meta' scala e la posiziona con `left: 50%` dentro una riga di testo,
+quindi la scatola cade quasi sempre su un pixel frazionario. Il browser
+ricampiona a cavallo della cucitura e, senza margine, si porta dentro una fetta
+del frame accanto — si vedeva un pezzo di testa comparire a sinistra quando il
+personaggio si spostava a destra. Col margine il ricampionamento pesca
+trasparente e la cucitura non esiste piu'.
+
+Larghezze pari di proposito, arte e cella: e' un asset 2x mostrato a meta', e una
+larghezza dispari metterebbe ogni step su mezzo pixel (il calcolo esatto dell'arte
+dava 133, tenuto a 132).
+
+⚠️ SE RIGENERI QUESTO FILE, ALZA IL ?v= NEI DUE HTML. Il sito sta dietro
+Cloudflare, che tiene le immagini in cache 4 ore (`max-age=14400`) con chiave sul
+nome del file. L'HTML invece non e' in cache e si aggiorna subito. Risultato: dopo
+un deploy che cambia insieme CSS e sprite, per qualche ora il browser riceve il CSS
+nuovo e l'immagine vecchia — cioe' esattamente l'aspetto di una correzione che non
+ha funzionato. E' successo l'11 agosto e ci abbiamo perso un giro. La query string
+entra nella chiave di cache, quindi bastano `?v=3`, `?v=4` e il problema non esiste.
+
+Per rifarlo, o per montare un'altra riga del foglio: i parametri qui sopra sono
+tutti quelli che servono — riga, bounding box condivisa, arte 132x160 centrata in
+celle 144x160, LANCZOS, WebP q90. Lo script non e' in repo, e' venti righe di
+Pillow. Se cambi la geometria, i numeri da rifare nei due HTML sono quattro:
+`width`, `background-size`, i cinque `background-position` e il `margin-left`
+negativo in contatti (meta' della larghezza della cella).
+
+Usato in contatti.html (hover sulla parola "agente") e in prezzo.html (sempre
+visibile, e' il finale della battuta).
+
+Nota sul formato
+----------------
+Il foglio segue il contratto sprite v2 dei pet di codex-pet.com — stessa griglia,
+stesse righe di stato, stesso ordine. E' compatibilita' di formato, non origine:
+l'arte e' nostra, il contratto e' solo il modo in cui i frame sono impaginati.
+Serve saperlo perche' la cadenza dell'idle in contatti.html e prezzo.html
+(280/110/110/140/140/320 ms) viene da li', ed e' il motivo per cui e' rimasta
+invariata nel passaggio da un pet all'altro.
+
+Le altre dieci righe del foglio — running, waving, jumping, failed, waiting,
+review, look — oggi non sono usate da nessuna parte: il sito monta solo l'idle.
+Sono li' se un giorno servono.

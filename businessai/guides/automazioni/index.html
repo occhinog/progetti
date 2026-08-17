@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <script src="/auth.js"></script>
+  <script>ProgettiAuth.requireAuth();</script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Come progettare un’automazione AI controllabile — SMARTAI Guides</title>
+  <meta name="description" content="Metodo pratico per automatizzare processi con l’AI mantenendo regole, approvazioni, log, test, fallback e possibilità di rollback.">
+  <link rel="canonical" href="https://guides.businessai.academy/automazioni/">
+  <meta property="og:type" content="article"><meta property="og:locale" content="it_IT"><meta property="og:title" content="Automazioni con checkpoint umani"><meta property="og:description" content="Trigger, regole, controllo umano, log e fallback per automatizzare senza creare una scatola nera."><meta property="og:url" content="https://guides.businessai.academy/automazioni/"><meta property="article:published_time" content="2026-08-17"><meta property="article:modified_time" content="2026-08-17"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Automazioni con checkpoint umani"><meta name="twitter:description" content="Trigger, regole, controllo umano, log e fallback per automatizzare senza creare una scatola nera.">
+  <link rel="icon" type="image/png" sizes="16x16" href="/businessai/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/businessai/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="/businessai/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/businessai/assets/css/styles.css?v=3">
+</head>
+<body>
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="Navigazione principale"><a class="brand" href="https://businessai.academy/" data-local-href="/businessai/" aria-label="SMARTAI — Home"><img src="/businessai/assets/img/logo.png" width="1600" height="313" alt="SMARTAI"></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Apri il menu" data-menu-toggle><span></span><span></span><span></span></button><div class="nav-links" id="site-nav" data-nav><a href="https://businessai.academy/academy/" data-local-href="/businessai/academy/">Academy</a><a aria-current="page" href="https://guides.businessai.academy/" data-local-href="/businessai/guides/">Guide</a><a href="https://businessai.academy/contatti/" data-local-href="/businessai/contatti/">Contatti</a><a class="button button--primary" href="https://luma.com/smartAI" target="_blank" rel="noopener">Segui l’Academy ↗</a></div></nav></header>
+  <main id="contenuto">
+    <header class="article-header"><div class="container"><div class="breadcrumb"><a href="https://guides.businessai.academy/" data-local-href="/businessai/guides/">Guide</a><span>/</span><span>Automazioni</span></div><span class="eyebrow">Workflow · Guida 03</span><h1>Automatizzare con l’AI senza creare una scatola nera.</h1><p class="lead">Un processo lento non diventa automaticamente migliore quando lo affidiamo all’AI. L’automazione utile nasce quando il processo è compreso, il risultato è verificabile e il sistema sa quando fermarsi.</p><div class="article-meta"><span>Pubblicata <time datetime="2026-08-17">17 agosto 2026</time></span><span>Ultima verifica <time datetime="2026-08-17">17 agosto 2026</time></span><span>5 minuti</span><span>SMARTAI</span></div></div></header>
+    <div class="article-shell">
+      <aside class="article-aside" aria-label="Indice della guida"><strong>In questa guida</strong><a href="#processo">Scegli il processo</a><a href="#mappa">Scrivi la mappa</a><a href="#controllo">Progetta il controllo</a><a href="#esempio">Esempio</a><a href="#test">Test e metriche</a><a href="#template">Template</a></aside>
+      <article class="article-body">
+        <p>La fretta di automatizzare crea sistemi che sembrano efficienti finché incontrano un dato mancante, un’eccezione o un caso ambiguo. A quel punto l’errore è già passato oltre.</p>
+        <div class="callout"><strong>Automatizza ciò che hai capito, non ciò che vuoi evitare di capire.</strong></div>
+
+        <h2 id="processo">Scegli il processo giusto</h2>
+        <p>Un buon candidato è ripetuto, abbastanza stabile, alimentato da input riconoscibili, composto da passaggi descrivibili, verificabile prima dell’uso finale e reversibile in caso di errore.</p>
+        <p>Un cattivo candidato è raro, continuamente diverso, basato su informazioni incomplete, ad alto impatto e senza approvazione oppure già confuso nella sua versione manuale.</p>
+        <h3>Un test rapido</h3>
+        <ul><li>Puoi mostrare tre esempi reali del processo?</li><li>Due persone concordano su cosa sia un buon risultato?</li><li>Le eccezioni più frequenti sono note?</li><li>È possibile fermare il flusso prima dell’azione finale?</li><li>Puoi ripristinare lo stato precedente?</li></ul>
+        <p>Se più di una risposta è “no”, inizia dalla mappa del processo, non dallo strumento.</p>
+
+        <h2 id="mappa">Scrivi il processo prima di automatizzarlo</h2>
+        <pre><code>Obiettivo:
+Trigger:
+Input:
+Regole:
+Decisioni:
+Azioni:
+Output:
+Responsabile:
+Eccezioni:</code></pre>
+        <p>Se non riesci a compilare <em>regole</em> ed <em>eccezioni</em>, non sei ancora pronto per l’automazione.</p>
+        <h3>Separa determinismo e giudizio</h3>
+        <p>Rinominare un file, verificare che un campo esista, applicare una scadenza o spostare un elemento sono passaggi deterministici: non hanno bisogno dell’AI.</p>
+        <p>Riassumere, classificare, proporre priorità, trasformare appunti in una bozza o estrarre attività richiedono interpretazione. Qui l’AI può essere utile, ma l’output deve essere controllato.</p>
+
+        <h2 id="controllo">Progetta il controllo prima del flusso</h2>
+        <p>Per ogni passaggio AI definisci:</p>
+        <ul><li>quali fonti può utilizzare;</li><li>quale formato deve produrre;</li><li>cosa deve citare;</li><li>quando deve dichiarare incertezza;</li><li>chi approva;</li><li>cosa succede se manca un dato;</li><li>dove viene registrato l’errore.</li></ul>
+        <div class="callout callout--warning"><strong>Il controllo non è un’aggiunta.</strong><p style="margin-top:10px">Permessi, approvazioni, log e fallback fanno parte del progetto quanto il passaggio che produce l’output.</p></div>
+        <h3>Metti la persona prima del punto di non ritorno</h3>
+        <p>L’approvazione umana è necessaria quando il risultato parte verso un cliente, modifica dati originali, crea un pagamento o un obbligo, pubblica contenuti, riguarda persone o produce conseguenze legali, finanziarie o reputazionali.</p>
+        <p>Non serve un clic umano ovunque. Serve nel punto in cui l’errore smette di essere facilmente reversibile.</p>
+
+        <h2 id="esempio">Esempio: dalla riunione alle attività</h2>
+        <ol class="steps"><li><strong>Trigger.</strong> Arriva una trascrizione approvata.</li><li><strong>Input.</strong> Trascrizione, elenco partecipanti, progetto e regole per attività e decisioni.</li><li><strong>Passaggio AI.</strong> Produce una bozza strutturata con riepilogo, decisioni, attività, responsabili e dubbi.</li><li><strong>Verifica automatica.</strong> Ogni attività deve avere descrizione, responsabile o stato “da assegnare” e riferimento alla fonte.</li><li><strong>Approvazione umana.</strong> Una persona confronta gli elementi sensibili con la trascrizione.</li><li><strong>Azione.</strong> Soltanto gli elementi approvati entrano nel sistema di progetto.</li><li><strong>Log.</strong> Fonte, versione prodotta, approvatore, modifiche e data restano visibili.</li><li><strong>Fallback.</strong> Se la trascrizione è incompleta o i controlli falliscono, il flusso si ferma.</li></ol>
+        <h3>Parti manualmente</h3>
+        <p>Prima di collegare trigger e strumenti, esegui il processo a mano con l’AI. Conserva input e output, annota dove intervieni, trasforma gli interventi in regole e ripeti su casi diversi. Automatizza soltanto i passaggi che si dimostrano stabili.</p>
+
+        <h2>Progetta il minimo accesso</h2>
+        <p>Un’automazione dovrebbe poter vedere e modificare soltanto ciò che serve. Controlla cartelle accessibili, account collegati, possibilità di inviare o pubblicare, dati personali, credenziali e operazioni irreversibili.</p>
+        <p>L’accesso completo è comodo durante una demo e pericoloso nel lavoro reale. Per i collegamenti MCP, le linee guida ufficiali insistono su consenso, controllo dell’utente, sandbox e privilegi minimi.</p>
+
+        <h2 id="test">Costruisci una piccola suite di test</h2>
+        <p>Conserva casi rappresentativi:</p>
+        <ul><li>input normale;</li><li>campo mancante;</li><li>documento ambiguo;</li><li>duplicato;</li><li>lingua diversa;</li><li>dato riservato;</li><li>istruzioni contrastanti;</li><li>output oltre il limite consentito.</li></ul>
+        <p>Dopo ogni modifica, riesegui gli stessi casi. Se non hai esempi di errore, non hai ancora testato il sistema: hai soltanto confermato che funziona nel caso migliore.</p>
+        <h3>Misura più del tempo</h3>
+        <ul><li>Tempo totale prima e dopo.</li><li>Percentuale di output approvati senza modifiche.</li><li>Numero e tipo di errori.</li><li>Interventi manuali richiesti.</li><li>Casi fermati correttamente.</li><li>Manutenzione necessaria.</li><li>Fiducia delle persone che usano il flusso.</li></ul>
+
+        <h2 id="template">Il template completo</h2>
+        <pre><code>Nome del flusso:
+Obiettivo:
+Proprietario:
+Trigger:
+Input autorizzati:
+Regole deterministiche:
+Passaggi AI:
+Formato dell'output:
+Controlli automatici:
+Approvazione umana:
+Azione finale:
+Log:
+Fallback:
+Rollback:
+Casi di test:
+Metriche:
+Data dell'ultima revisione:</code></pre>
+        <h3>Quando fermarsi</h3>
+        <p>Non automatizzare ancora se il processo cambia ogni settimana, nessuno ne è responsabile, non esiste una fonte autorevole, non puoi definire un buon risultato, gli errori non sarebbero visibili o non puoi ripristinare lo stato precedente.</p>
+
+        <h2>Fonti ufficiali e aggiornamento</h2>
+        <div class="source-list"><ul><li><a href="https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices" target="_blank" rel="noopener">MCP Security Best Practices ↗</a></li><li><a href="https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization" target="_blank" rel="noopener">Specifiche MCP per l’autorizzazione ↗</a></li></ul><p>Verificate il 17 agosto 2026 sulla release MCP 2026-07-28. La guida descrive un metodo indipendente dalla piattaforma; controlla sempre le istruzioni correnti dei prodotti collegati.</p></div>
+
+        <h2>La regola finale</h2>
+        <p>L’automazione migliore non elimina ogni intervento umano. Rende chiaro cosa fa la macchina, cosa decide la persona, come si verifica il risultato e cosa succede quando qualcosa va storto.</p>
+        <div class="callout"><strong>Vuoi progettare il tuo primo flusso?</strong><p style="margin-top:10px">Il modulo Automation dell’Academy parte dal processo e arriva a un sistema leggibile, reversibile e controllabile.</p><a class="text-link" href="https://businessai.academy/academy/" data-local-href="/businessai/academy/">Scopri l’Academy ↗</a></div>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="/businessai/assets/img/logo-white.png" width="503" height="88" alt="SMARTAI"><p>Guide operative su sistemi AI usati e verificati sul lavoro.</p></div><div class="footer-col"><strong>Guide</strong><a href="https://guides.businessai.academy/" data-local-href="/businessai/guides/">Tutte le guide</a><a href="https://guides.businessai.academy/second-brain/" data-local-href="/businessai/guides/second-brain/">Second Brain</a><a href="https://guides.businessai.academy/mcp/" data-local-href="/businessai/guides/mcp/">MCP</a></div><div class="footer-col"><strong>SMARTAI</strong><a href="https://businessai.academy/" data-local-href="/businessai/">Sito istituzionale</a><a href="https://businessai.academy/contatti/" data-local-href="/businessai/contatti/">Contatti</a></div></div><div class="footer-bottom"><span>© <span data-year>2026</span> SMARTAI Guides</span><span>Ultima verifica: 17 agosto 2026.</span></div></div></footer>
+  <script src="/businessai/assets/js/site.js" defer></script>
+</body>
+</html>

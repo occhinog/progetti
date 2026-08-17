@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <script src="/auth.js"></script>
+  <script>ProgettiAuth.requireAuth();</script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MCP: collegare strumenti e dati all’AI con criterio — SMARTAI Guides</title>
+  <meta name="description" content="Guida pratica al protocollo MCP: come collegare email, calendari, file e strumenti a un assistente AI mantenendo permessi, fonti e approvazioni sotto controllo.">
+  <link rel="canonical" href="https://guides.businessai.academy/mcp/">
+  <meta property="og:type" content="article"><meta property="og:locale" content="it_IT"><meta property="og:title" content="MCP: collega strumenti e dati con criterio"><meta property="og:description" content="Dal primo collegamento utile a un flusso sicuro, verificabile e reversibile."><meta property="og:url" content="https://guides.businessai.academy/mcp/"><meta property="article:published_time" content="2026-08-17"><meta property="article:modified_time" content="2026-08-17"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="MCP: collega strumenti e dati con criterio"><meta name="twitter:description" content="Dal primo collegamento utile a un flusso sicuro, verificabile e reversibile.">
+  <link rel="icon" type="image/png" sizes="16x16" href="/businessai/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/businessai/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="/businessai/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/businessai/assets/css/styles.css?v=3">
+</head>
+<body>
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+  <header class="site-header"><nav class="nav-shell" aria-label="Navigazione principale"><a class="brand" href="https://businessai.academy/" data-local-href="/businessai/" aria-label="SMARTAI — Home"><img src="/businessai/assets/img/logo.png" width="1600" height="313" alt="SMARTAI"></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Apri il menu" data-menu-toggle><span></span><span></span><span></span></button><div class="nav-links" id="site-nav" data-nav><a href="https://businessai.academy/academy/" data-local-href="/businessai/academy/">Academy</a><a aria-current="page" href="https://guides.businessai.academy/" data-local-href="/businessai/guides/">Guide</a><a href="https://businessai.academy/contatti/" data-local-href="/businessai/contatti/">Contatti</a><a class="button button--primary" href="https://luma.com/smartAI" target="_blank" rel="noopener">Segui l’Academy ↗</a></div></nav></header>
+  <main id="contenuto">
+    <header class="article-header"><div class="container"><div class="breadcrumb"><a href="https://guides.businessai.academy/" data-local-href="/businessai/guides/">Guide</a><span>/</span><span>MCP</span></div><span class="eyebrow">Connessioni · Guida 02</span><h1>MCP: collega strumenti e dati con criterio.</h1><p class="lead">Dare a un assistente accesso a email, calendari o file può trasformarlo in uno strumento di lavoro. Può anche trasformare un errore in un’azione reale. Il metodo viene prima del collegamento.</p><div class="article-meta"><span>Pubblicata <time datetime="2026-08-17">17 agosto 2026</time></span><span>Ultima verifica <time datetime="2026-08-17">17 agosto 2026</time></span><span>5 minuti</span><span>SMARTAI</span></div></div></header>
+    <div class="article-shell">
+      <aside class="article-aside" aria-label="Indice della guida"><strong>In questa guida</strong><a href="#cosa-e">Cos’è MCP</a><a href="#caso">Scegli un caso</a><a href="#permessi">Permessi</a><a href="#flusso">Primo flusso</a><a href="#verifica">Verifica</a><a href="#checklist">Checklist</a></aside>
+      <article class="article-body">
+        <p>MCP significa <em>Model Context Protocol</em>. È uno standard aperto che permette alle applicazioni AI di collegarsi a dati, strumenti e workflow attraverso un’interfaccia comune.</p>
+        <p>La metafora ufficiale è una porta USB-C: lo standard definisce come applicazioni e sistemi possono parlarsi, senza rendere ogni integrazione un progetto completamente diverso.</p>
+        <div class="callout"><strong>Il valore non è “avere MCP”.</strong><p style="margin-top:10px">Il valore è permettere all’assistente di trovare una fonte o compiere un’azione precisa, con il minimo accesso necessario.</p></div>
+
+        <h2 id="cosa-e">Cosa espone un collegamento</h2>
+        <p>Un server MCP può mettere a disposizione tre categorie di capacità:</p>
+        <ul><li><strong>Risorse:</strong> contesto e dati che l’assistente può leggere.</li><li><strong>Strumenti:</strong> azioni che può richiedere, come cercare, creare o aggiornare.</li><li><strong>Prompt o workflow:</strong> procedure riutilizzabili per svolgere attività specifiche.</li></ul>
+        <p>Non tutti i collegamenti espongono tutto. La prima domanda deve essere: <em>quali dati può vedere e quali azioni può compiere?</em></p>
+
+        <h2 id="caso">Scegli un caso d’uso stretto</h2>
+        <p>Non partire da “collego la mia email”. Parti da “voglio preparare una bozza di risposta per le email che soddisfano questi criteri, senza inviarla”.</p>
+        <p>Un buon primo caso:</p>
+        <ul><li>ha un input riconoscibile;</li><li>usa un insieme limitato di fonti;</li><li>produce una bozza o un risultato reversibile;</li><li>richiede approvazione prima di un’azione esterna;</li><li>può essere testato con dati non sensibili.</li></ul>
+        <h3>Esempi adatti</h3>
+        <ul><li>Cercare documenti in una cartella dedicata e riassumerli con link alla fonte.</li><li>Leggere gli eventi di un calendario e preparare un briefing per la settimana.</li><li>Individuare email con un’etichetta specifica e proporre priorità o bozze.</li><li>Raccogliere aggiornamenti da un progetto e preparare un report, senza pubblicarlo.</li></ul>
+        <h3>Esempi da rimandare</h3>
+        <ul><li>Inviare automaticamente email a tutti i clienti.</li><li>Modificare calendari, contratti o dati originali senza conferma.</li><li>Collegare l’intero drive quando serve una sola cartella.</li><li>Affidare pagamenti o pubblicazioni senza un punto di approvazione.</li></ul>
+
+        <h2 id="permessi">Progetta i permessi prima della configurazione</h2>
+        <p>Il principio del minimo privilegio significa concedere soltanto ciò che serve al caso d’uso. Se il flusso deve leggere un calendario, non dovrebbe poter cancellare eventi. Se deve riassumere documenti di progetto, non dovrebbe vedere cartelle personali.</p>
+        <ol class="steps"><li><strong>Elenca i dati.</strong> Quali account, cartelle, mailbox o database sono coinvolti?</li><li><strong>Separa lettura e scrittura.</strong> Il primo esperimento dovrebbe preferire la sola lettura.</li><li><strong>Limita il perimetro.</strong> Usa cartelle dedicate, etichette o account di prova.</li><li><strong>Identifica il punto di non ritorno.</strong> Invio, pubblicazione, cancellazione o modifica di un originale richiedono controllo umano.</li><li><strong>Definisci la revoca.</strong> Devi sapere come disconnettere il server e invalidare le credenziali.</li></ol>
+        <div class="callout callout--warning"><strong>Una configurazione trovata online non è automaticamente sicura.</strong><p style="margin-top:10px">Controlla sempre origine, manutenzione, permessi richiesti, dati trattati e istruzioni ufficiali del client che stai usando.</p></div>
+
+        <h2 id="flusso">Il primo flusso: email in sola lettura</h2>
+        <p>Immagina di voler preparare un riepilogo giornaliero delle email marcate con un’etichetta dedicata.</p>
+        <pre><code>Obiettivo: preparare un riepilogo, non inviare messaggi
+Fonte: solo email con etichetta "AI-RIEPILOGO"
+Permesso: lettura
+Output: mittente, oggetto, richiesta, urgenza, link alla fonte
+Controllo: nessuna azione esterna
+Conservazione: il riepilogo non sostituisce l'email originale</code></pre>
+        <p>La sequenza corretta è:</p>
+        <ol><li>Crea un perimetro dedicato, come un’etichetta o una cartella di prova.</li><li>Collega il server seguendo la documentazione ufficiale del client.</li><li>Ispeziona l’elenco degli strumenti esposti.</li><li>Esegui una richiesta su pochi elementi non sensibili.</li><li>Controlla che l’output includa riferimenti alla fonte.</li><li>Verifica i log o la cronologia del client.</li><li>Revoca il collegamento e conferma che l’accesso sia terminato.</li></ol>
+
+        <h2 id="verifica">Come capire se il collegamento è affidabile</h2>
+        <h3>Prova i confini</h3>
+        <p>Chiedi intenzionalmente qualcosa fuori perimetro. Un sistema ben configurato deve fallire in modo chiaro, non trovare una scorciatoia.</p>
+        <h3>Verifica le fonti</h3>
+        <p>Ogni sintesi dovrebbe mantenere un riferimento all’elemento originale. Senza link, identificatore o percorso, correggere un errore diventa più difficile.</p>
+        <h3>Controlla le azioni</h3>
+        <p>Se il server espone strumenti di scrittura, identifica quali richiedono una conferma e quali possono partire automaticamente. Non affidarti a un’unica istruzione testuale come barriera.</p>
+        <h3>Prepara il fallimento</h3>
+        <p>Cosa succede se il collegamento non risponde, l’autorizzazione scade o una fonte manca? Il flusso deve fermarsi senza produrre un risultato ingannevole.</p>
+
+        <h2 id="checklist">Checklist prima di collegare</h2>
+        <ul><li>Il caso d’uso è espresso come un risultato osservabile.</li><li>Il server proviene da una fonte identificabile e mantenuta.</li><li>Ho letto quali risorse e strumenti espone.</li><li>Il perimetro dati è più stretto dell’intero account.</li><li>La scrittura è disabilitata o controllata.</li><li>Esiste un passaggio umano prima di invii, pubblicazioni o modifiche irreversibili.</li><li>So dove vengono conservati token e credenziali.</li><li>So come revocare l’accesso.</li><li>Ho un caso di prova e un caso che deve essere rifiutato.</li><li>L’output rimanda alle fonti.</li></ul>
+
+        <h2>Fonti ufficiali e aggiornamento</h2>
+        <div class="source-list"><ul><li><a href="https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro" target="_blank" rel="noopener">Introduzione ufficiale a MCP ↗</a></li><li><a href="https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices" target="_blank" rel="noopener">Security Best Practices MCP ↗</a></li><li><a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener">MCP in Claude Code ↗</a></li></ul><p>Verificate il 17 agosto 2026 sulla release MCP 2026-07-28. Le procedure di installazione cambiano più velocemente dei principi di permesso e controllo: usa sempre la documentazione corrente del prodotto.</p></div>
+
+        <h2>La regola finale</h2>
+        <p>Un buon collegamento non è quello che permette all’assistente di fare tutto. È quello che gli consente di completare un lavoro preciso, rende ogni fonte visibile e si ferma prima di un’azione che richiede responsabilità umana.</p>
+        <div class="callout"><strong>Vuoi costruire il tuo primo collegamento?</strong><p style="margin-top:10px">MCP entra nei moduli Claude Code, ChatGPT &amp; Codex e Automation dell’Academy.</p><a class="text-link" href="https://businessai.academy/academy/" data-local-href="/businessai/academy/">Scopri l’Academy ↗</a></div>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="/businessai/assets/img/logo-white.png" width="503" height="88" alt="SMARTAI"><p>Guide operative su sistemi AI usati e verificati sul lavoro.</p></div><div class="footer-col"><strong>Guide</strong><a href="https://guides.businessai.academy/" data-local-href="/businessai/guides/">Tutte le guide</a><a href="https://guides.businessai.academy/second-brain/" data-local-href="/businessai/guides/second-brain/">Second Brain</a><a href="https://guides.businessai.academy/automazioni/" data-local-href="/businessai/guides/automazioni/">Automazioni</a></div><div class="footer-col"><strong>SMARTAI</strong><a href="https://businessai.academy/" data-local-href="/businessai/">Sito istituzionale</a><a href="https://businessai.academy/contatti/" data-local-href="/businessai/contatti/">Contatti</a></div></div><div class="footer-bottom"><span>© <span data-year>2026</span> SMARTAI Guides</span><span>Ultima verifica: 17 agosto 2026.</span></div></div></footer>
+  <script src="/businessai/assets/js/site.js" defer></script>
+</body>
+</html>

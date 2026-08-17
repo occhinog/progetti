@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://businessai.academy/sitemap-main.xml

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <script src="/auth.js"></script>
+  <script>ProgettiAuth.requireAuth();</script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex CLI su Mac e server via SSH — SMARTAI Guides</title>
+  <meta name="description" content="Come installare Codex CLI su macOS o Linux, autenticarsi su una macchina headless e lavorare su un repository remoto via SSH mantenendo controllo e rollback.">
+  <link rel="canonical" href="https://guides.businessai.academy/codex-cli-server/">
+  <meta property="og:type" content="article"><meta property="og:locale" content="it_IT"><meta property="og:title" content="Codex CLI su Mac e server via SSH"><meta property="og:description" content="Installazione, autenticazione headless, repository remoto, verifica e rollback."><meta property="og:url" content="https://guides.businessai.academy/codex-cli-server/"><meta property="og:image" content="https://businessai.academy/assets/img/og-home.jpg"><meta property="og:image:alt" content="Workshop SMARTAI a Torino">
+  <meta property="article:published_time" content="2026-08-17"><meta property="article:modified_time" content="2026-08-17"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Codex CLI su Mac e server via SSH"><meta name="twitter:description" content="Installazione, login headless, repository remoto, verifica e rollback.">
+  <link rel="icon" type="image/png" sizes="16x16" href="/businessai/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/businessai/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="/businessai/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/businessai/assets/css/option-b.css?v=2">
+</head>
+<body>
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+  <header class="site-header"><nav class="ob-nav container" aria-label="Navigazione principale"><a class="brand" href="https://businessai.academy/" data-local-href="/businessai/" aria-label="SMARTAI — Home"><img src="/businessai/assets/img/logo-white.png" width="503" height="88" alt="SMARTAI"></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Apri il menu" data-menu-toggle><span></span><span></span><span></span></button><div class="nav-links" id="site-nav" data-nav><a href="https://businessai.academy/academy/" data-local-href="/businessai/academy/">Academy</a><a href="https://businessai.academy/aziende/" data-local-href="/businessai/aziende/">Aziende</a><a href="https://businessai.academy/pro-bono/" data-local-href="/businessai/pro-bono/">Pro bono</a><a href="https://guides.businessai.academy/" data-local-href="/businessai/guides/" aria-current="page">Guide</a><a href="https://businessai.academy/attivita/" data-local-href="/businessai/attivita/">Attività</a><a class="nav-cta" href="https://guides.businessai.academy/" data-local-href="/businessai/guides/">Tutte le guide <span aria-hidden="true">↗</span></a></div></nav></header>
+
+  <main id="contenuto">
+    <header class="article-header-ob"><div class="container"><nav class="breadcrumb" aria-label="Percorso"><a href="https://guides.businessai.academy/" data-local-href="/businessai/guides/">Guide</a><span>/</span><span>CLI &amp; server</span></nav><span class="eyebrow">CLI &amp; server · Guida 04</span><h1>Codex CLI su Mac e server via SSH.</h1><p class="lead">Installa il client, scegli dove vivono repository e strumenti, autentica una macchina headless e verifica il primo lavoro senza confondere “server tuo” con “modello self-hosted”.</p><div class="article-meta-ob"><span>Pubblicata <time datetime="2026-08-17">17 agosto 2026</time></span><span>Fonti verificate <time datetime="2026-08-17">17 agosto 2026</time></span><span>Livello: intermedio</span><span>Ambiente: macOS + Linux remoto</span></div></div></header>
+
+    <div class="container article-layout-ob">
+      <aside class="article-aside-ob" aria-label="Indice della guida"><strong>In questa guida</strong><a href="#architettura">Che cosa gira dove</a><a href="#prerequisiti">Prerequisiti</a><a href="#installazione">Installazione</a><a href="#server">Server via SSH</a><a href="#verifica">Verifica</a><a href="#sicurezza">Sicurezza</a><a href="#rollback">Rollback</a></aside>
+      <article class="article-body-ob">
+        <div class="callout callout--warning"><strong>Stato della guida</strong>Le istruzioni di installazione e autenticazione sono state confrontate con la documentazione ufficiale OpenAI il 17 agosto 2026. Il flusso completo non è ancora stato provato su uno specifico server di produzione: prima di pubblicarlo come procedura definitiva, va ripetuto su una macchina bersaglio pulita.</div>
+
+        <h2 id="architettura">Prima: che cosa gira dove?</h2>
+        <p>Codex CLI lavora nella directory e con gli strumenti della macchina su cui lo esegui. Se accedi a un server Linux via SSH e avvii lì <code>codex</code>, repository, shell e comandi sono sul server. Quando usi i modelli OpenAI, il modello resta un servizio esterno.</p>
+        <div class="code-block" role="img" aria-label="Schema testuale dell’architettura">MacBook Pro
+  └── SSH ──&gt; server Linux sotto il tuo controllo
+               ├── Codex CLI
+               ├── repository e file
+               └── tool locali
+
+Codex CLI ── connessione autenticata ──&gt; servizio del modello OpenAI</div>
+        <p>Questa guida quindi non crea un “Codex self-hosted”. Porta il contesto di esecuzione sul server che controlli.</p>
+
+        <h2 id="prerequisiti">Prerequisiti</h2>
+        <ul class="checklist"><li>Un Mac con terminale e accesso amministrativo al proprio account.</li><li>Un server Linux raggiungibile via SSH, se vuoi lavorare in remoto.</li><li>Git installato e un repository di prova senza dati sensibili.</li><li>Uscita HTTPS dal server verso i servizi necessari.</li><li>Accesso ChatGPT abilitato per Codex oppure una API key con fatturazione separata.</li><li>Un checkpoint Git o una copia prima di consentire modifiche.</li></ul>
+        <p>Registra l’ambiente prima di cambiare qualcosa:</p>
+        <pre class="code-block"><code>uname -a
+git --version
+ssh -V</code></pre>
+        <p>Su macOS puoi aggiungere anche:</p>
+        <pre class="code-block"><code>sw_vers -productVersion
+uname -m</code></pre>
+
+        <h2 id="installazione">Installa e verifica Codex CLI</h2>
+        <p>La documentazione ufficiale propone lo stesso installer standalone per macOS e Linux:</p>
+        <pre class="code-block"><code>curl -fsSL https://chatgpt.com/codex/install.sh | sh</code></pre>
+        <div class="callout"><strong>Prima di eseguire una pipe verso la shell</strong>Usa solo l’URL ufficiale, verifica di essere nel terminale e account corretti e, in un ambiente aziendale, applica la procedura interna di revisione degli installer.</div>
+        <p>Chiudi e riapri il terminale se l’installer modifica il <code>PATH</code>, poi verifica:</p>
+        <pre class="code-block"><code>command -v codex
+codex --version</code></pre>
+        <p>Su un Mac con browser, avvia <code>codex</code> dentro una directory di progetto e completa l’accesso proposto. Per controllare lo stato in seguito:</p>
+        <pre class="code-block"><code>codex login status</code></pre>
+
+        <h2 id="server">Esegui Codex sul server via SSH</h2>
+        <p>Collegati al server e ripeti l’installazione lì: la CLI deve esistere sulla macchina che ospita repository e tool.</p>
+        <pre class="code-block"><code>ssh user@server.example
+cd ~/code/progetto-di-prova
+git status
+codex --version</code></pre>
+        <h3>Login consigliato su una macchina headless</h3>
+        <p>OpenAI indica il device-code come percorso preferito quando il callback del browser non è disponibile:</p>
+        <pre class="code-block"><code>codex login --device-auth</code></pre>
+        <p>Apri sul Mac il link mostrato, accedi e inserisci il codice monouso. L’opzione deve essere consentita nelle impostazioni di sicurezza dell’account o del workspace.</p>
+        <h3>Alternativa con API key</h3>
+        <p>Per workflow locali o programmatici, Codex CLI accetta anche una API key via standard input:</p>
+        <pre class="code-block"><code>printenv OPENAI_API_KEY | codex login --with-api-key</code></pre>
+        <p>Non incollare la chiave nel repository, negli script versionati o nella cronologia della shell. L’uso con API key segue fatturazione e policy dell’organizzazione API, non i crediti inclusi nel piano ChatGPT.</p>
+
+        <h2 id="verifica">Esegui un primo test a impatto minimo</h2>
+        <ol><li>Apri un repository di prova pulito.</li><li>Esegui <code>git status</code> e salva l’output.</li><li>Avvia <code>codex</code>.</li><li>Usa <code>/status</code> per controllare directory e configurazione.</li><li>Chiedi: “Spiegami la struttura di questo repository senza modificare file”.</li><li>Controlla che nessun file sia cambiato con un nuovo <code>git status</code>.</li><li>Solo dopo prova una modifica piccola e reversibile su un branch dedicato.</li></ol>
+        <p>Criterio di riuscita: la CLI vede soltanto il progetto previsto, descrive correttamente i file e non modifica nulla durante il test di sola lettura.</p>
+
+        <h2 id="sicurezza">Permessi e continuità</h2>
+        <ul><li>Non usare come primo test un server di produzione.</li><li>Evita account SSH condivisi e privilegi amministrativi permanenti.</li><li>Concedi accesso soltanto alle directory necessarie.</li><li>Conserva log e checkpoint Git prima delle modifiche.</li><li>Per sessioni lunghe, usa gli strumenti di continuità già approvati sul server; non installare un nuovo demone soltanto per la guida.</li><li>Non esporre Codex in ambienti pubblici o non attendibili.</li></ul>
+
+        <h2 id="rollback">Rollback</h2>
+        <p>Se l’esperimento non deve continuare:</p>
+        <ol><li>Esci da Codex.</li><li>Esegui <code>codex logout</code> sulla macchina remota.</li><li>Controlla <code>git status</code> e ripristina soltanto i cambiamenti del test con la procedura Git concordata.</li><li>Revoca la API key se è stata usata e non serve più.</li><li>Identifica il binario con <code>command -v codex</code> prima di pianificare la rimozione; non cancellare percorsi alla cieca.</li></ol>
+
+        <h2>Fonti ufficiali</h2>
+        <ul><li><a href="https://learn.chatgpt.com/docs/codex/cli" target="_blank" rel="noopener">Codex CLI: installazione e quickstart ↗</a></li><li><a href="https://learn.chatgpt.com/docs/auth" target="_blank" rel="noopener">Autenticazione Codex, device code e ambienti headless ↗</a></li></ul>
+        <p>Ultimo controllo delle fonti: 17 agosto 2026. I comandi e le opzioni di login possono cambiare; confronta sempre la guida con la documentazione corrente prima dell’esecuzione.</p>
+      </article>
+    </div>
+
+    <section class="closing-band"><div class="container closing-grid"><h2>Ora prova su un ambiente che puoi perdere.</h2><div class="closing-actions"><p>Quando il flusso regge su repository e account di prova, documenta ciò che cambia prima di portarlo vicino alla produzione.</p><a class="button button--ink" href="https://guides.businessai.academy/" data-local-href="/businessai/guides/">Torna alle Guide</a></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand"><img src="/businessai/assets/img/logo-white.png" width="503" height="88" alt="SMARTAI"><p>Guide tecniche per installare, collegare, verificare e mantenere strumenti AI senza perdere il controllo.</p></div><div class="footer-col"><strong>Percorsi</strong><a href="https://businessai.academy/academy/" data-local-href="/businessai/academy/">Academy</a><a href="https://businessai.academy/aziende/" data-local-href="/businessai/aziende/">Aziende</a><a href="https://businessai.academy/pro-bono/" data-local-href="/businessai/pro-bono/">Pro bono</a></div><div class="footer-col"><strong>Guide</strong><a href="https://guides.businessai.academy/" data-local-href="/businessai/guides/">Tutte le guide</a><a href="https://guides.businessai.academy/second-brain/" data-local-href="/businessai/guides/second-brain/">Second Brain</a><a href="https://guides.businessai.academy/mcp/" data-local-href="/businessai/guides/mcp/">MCP</a></div></div><div class="footer-bottom"><span>© <span data-year>2026</span> SMARTAI Guides</span><span>Fonti correnti, confini espliciti, rollback documentato.</span></div></div></footer>
+  <script src="/businessai/assets/js/site.js" defer></script>
+</body>
+</html>
