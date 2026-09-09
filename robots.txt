@@ -1,0 +1,9 @@
+# progetti.occhino.it is intentionally public but unlisted: no gate, no indexing.
+#
+# Caveat: a Disallow-ed URL is never fetched, so the per-page
+# <meta name="robots" content="noindex, nofollow"> is never read by a crawler.
+# If a URL ever does show up in a search index, drop the Disallow first so the
+# noindex can be seen, then restore it once the URL has fallen out.
+
+User-agent: *
+Disallow: /
