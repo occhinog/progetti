@@ -21,7 +21,8 @@ Live at **https://progetti.occhino.it/**
 ├── elezioni18/       ─┐
 ├── elezioni23/        │
 ├── businessai/        ├── project folders — self-contained
-├── finance/          ─┘
+├── finance/           │
+├── carportitalia/    ─┘  generated static export — see carportitalia/README.md
 └── docs/             loose Markdown / XLSX / PDF, not registered in projects.js
 ```
 
@@ -34,7 +35,7 @@ Until 2026-09-10 the root carried an `auth.js` password gate that every page loa
 What is in place instead:
 
 - `robots.txt` at the root with `User-agent: *` / `Disallow: /`.
-- `<meta name="robots" content="noindex, nofollow">` in the `<head>` of all 22 HTML pages.
+- `<meta name="robots" content="noindex, nofollow">` in the `<head>` of all 29 HTML pages.
 
 The two are not additive: a URL blocked by `Disallow:` is never fetched, so its `noindex` is never read. If a URL ever does appear in a search index, drop the `Disallow` first so the `noindex` can be seen, then restore it once the URL has fallen out.
 
@@ -66,8 +67,8 @@ Nothing else needs touching. Do not add markup for the button to `hub.html`; the
 
 - **Folder names use descriptive mixed case** — `TenMStudio`, `nuovoProgetto`. `elezioni18` and `elezioni23` predate this rule and stay as they are; do not rename them, their URLs are public.
 - **Projects are fully self-contained.** Each folder carries its own CSS, JS, images and fonts, and must never reference the root `css.css` or `hero.jpg`. The root, in turn, never reaches into a project folder. There is no shared root dependency any more.
-- **Relative paths inside projects.** Reference a project's own assets as `styles.css`, not `/styles.css` — a leading slash resolves to the domain root, not the project folder, and will break.
-- **A project can be opened standalone via `file://`.** Nothing depends on a root-absolute script, so opening a project's `index.html` straight from Finder works. A local static server (`python3 -m http.server` from the repo root) is still the way to test root-relative links.
+- **Relative paths inside projects.** Reference a project's own assets as `styles.css`, not `/styles.css` — a leading slash resolves to the domain root, not the project folder, and will break. `carportitalia/` is the exception: it is a prerendered bundle whose asset URLs are pinned to `/carportitalia/` at build time, which is why renaming that folder would break it outright.
+- **A project can be opened standalone via `file://`.** Nothing depends on a root-absolute script, so opening a project's `index.html` straight from Finder works. A local static server (`python3 -m http.server` from the repo root) is still the way to test root-relative links. `carportitalia/` is the exception — its root-absolute paths need the static server.
 - **Add `<meta name="robots" content="noindex, nofollow">` to every new page**, matching the rest of the site.
 - **External CDNs are fine** (Google Fonts is used by the hub and by `TenMStudio`). There is no bundler to vendor them.
 - **Folder name is the public URL.** Renaming a folder breaks any existing link to it, so pick the name before the first push.
@@ -95,3 +96,4 @@ Pushing to `parent` publishes. The rebuild usually lands within a minute or two.
 
 - Project folders can be large (`elezioni18` and `elezioni23` are ~5–8 MB each, mostly images and fonts). Assets are committed directly — there is no LFS or external asset host.
 - The hub page is intentionally minimal. Styling changes to it go in `css.css`; the design tokens are the CSS custom properties under `:root` (copper/cream/dark palette, Playfair Display + Lato).
+- `carportitalia/` is the only generated folder. It is a static export of the private `occhinog/sun-roof-solutions` app (Lovable / TanStack Start); edits there are overwritten on the next export. Source of truth and rebuild steps: `carportitalia/README.md`.
