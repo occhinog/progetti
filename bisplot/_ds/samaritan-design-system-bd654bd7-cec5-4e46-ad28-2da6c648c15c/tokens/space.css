@@ -1,0 +1,71 @@
+/* ─── SPACE & GEOMETRY ────────────────────────────────────────────
+   Spacing in the source is deliberately odd-numbered and tight
+   (7, 9, 11, 22, 44) — not a 4/8 grid. Values are kept literal.
+   ──────────────────────────────────────────────────────────────── */
+:root {
+  /* Spacing scale, as actually used */
+  --sp-0: 2px;    /* tag padding-block */
+  --sp-1: 3px;    /* boot line margin */
+  --sp-2: 5px;    /* contact stack gap, brand underline offset */
+  --sp-3: 7px;    /* bar padding-block */
+  --sp-4: 9px;    /* tag padding-inline, contact row gap */
+  --sp-5: 10px;   /* option stack gap, table cell padding-block */
+  --sp-6: 12px;   /* section head padding-bottom */
+  --sp-7: 14px;   /* field gap, table cell padding-inline, head gap */
+  --sp-8: 16px;   /* people grid gap */
+  --sp-9: 18px;   /* card padding-inline, progress margin */
+  --sp-10: 22px;  /* option padding-inline, label margin */
+  --sp-11: 24px;  /* section head margin-bottom */
+  --sp-12: 28px;  /* bar padding-inline, bracket size, column gap */
+  --sp-13: 36px;  /* query line margin-bottom */
+  --sp-14: 44px;  /* brand mark margin-bottom */
+
+  /* Composite paddings (copy these, don't rebuild them) */
+  --pad-bar: 7px 28px; /* @kind spacing */
+  --pad-option: 11px 22px; /* @kind spacing */
+  --pad-cell: 10px 14px; /* @kind spacing */
+  --pad-tag: 2px 9px; /* @kind spacing */
+  --pad-ghost: 4px 12px; /* @kind spacing */
+  --pad-card-body: 14px 18px 18px; /* @kind spacing */
+  --pad-stage: clamp(28px, 5vw, 48px) clamp(14px, 4vw, 28px); /* @kind spacing */
+
+  /* Radii — the defining rule of the system */
+  --radius: 0;          /* everything. no exceptions. */
+  --radius-dot: 50%;    /* the 6px status dot is the only round thing */
+
+  /* Strokes */
+  --stroke-hair: 1px;   /* @kind spacing */
+  --stroke-bracket: 2px;/* @kind spacing */
+  --stroke-rail: 2px;   /* @kind spacing */
+
+  /* Measures */
+  --w-content: 820px;   /* result area */
+  --w-query: 560px;     /* query interface */
+  --w-boot: 500px;      /* boot log */
+  --w-option: 310px;    /* option button */
+  --w-progress: 220px;  /* boot progress track */
+  --w-table-key: 190px; /* table key column */
+  --w-field-label: 72px;/* contact field label min-width */
+  --h-map: 240px;       /* map frame */
+  --h-cursor: 17px;     /* typing cursor */
+  --w-cursor: 9px;
+
+  /* Chrome geometry */
+  --bracket-size: 28px;
+  --bracket-inset: 32px;
+  --bracket-inset-sm: 16px; /* ≤480px */
+  --dot-size: 6px;
+  --grid-cell: 60px;        /* ambient stage grid */
+  --brand-tri-w: 18px;
+  --brand-tri-h: 16px;
+
+  /* Breakpoints (documentation — media queries can't read vars) */
+  --bp-sm: 480px;   /* bars collapse, brackets pull in */
+  --bp-md: 520px;   /* data table stacks */
+  --bp-lg: 580px;   /* contact grid becomes one column */
+
+  /* Stacking */
+  --z-bar: 200; /* @kind other */
+  --z-vignette: 8999; /* @kind other */
+  --z-scanlines: 9000; /* @kind other */
+}

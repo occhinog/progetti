@@ -1,0 +1,43 @@
+:root {
+  /* Base unit: 8px */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* Common padding/margin shortcuts */
+  --pad-xs: var(--space-2);
+  --pad-sm: var(--space-3);
+  --pad-md: var(--space-4);
+  --pad-lg: var(--space-6);
+  --pad-xl: var(--space-8);
+  --pad-2xl: var(--space-12);
+
+  /* Gaps */
+  --gap-xs: var(--space-2);
+  --gap-sm: var(--space-3);
+  --gap-md: var(--space-4);
+  --gap-lg: var(--space-6);
+  --gap-xl: var(--space-8);
+
+  /* Border radius */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-full: 9999px;
+
+  /* Containers */
+  --container-max: 1440px;
+  --container-md: 960px;
+  --container-sm: 640px;
+}

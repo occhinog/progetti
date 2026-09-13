@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bisplot S.r.l. — Brand System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --paper: #EDEAE3;
+            --card: #fff;
+            --hairline: #D6D2CA;
+            --ink: #16170F;
+            --body: #1B1D1A;
+            --sage: #5A6650;
+            --radius: 7px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--body);
+            font-family: Inter, system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrap {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 70px 42px 84px;
+            display: flex;
+            flex-direction: column;
+            gap: 42px;
+        }
+
+        .eyebrow {
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--sage);
+        }
+
+        .masthead {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            max-width: 840px;
+        }
+
+        h1 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700;
+            font-size: 42px;
+            line-height: 1.15;
+            margin: 0;
+            color: var(--ink);
+        }
+
+        .masthead p {
+            margin: 7px 0 0;
+            max-width: 720px;
+        }
+
+        .rule {
+            height: 1px;
+            background: var(--hairline);
+            border: 0;
+            margin: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 21px;
+        }
+
+        .sheet {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--card);
+            border: 1px solid var(--hairline);
+            border-radius: var(--radius);
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color .18s ease, transform .18s ease;
+        }
+
+        .sheet:hover,
+        .sheet:focus-visible {
+            border-color: var(--sage);
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .sheet__index {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            color: var(--sage);
+        }
+
+        .sheet__title {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700;
+            font-size: 19px;
+            line-height: 1.3;
+            color: var(--ink);
+        }
+
+        .sheet__desc {
+            font-size: 14.5px;
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: baseline;
+            font-size: 13px;
+            color: var(--sage);
+        }
+
+        footer a {
+            color: var(--sage);
+        }
+
+        footer a:hover {
+            color: var(--ink);
+        }
+
+        @media (max-width: 640px) {
+            .wrap {
+                padding: 48px 22px 60px;
+                gap: 32px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+
+        <header class="masthead">
+            <div class="eyebrow">Bisplot S.r.l. &middot; Brand system</div>
+            <h1>One company, four brands</h1>
+            <p>The brand sheets for the holding and its four operating brands: the marks, the palettes, the type, the
+                mascots, and the rules for where each one is allowed to appear. Sheets are in English; print and legal
+                applications carry their Italian copy verbatim.</p>
+        </header>
+
+        <hr class="rule" />
+
+        <nav class="grid" aria-label="Brand sheets">
+
+            <a class="sheet" href="1_Brand_Whole_System.dc.html">
+                <span class="sheet__index">01</span>
+                <span class="sheet__title">One company, four brands</span>
+                <p class="sheet__desc">The whole system on one sheet &mdash; how the holding and the four brands relate.
+                </p>
+            </a>
+
+            <a class="sheet" href="2_Brand_Bisplot.dc.html">
+                <span class="sheet__index">02</span>
+                <span class="sheet__title">The holding, applied</span>
+                <p class="sheet__desc">Bisplot&rsquo;s own identity in use: wordmark, hairline, sage accent, print and
+                    legal.</p>
+            </a>
+
+            <a class="sheet" href="3_Brand_SmartAI.dc.html">
+                <span class="sheet__index">03</span>
+                <span class="sheet__title">SAI.wiki</span>
+                <p class="sheet__desc">The open education arm &mdash; blue on white, Space Grotesk over Inter.</p>
+            </a>
+
+            <a class="sheet" href="4_Brand_BusinessAI.dc.html">
+                <span class="sheet__index">04</span>
+                <span class="sheet__title">BusinessAI.academy</span>
+                <p class="sheet__desc">The paid arm &mdash; navy on warm paper, Jost over Inter, no mascot.</p>
+            </a>
+
+            <a class="sheet" href="5_Brand_HouseOfVibes.dc.html">
+                <span class="sheet__index">05</span>
+                <span class="sheet__title">HouseOfVibes</span>
+                <p class="sheet__desc">The venture building arm &mdash; green on off-white, Rubik over Inter.</p>
+            </a>
+
+            <a class="sheet" href="5b_Brand_HouseOfVibes_Samaritan.dc.html">
+                <span class="sheet__index">05b</span>
+                <span class="sheet__title">HouseOfVibes &times; Samaritan</span>
+                <p class="sheet__desc">Unified mark: near-black, square, hairlined, one arterial red.</p>
+            </a>
+
+            <a class="sheet" href="6_Mascotte.dc.html">
+                <span class="sheet__index">06</span>
+                <span class="sheet__title">Three characters, two brands</span>
+                <p class="sheet__desc">Milo, Mila and Semino &mdash; where each mascot belongs and where it does not.</p>
+            </a>
+
+        </nav>
+
+        <hr class="rule" />
+
+        <footer>
+            <span>&copy; <span id="year"></span> Bisplot S.r.l.</span>
+            <span>&middot;</span>
+            <a href="/hub.html">progetti.occhino.it</a>
+        </footer>
+
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

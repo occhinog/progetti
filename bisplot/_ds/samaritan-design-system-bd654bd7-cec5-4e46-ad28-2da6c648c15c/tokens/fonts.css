@@ -1,0 +1,38 @@
+/* ─── WEBFONTS ────────────────────────────────────────────────────
+   No font binaries existed in the source repo: j/fonts.css loads
+   everything from Google Fonts. That approach is preserved so the
+   framework stays byte-compatible with the live site.
+
+   The Samaritan layer uses ONLY the first two families.
+   The rest are carried over from the outgoing HelioH₂ marketing site
+   and are needed only by the legacy light theme.
+   ──────────────────────────────────────────────────────────────── */
+
+/* Full families (all weights, woff2, unicode-range subsets) */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
+
+/* Legacy HelioH₂ marketing typography */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap');
+
+/* Explicit declarations for the two Samaritan faces, so the family is
+   resolvable without the remote stylesheet. Replace these `src` URLs with
+   self-hosted files if the binaries are ever added to assets/fonts/. */
+@font-face {
+  font-family: 'Share Tech Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/sharetechmono/v16/J7aHnp1uDWRBEqV98dVQztYldFc7pA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rajdhani/v17/LDIxapCSOBg7S-QT7q4A.ttf) format('truetype');
+}

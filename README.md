@@ -17,12 +17,14 @@ Live at **https://progetti.occhino.it/**
 ├── hero.jpg          background image, index.html + hub.html
 ├── robots.txt        Disallow: / — keeps the site out of search engines
 ├── CNAME             progetti.occhino.it
+├── .nojekyll         disables the Jekyll build — required by bisplot/, see Deployment
 │
 ├── elezioni18/       ─┐
 ├── elezioni23/        │
 ├── businessai/        ├── project folders — self-contained
 ├── finance/           │
-├── carportitalia/    ─┘  generated static export — see carportitalia/README.md
+├── carportitalia/     │  generated static export — see carportitalia/README.md
+├── bisplot/          ─┘  Claude Design canvas export — see bisplot/README.md
 └── docs/             loose Markdown / XLSX / PDF, not registered in projects.js
 ```
 
@@ -88,7 +90,7 @@ GitHub Pages, configured as:
 
 Pushing to `parent` publishes. The rebuild usually lands within a minute or two.
 
-**Because the build is Jekyll-based:** files and folders whose names start with `_` or `.` are excluded from the published site. Avoid those prefixes in project folders. If a project ever needs them, add an empty `.nojekyll` file at the repo root to serve the tree verbatim.
+**The Jekyll build is disabled.** An empty `.nojekyll` at the repo root makes Pages serve the tree verbatim. It is there because `bisplot/` loads its CSS and JS from `bisplot/_ds/`, and a Jekyll build drops every path starting with `_` — five of its seven sheets would render unstyled live while looking correct locally. Nothing on the site ever relied on Jekyll (no `_config.yml`, no front matter, and `docs/*.md` were already served raw), so disabling it changed nothing else. **Do not delete `.nojekyll`,** and note that `_`- and `.`-prefixed paths are now published like any other file.
 
 **Do not delete `CNAME`.** It is what binds the custom domain; losing it drops the site back to the `github.io` URL and invalidates the certificate.
 
@@ -96,4 +98,5 @@ Pushing to `parent` publishes. The rebuild usually lands within a minute or two.
 
 - Project folders can be large (`elezioni18` and `elezioni23` are ~5–8 MB each, mostly images and fonts). Assets are committed directly — there is no LFS or external asset host.
 - The hub page is intentionally minimal. Styling changes to it go in `css.css`; the design tokens are the CSS custom properties under `:root` (copper/cream/dark palette, Playfair Display + Lato).
-- `carportitalia/` is the only generated folder. It is a static export of the private `occhinog/sun-roof-solutions` app (Lovable / TanStack Start); edits there are overwritten on the next export. Source of truth and rebuild steps: `carportitalia/README.md`.
+- `carportitalia/` and `bisplot/` are the two generated folders. `carportitalia/` is a static export of the private `occhinog/sun-roof-solutions` app (Lovable / TanStack Start); edits there are overwritten on the next export. Source of truth and rebuild steps: `carportitalia/README.md`.
+- `bisplot/` is a Claude Design canvas export: the `.dc.html` artboards and `support.js` are regenerated, while `bisplot/index.html` (the card grid linking the sheets) and `bisplot/README.md` are hand-written and must survive a re-export. The artboards fetch React and Babel from unpkg at load, so they need internet.

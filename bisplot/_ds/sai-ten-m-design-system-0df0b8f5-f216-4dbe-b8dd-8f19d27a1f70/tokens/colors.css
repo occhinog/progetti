@@ -1,0 +1,35 @@
+:root {
+  /* Primary */
+  --color-primary: #3438EA;
+  --color-primary-dark: #292BD4;
+  --color-primary-light: #5B5FF5;
+
+  /* Neutral */
+  --color-black: #070707;
+  --color-white: #FFFFFF;
+  --color-gray-1: #F5F5F5;
+  --color-gray-2: #EEEEEE;
+  --color-gray-3: #D9D9D9;
+  --color-gray-4: #BFBFBF;
+  --color-gray-5: #999999;
+
+  /* Semantic */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #FFFFFF;
+
+  /* Text */
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-gray-5);
+  --color-text-inverse: var(--color-white);
+
+  /* Backgrounds */
+  --color-bg-primary: var(--color-white);
+  --color-bg-secondary: var(--color-gray-1);
+  --color-bg-tertiary: var(--color-gray-2);
+
+  /* Borders */
+  --color-border: var(--color-gray-3);
+  --color-border-light: var(--color-gray-2);
+}

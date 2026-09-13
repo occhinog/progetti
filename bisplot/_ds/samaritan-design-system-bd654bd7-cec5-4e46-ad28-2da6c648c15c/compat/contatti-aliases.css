@@ -1,0 +1,30 @@
+/* ─── COMPATIBILITY: --contatti-* → --sam-* ──────────────────────
+   The live site (j/contatti.css and anything else consuming
+   j/stile.css) reads --contatti-* names. Those names are page-scoped
+   ("contatti" = the contacts page) and don't travel, so the framework
+   is canonically --sam-*.
+
+   These aliases mean existing pages keep rendering unchanged: point a
+   page at this design system's styles.css instead of j/stile.css and
+   nothing breaks. New work should use --sam-* / the semantic aliases.
+   ──────────────────────────────────────────────────────────────── */
+:root {
+  --contatti-bg: var(--sam-bg);
+  --contatti-font: var(--sam-void);
+  --contatti-surface: var(--sam-surface);
+  --contatti-surface-2: var(--sam-surface-2);
+  --contatti-border: var(--sam-border);
+  --contatti-border-hi: var(--sam-border-hi);
+  --contatti-text: var(--sam-text);
+  --contatti-text-muted: var(--sam-text-muted);
+  --contatti-text-light: var(--sam-text-light);
+  --contatti-text-faint: var(--sam-text-faint);
+  --contatti-red: var(--sam-red);
+  --contatti-red-bright: var(--sam-red-bright);
+  --contatti-red-fill: var(--sam-red-fill);
+  --contatti-red-text: var(--sam-red-text);
+  --contatti-white: var(--sam-white);
+  --contatti-green: var(--sam-green);
+  --contatti-font-mono: var(--font-mono);
+  --contatti-font-ui: var(--font-display);
+}

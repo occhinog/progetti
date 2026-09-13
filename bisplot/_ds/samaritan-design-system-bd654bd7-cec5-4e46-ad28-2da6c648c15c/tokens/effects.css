@@ -1,0 +1,90 @@
+/* ─── SURFACE EFFECTS & MOTION ────────────────────────────────────
+   The CRT layer. Four fixed overlays stack over every page:
+   scanlines (z 9000), vignette (z 8999), ambient grid (0.03 opacity),
+   and the background photograph under a 92% scrim.
+
+   There are no box-shadows in the Samaritan layer. Depth comes from
+   hairlines and darkness. The only shadow-like effect is a red glow
+   on the brand triangle.
+   ──────────────────────────────────────────────────────────────── */
+:root {
+  /* Scanlines — 3px transparent / 1px ink, repeating */
+  --scanline-gap: 3px;
+  --scanline-period: 4px;
+  --scanlines: repeating-linear-gradient(to bottom,
+      transparent 0px, transparent 3px,
+      rgba(0, 0, 0, 0.07) 3px, rgba(0, 0, 0, 0.07) 4px); /* @kind other */
+  --scanlines-photo: repeating-linear-gradient(to bottom,
+      transparent 0px, transparent 3px,
+      rgba(0, 0, 0, 0.13) 3px, rgba(0, 0, 0, 0.13) 4px); /* @kind other */
+
+  /* Vignette — pulls the eye to centre, hides the crop */
+  --vignette: radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.65) 100%); /* @kind other */
+
+  /* Ambient grid — 60px cells at 3% opacity, drawn in --sam-white */
+  --grid-opacity: 0.03; /* @kind other */
+
+  /* Brand underline: hairline that fades out at both ends */
+  --rule-fade: linear-gradient(to right, transparent, var(--sam-text-muted), transparent); /* @kind other */
+
+  /* Glow — the single "light source" in the system */
+  --glow-accent: drop-shadow(0 0 6px var(--sam-red)); /* @kind shadow */
+
+  /* Imagery treatment — portraits are desaturated until hovered */
+  --filter-photo: grayscale(0.35) contrast(1.05); /* @kind other */
+  --filter-photo-hover: grayscale(0) contrast(1.1) brightness(1.04); /* @kind other */
+  /* Third-party embeds (maps) are inverted into the dark palette */
+  --filter-embed: invert(1) hue-rotate(180deg) saturate(0.25) brightness(0.85); /* @kind other */
+
+  /* Motion — short, linear-ish, no bounce, no scale */
+  --dur-instant: .15s; /* @kind other */
+  --dur-quick: .18s; /* @kind other */
+  --dur-tap: .2s; /* @kind other */
+  --dur-base: .25s; /* @kind other */
+  --dur-panel: .38s; /* @kind other */
+  --dur-fade: .6s; /* @kind other */
+  --ease-ui: ease; /* @kind other */
+  --ease-panel: cubic-bezier(.16, 1, .3, 1); /* @kind other */
+  --ease-progress: linear; /* @kind other */
+
+  /* Named transitions */
+  --t-border: border-color .18s, color .18s; /* @kind other */
+  --t-wash: width .2s ease; /* @kind other */
+  --t-arrow: color .18s, transform .18s; /* @kind other */
+  --t-card: border-color .18s, background .18s; /* @kind other */
+  --t-photo: filter .35s ease; /* @kind other */
+
+  /* Timings baked into the boot choreography (j/contatti.js) */
+  --boot-line-delay: 380ms; /* @kind other */
+  --boot-fill-dur: 1.6s; /* @kind other */
+  --type-char-delay: 48ms; /* @kind other */
+  --glitch-period: 9s; /* @kind other */
+  --glitch-dur: 2.8s; /* @kind other */
+  --pulse-dur: 2.4s; /* @kind other */
+  --blink-dur: 1s; /* @kind other */
+}
+
+/* ─── KEYFRAMES ─────────────────────────────────────────────────── */
+@keyframes sam-pulse {
+  0%, 100% { opacity: 1 }
+  50% { opacity: 0.25 }
+}
+@keyframes sam-blink {
+  0%, 100% { opacity: 1 }
+  50% { opacity: 0 }
+}
+@keyframes sam-slidein {
+  from { opacity: 0; transform: translateY(14px) }
+  to { opacity: 1; transform: none }
+}
+@keyframes sam-glitch {
+  0%, 100% { transform: none; opacity: 1 }
+  8% { transform: skewX(-0.6deg) }
+  10% { transform: none }
+  28% { transform: none; opacity: 1 }
+  31% { transform: skewX(0.9deg); opacity: .85 }
+  34% { transform: none; opacity: 1 }
+  54% { transform: none }
+  56% { transform: skewX(-1.1deg) }
+  59% { transform: none }
+}

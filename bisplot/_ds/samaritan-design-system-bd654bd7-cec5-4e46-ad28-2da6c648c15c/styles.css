@@ -1,0 +1,15 @@
+/* ═══════════════════════════════════════════════════════════════
+   SAMARITAN FRAMEWORK — global entry point
+   Extracted from HelioH₂ "Samaritan Interface v2.0"
+   (contatti/index.html → j/contatti.css → j/stile.css → j/fonts.css)
+   Import lines only. Never add rules to this file.
+   ═══════════════════════════════════════════════════════════════ */
+@import 'tokens/fonts.css';
+@import 'tokens/colors.css';
+@import 'tokens/typography.css';
+@import 'tokens/space.css';
+@import 'tokens/effects.css';
+@import 'tokens/legacy-helioh2.css';
+@import 'patterns/base.css';
+@import 'patterns/samaritan.css';
+@import 'compat/contatti-aliases.css';

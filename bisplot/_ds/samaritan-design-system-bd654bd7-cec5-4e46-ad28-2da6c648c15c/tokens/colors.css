@@ -1,0 +1,67 @@
+/* ─── COLOR ───────────────────────────────────────────────────────
+   Every value below is lifted verbatim from the --contatti-* block in
+   j/stile.css. Nothing is re-derived, rounded or re-hued.
+
+   The palette is three things and nothing else:
+   near-black surfaces, a cold blue-grey text ramp, one arterial red.
+   Green appears once, as a state (VERIFICATO / ATTIVI).
+   ──────────────────────────────────────────────────────────────── */
+:root {
+  /* Surfaces — near-black, slightly cool (a blue-violet cast, never neutral grey) */
+  --sam-void: #05050a;                   /* absolute floor; body under the scrim */
+  --sam-bg: rgba(5, 5, 10, 0.92);        /* scrim laid over the body photo */
+  --sam-surface: #0a0a10;                /* cards, panels, photo wells */
+  --sam-surface-2: #0f0f16;              /* card hover */
+
+  /* Hairlines */
+  --sam-border: #181820;                 /* every divider, every frame */
+  --sam-border-hi: #252530;              /* hover / focus frame */
+
+  /* Text ramp — cold, never pure white */
+  --sam-white: #ededf0;                  /* headline / value text */
+  --sam-text: #b8b8c8;                   /* body, default page color */
+  --sam-text-light: #9999b3;             /* secondary controls */
+  --sam-text-muted: #8a8a9e;             /* labels, bar chrome, boot log */
+  --sam-text-faint: #82829a;             /* footer bar */
+
+  /* Accent — one red, in four jobs */
+  --sam-red: #c01010;                    /* FILL and BORDER red (rails, tags, bars) */
+  --sam-red-bright: #e02020;             /* reserved emphasis / alarm */
+  --sam-red-text: #ff6b6b;               /* red as TEXT — never use --sam-red on type */
+  --sam-red-fill: rgba(192, 16, 16, 0.12); /* hover wash sweeping across a control */
+
+  /* State */
+  --sam-green: #157a3a;                  /* ATTIVI / VERIFICATO only */
+
+  /* ── Semantic aliases — prefer these in new work ── */
+  --surface-void: var(--sam-void);
+  --surface-base: var(--sam-bg);
+  --surface-card: var(--sam-surface);
+  --surface-card-hover: var(--sam-surface-2);
+
+  --text-heading: var(--sam-white);
+  --text-body: var(--sam-text);
+  --text-secondary: var(--sam-text-light);
+  --text-label: var(--sam-text-muted);
+  --text-faint: var(--sam-text-faint);
+  --text-accent: var(--sam-red-text);
+  --text-on-accent: var(--sam-bg);       /* .rtag: bg-colored type on red */
+
+  --border-hairline: var(--sam-border);
+  --border-active: var(--sam-border-hi);
+  --border-accent: var(--sam-red);
+
+  --accent: var(--sam-red);
+  --accent-strong: var(--sam-red-bright);
+  --accent-wash: var(--sam-red-fill);
+
+  --status-ok: var(--sam-green);
+  --status-alert: var(--sam-red);
+  --status-live: var(--sam-red);         /* the pulsing SISTEMA ATTIVO dot */
+
+  /* Overlay inks */
+  --ink-scanline: rgba(0, 0, 0, 0.07);   /* full-page scanline */
+  --ink-scanline-photo: rgba(0, 0, 0, 0.13); /* denser scanline over portraits */
+  --ink-vignette: rgba(0, 0, 0, 0.65);
+  --ink-map-frame: rgba(192, 16, 16, 0.2);
+}

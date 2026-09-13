@@ -1,0 +1,39 @@
+/* ─── LEGACY HELIOH₂ MARKETING TOKENS ────────────────────────────
+   The outgoing light-mode brand from j/stile.css: blue/green/yellow,
+   Montserrat headings, 12–20px radii, blue-tinted shadows.
+
+   Kept ONLY so the migration is lossless and the two systems can be
+   told apart at a glance. Do not mix these with --sam-* tokens on the
+   same surface: rounded corners, drop shadows and translateY(-6px)
+   hovers are exactly what the Samaritan layer removes.
+   ──────────────────────────────────────────────────────────────── */
+:root {
+  --legacy-blue: #0057B2;
+  --legacy-blue-dark: #003D7A;
+  --legacy-green: #008235;
+  --legacy-green-dark: #005C26;
+  --legacy-yellow: #E6C200;
+  --legacy-yellow-dark: #806d00;
+  --legacy-dark: #1C232A;
+  --legacy-white: #ffffff;
+  --legacy-neutral: #F5F5F7;
+  --legacy-text: #1a1a2e;
+  --legacy-text-muted: #4a5568;
+  --legacy-border: #e5e7eb;
+
+  --legacy-radius: 12px;
+  --legacy-radius-lg: 20px;
+  --legacy-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+  --legacy-shadow-lg: 0 12px 48px rgba(0, 87, 178, 0.15);
+  --legacy-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+
+  --legacy-font-head: 'Montserrat', sans-serif;
+  --legacy-font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --legacy-spacing-xs: 0.5rem;
+  --legacy-spacing-sm: 1rem;
+  --legacy-spacing-md: 1.5rem;
+  --legacy-spacing-lg: 2rem;
+  --legacy-spacing-xl: 2.5rem;
+  --legacy-spacing-2xl: 3.5rem;
+}

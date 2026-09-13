@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════════════════════════════════
+   SAMARITAN PATTERN LAYER
+   Generalised from j/contatti.css so the framework can be dropped onto
+   any page, not just /w/contatti/. Class-for-class equivalents:
+
+     .sam-shell    ← .shell        .sam-opt        ← .opt
+     .sam-topbar   ← .topbar       .sam-section    ← .rsec
+     .sam-footbar  ← .footbar      .sam-section-head ← .rsec-head
+     .sam-stage    ← .stage        .sam-tag        ← .rtag
+     .sam-brackets ← .brk          .sam-ghost      ← .rback
+     .sam-brand    ← .brand        .sam-table      ← .dtable
+     .sam-boot     ← #boot         .sam-field      ← .ci
+     .sam-query    ← #qi           .sam-person     ← .pcard
+                                   .sam-embed      ← .mapbox
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── CRT OVERLAYS ─────────────────────────────────────────────── */
+body.sam::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: var(--z-scanlines); background: var(--scanlines) }
+body.sam::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: var(--z-vignette); background: var(--vignette) }
+
+/* Element-based equivalents, for when the overlays must live inside a
+   container rather than on <body> (component previews, embedded frames). */
+.sam-crt { position: absolute; inset: 0; pointer-events: none; z-index: var(--z-scanlines); background: var(--scanlines) }
+.sam-crt-vignette { position: absolute; inset: 0; pointer-events: none; z-index: var(--z-vignette); background: var(--vignette) }
+
+/* ─── SHELL ────────────────────────────────────────────────────── */
+.sam-shell { min-height: 100dvh; display: flex; flex-direction: column; background-color: var(--sam-bg) }
+.sam-shell.contained { min-height: 100%; position: relative; background-size: cover; background-position: center }
+
+/* ─── STATUS BARS ──────────────────────────────────────────────── */
+.sam-topbar, .sam-footbar { display: flex; justify-content: space-between; align-items: center; padding: var(--pad-bar); letter-spacing: var(--track-wide) }
+.sam-topbar { border-bottom: var(--stroke-hair) solid var(--sam-border); background: var(--sam-bg); position: sticky; top: 0; z-index: var(--z-bar); font-size: var(--fs-xs); color: var(--sam-text-muted) }
+.sam-footbar { border-top: var(--stroke-hair) solid var(--sam-border); font-size: var(--fs-micro); color: var(--sam-text-faint) }
+.sam-bar-group { display: flex; gap: var(--sp-12); align-items: center }
+.sam-dot { width: var(--dot-size); height: var(--dot-size); border-radius: var(--radius-dot); background: var(--status-live); display: inline-block; animation: sam-pulse var(--pulse-dur) ease-in-out infinite }
+
+/* ─── STAGE + AMBIENT GRID ─────────────────────────────────────── */
+.sam-stage { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--pad-stage); position: relative; overflow-x: hidden }
+.sam-stage::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: var(--grid-opacity); background-image: linear-gradient(to right, var(--sam-white) 1px, transparent 1px), linear-gradient(to bottom, var(--sam-white) 1px, transparent 1px); background-size: var(--grid-cell) var(--grid-cell) }
+
+/* ─── CORNER BRACKETS ──────────────────────────────────────────── */
+.sam-brk { position: absolute; width: var(--bracket-size); height: var(--bracket-size) }
+.sam-brk::before, .sam-brk::after { content: ''; position: absolute; background: var(--sam-red); opacity: .5 }
+.sam-brk.tl { top: var(--bracket-inset); left: var(--bracket-inset) }
+.sam-brk.tl::before { top: 0; left: 0; width: var(--stroke-bracket); height: 100% }
+.sam-brk.tl::after { top: 0; left: 0; width: 100%; height: var(--stroke-bracket) }
+.sam-brk.tr { top: var(--bracket-inset); right: var(--bracket-inset) }
+.sam-brk.tr::before { top: 0; right: 0; width: var(--stroke-bracket); height: 100% }
+.sam-brk.tr::after { top: 0; right: 0; width: 100%; height: var(--stroke-bracket) }
+.sam-brk.bl { bottom: var(--bracket-inset); left: var(--bracket-inset) }
+.sam-brk.bl::before { bottom: 0; left: 0; width: var(--stroke-bracket); height: 100% }
+.sam-brk.bl::after { bottom: 0; left: 0; width: 100%; height: var(--stroke-bracket) }
+.sam-brk.br { bottom: var(--bracket-inset); right: var(--bracket-inset) }
+.sam-brk.br::before { bottom: 0; right: 0; width: var(--stroke-bracket); height: 100% }
+.sam-brk.br::after { bottom: 0; right: 0; width: 100%; height: var(--stroke-bracket) }
+
+/* ─── BRAND MARK ───────────────────────────────────────────────── */
+.sam-brand { text-align: center; margin-bottom: var(--sp-14); user-select: none }
+.sam-brand-name { font-family: var(--font-display); font-size: var(--fs-brand); font-weight: var(--fw-bold); letter-spacing: var(--track-brand); color: var(--sam-white); text-transform: var(--case-ui); display: inline-block; position: relative }
+.sam-brand-name sub { font-size: .5em; vertical-align: sub; letter-spacing: 0 }
+.sam-brand-name.glitching { animation: sam-glitch var(--glitch-dur) ease-in-out }
+.sam-brand-line { display: block; width: 100%; height: 1px; background: var(--rule-fade); margin-top: var(--sp-2) }
+.sam-brand-tri { margin-top: var(--sp-4); display: flex; justify-content: center }
+.sam-brand-tri svg { width: var(--brand-tri-w); height: var(--brand-tri-h); fill: var(--sam-red); filter: var(--glow-accent) }
+
+/* ─── BOOT LOG ─────────────────────────────────────────────────── */
+.sam-boot { text-align: center; max-width: var(--w-boot); width: 100% }
+.sam-bl { display: block; opacity: 0; font-size: var(--fs-sm); letter-spacing: var(--track-snug); color: var(--sam-text-muted); margin: var(--sp-1) 0; transition: opacity var(--dur-base) }
+.sam-bl.show { opacity: 1 }
+.sam-bl.r { color: var(--sam-red-text) }
+.sam-bl.g, .sam-bl .g { color: var(--sam-green) }
+.sam-bl.w { color: var(--sam-white) }
+.sam-pbar { margin: var(--sp-9) auto; width: var(--w-progress); height: 1px; background: var(--sam-border) }
+.sam-pfill { height: 100%; background: var(--sam-red); width: 0; transition: width var(--boot-fill-dur) linear }
+
+/* ─── QUERY INTERFACE ──────────────────────────────────────────── */
+.sam-query { text-align: center; max-width: var(--w-query); width: 100% }
+.sam-query-label { font-size: var(--fs-xs); color: var(--sam-text-muted); letter-spacing: var(--track-ui); margin-bottom: var(--sp-10) }
+.sam-query-line { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: var(--sp-13); min-height: 30px }
+.sam-query-prompt { color: var(--sam-red-text); font-size: var(--fs-md) }
+.sam-query-text { font-size: var(--fs-md); color: var(--sam-white); letter-spacing: var(--track-snug) }
+.sam-cursor { display: inline-block; width: var(--w-cursor); height: var(--h-cursor); background: var(--sam-red); vertical-align: middle; margin-left: 2px; animation: sam-blink var(--blink-dur) step-end infinite }
+
+/* ─── OPTION LIST ──────────────────────────────────────────────── */
+.sam-opts { display: flex; flex-direction: column; gap: var(--sp-5); align-items: center; opacity: 0; transition: opacity var(--dur-fade) ease }
+.sam-opts.show { opacity: 1 }
+.sam-opt { display: flex; align-items: center; gap: var(--sp-7); padding: var(--pad-option); background: transparent; border: var(--stroke-hair) solid var(--sam-border); color: var(--sam-text); font-family: var(--font-mono); font-size: var(--fs-lg); letter-spacing: var(--track-normal); cursor: pointer; width: var(--w-option); position: relative; text-align: left; transition: var(--t-border) }
+.sam-opt::before { content: ''; position: absolute; inset: 0; background: var(--sam-red-fill); width: 0; transition: var(--t-wash) }
+.sam-opt:hover { border-color: var(--sam-red); color: var(--sam-white) }
+.sam-opt:hover::before { width: 100% }
+.sam-opt-n { color: var(--sam-red-text); font-size: var(--fs-xs); flex-shrink: 0; z-index: 1 }
+.sam-opt-l { text-transform: var(--case-ui); letter-spacing: var(--track-wide); z-index: 1 }
+.sam-opt-a { margin-left: auto; color: var(--sam-text-muted); z-index: 1; transition: var(--t-arrow) }
+.sam-opt:hover .sam-opt-a { color: var(--sam-red-text); transform: translateX(4px) }
+
+/* ─── RESULT PANEL ─────────────────────────────────────────────── */
+.sam-result { width: 100%; max-width: var(--w-content); overflow-x: hidden; flex-shrink: 0 }
+.sam-result.anim { animation: sam-slidein var(--dur-panel) var(--ease-panel) both }
+.sam-section-head { display: flex; align-items: center; gap: var(--sp-7); flex-wrap: wrap; margin-bottom: var(--sp-11); padding-bottom: var(--sp-6); border-bottom: var(--stroke-hair) solid var(--sam-border) }
+.sam-tag { font-size: var(--fs-micro); background: var(--sam-red); color: var(--sam-bg); padding: var(--pad-tag); letter-spacing: var(--track-widest); text-transform: var(--case-ui); flex-shrink: 0 }
+.sam-section-title { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: var(--sam-white); letter-spacing: var(--track-ui); text-transform: var(--case-ui) }
+.sam-ghost { margin-left: auto; background: none; border: var(--stroke-hair) solid var(--sam-border); color: var(--sam-text-light); font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: var(--track-wide); padding: var(--pad-ghost); cursor: pointer; transition: var(--t-border) }
+.sam-ghost:hover { border-color: var(--sam-red); color: var(--sam-white) }
+
+/* ─── DATA TABLE ───────────────────────────────────────────────── */
+.sam-table { width: 100%; border-collapse: collapse }
+.sam-table tr { border-bottom: var(--stroke-hair) solid var(--sam-border) }
+.sam-table tr:hover { background: var(--sam-surface) }
+.sam-table td { padding: var(--pad-cell); font-size: var(--fs-lg) }
+.sam-table td:first-child { color: var(--sam-text-muted); font-size: var(--fs-base); letter-spacing: var(--track-wide); text-transform: var(--case-ui); width: var(--w-table-key); white-space: nowrap }
+.sam-table td:last-child { color: var(--sam-white) }
+.sam-hi { color: var(--sam-red-text) !important }
+.sam-table a { color: var(--sam-red-text); text-decoration: none; transition: color var(--dur-instant) }
+.sam-table a:hover { color: var(--sam-white) }
+@media (max-width: 520px) {
+  .sam-table tr { display: block; border-bottom: var(--stroke-hair) solid var(--sam-border); padding: 8px 0 }
+  .sam-table td { display: block; padding: 2px 14px; border: none; width: auto !important; white-space: normal !important }
+  .sam-table td:first-child { font-size: var(--fs-micro); padding-bottom: 1px }
+  .sam-table td:last-child { font-size: 13px; padding-top: 2px }
+}
+
+/* ─── FIELD LIST ───────────────────────────────────────────────── */
+.sam-fields { display: flex; flex-direction: column; gap: var(--sp-7) }
+.sam-field { display: flex; align-items: flex-start; gap: var(--sp-7) }
+.sam-field-label { font-size: var(--fs-base); color: var(--sam-text-muted); letter-spacing: var(--track-wider); text-transform: var(--case-ui); min-width: var(--w-field-label); padding-top: 1px }
+.sam-field-value { font-size: var(--fs-lg); color: var(--sam-white) }
+.sam-field-value a { color: var(--sam-red-text); text-decoration: none; transition: color var(--dur-instant) }
+.sam-field-value a:hover { color: var(--sam-white) }
+.sam-split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12) }
+@media (max-width: 580px) { .sam-split { grid-template-columns: 1fr } }
+
+/* ─── EMBED FRAME (maps, iframes) ──────────────────────────────── */
+.sam-embed { border: var(--stroke-hair) solid var(--sam-border); height: var(--h-map); position: relative; overflow: hidden }
+.sam-embed iframe { width: 100%; height: 100%; border: none; filter: var(--filter-embed) }
+.sam-embed::before, .sam-embed::after { content: ''; position: absolute; background: var(--sam-red); opacity: .35; pointer-events: none; z-index: 2 }
+.sam-embed::before { top: 50%; left: 0; right: 0; height: 1px }
+.sam-embed::after { left: 50%; top: 0; bottom: 0; width: 1px }
+.sam-embed-frame { position: absolute; inset: 0; border: var(--stroke-hair) solid var(--ink-map-frame); pointer-events: none; z-index: 2 }
+
+/* ─── PERSON CARD ──────────────────────────────────────────────── */
+.sam-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap: var(--sp-8) }
+.sam-person { background: var(--sam-surface); border: var(--stroke-hair) solid var(--sam-border); overflow: hidden; position: relative; transition: var(--t-card) }
+.sam-person::before { content: ''; position: absolute; top: 0; left: 0; width: var(--stroke-rail); height: 100%; background: var(--sam-red); opacity: 0; transition: opacity var(--dur-quick); z-index: 1 }
+.sam-person:hover { border-color: var(--sam-border-hi); background: var(--sam-surface-2) }
+.sam-person:hover::before { opacity: 1 }
+.sam-photo { width: 100%; aspect-ratio: 4/3; overflow: hidden; background: var(--sam-void); position: relative }
+.sam-photo::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: var(--scanlines-photo) }
+.sam-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; filter: var(--filter-photo); transition: var(--t-photo) }
+.sam-person:hover .sam-photo img { filter: var(--filter-photo-hover) }
+.sam-person-body { padding: var(--pad-card-body) }
+.sam-role { font-size: var(--fs-micro); color: var(--sam-red-text); letter-spacing: var(--track-wider); text-transform: var(--case-ui); margin-bottom: var(--sp-3) }
+.sam-name { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--sam-white); letter-spacing: var(--track-tight); margin-bottom: var(--sp-7) }
+.sam-contacts { display: flex; flex-direction: column; gap: var(--sp-2) }
+.sam-contact { display: flex; gap: var(--sp-4); font-size: var(--fs-sm); align-items: center }
+.sam-contact-key { color: var(--sam-text-muted); font-size: var(--fs-micro); letter-spacing: var(--track-tight); min-width: 26px }
+.sam-contact a { color: var(--sam-text) }
+.sam-contact a:hover { color: var(--sam-red-text) }
+
+/* ─── SMALL SCREENS ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .sam-opt { width: 100%; max-width: var(--w-option) }
+  .sam-topbar { padding: 7px 16px }
+  .sam-bar-group:last-child { display: none }
+  .sam-brk { width: 20px; height: 20px }
+  .sam-brk.tl { top: var(--bracket-inset-sm); left: var(--bracket-inset-sm) }
+  .sam-brk.tr { top: var(--bracket-inset-sm); right: var(--bracket-inset-sm) }
+  .sam-brk.bl { bottom: var(--bracket-inset-sm); left: var(--bracket-inset-sm) }
+  .sam-brk.br { bottom: var(--bracket-inset-sm); right: var(--bracket-inset-sm) }
+  .sam-ghost { margin-left: 0; margin-top: 4px }
+  .sam-section-head { gap: 8px }
+  .sam-footbar span:nth-child(3) { display: none }
+}

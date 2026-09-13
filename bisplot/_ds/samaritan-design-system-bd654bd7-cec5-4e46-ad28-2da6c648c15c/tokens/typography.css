@@ -1,0 +1,48 @@
+/* ─── TYPOGRAPHY ──────────────────────────────────────────────────
+   Two faces. Share Tech Mono is the default for the whole document —
+   body, buttons, tables, everything. Rajdhani is used only where the
+   system "asserts" itself: the brand mark, section titles, names.
+
+   Sizes are the exact px values used in j/contatti.css. They are
+   small and they do not scale fluidly: only the brand mark clamps.
+   Letter-spacing does the hierarchy work that size normally would.
+   ──────────────────────────────────────────────────────────────── */
+:root {
+  --font-mono: 'Share Tech Mono', 'Courier New', monospace;
+  --font-display: 'Rajdhani', sans-serif;
+  --font-system: var(--font-mono);       /* the page default */
+
+  /* Type scale (px, literal) */
+  --fs-micro: 10px;   /* classification tag, role line, footer bar, contact icon */
+  --fs-xs: 11px;      /* status bar, interface label, option index, back button */
+  --fs-sm: 12px;      /* boot log line, contact rows */
+  --fs-base: 14px;    /* field labels, table key column */
+  --fs-md: 15px;      /* query prompt + typed query */
+  --fs-lg: 16px;      /* option label, table value, field value, person name */
+  --fs-xl: 17px;      /* section title */
+  --fs-brand: clamp(2.2rem, 5.5vw, 4.5rem); /* @kind font */
+
+  /* Weights — Rajdhani only; the mono has a single weight */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+
+  /* Line height */
+  --lh-tight: 1.15; /* @kind font */
+  --lh-ui: 1.4; /* @kind font */
+  --lh-body: 1.7; /* @kind font */
+
+  /* ── Letter-spacing — the load-bearing token group ── */
+  --track-tight: 0.04em; /* @kind font */
+  --track-snug: 0.06em; /* @kind font */
+  --track-normal: 0.09em; /* @kind font */
+  --track-wide: 0.1em; /* @kind font */
+  --track-wider: 0.12em; /* @kind font */
+  --track-widest: 0.14em; /* @kind font */
+  --track-ui: 0.18em; /* @kind font */
+  --track-brand: 0.35em; /* @kind font */
+
+  /* Case */
+  --case-ui: uppercase; /* @kind other */
+}
