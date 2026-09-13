@@ -2,7 +2,7 @@ const projects = [
     { name: "Elezioni2018", link: "elezioni18/" },
     { name: "Elezioni2023", link: "elezioni23/" },
     { name: "SMARTAI / BusinessAI Academy", link: "businessai/" },
-    { name: "Finance Reports", link: "finance/" },
+    { name: "FTSE MIB Weekly Project", link: "finance/" },
     { name: "Carport Italia", link: "carportitalia/" },
     { name: "Bisplot — Brand System", link: "bisplot/" }
 ];
