@@ -14,7 +14,7 @@ Live at **https://progetti.occhino.it/**
 ├── hub.html          hero + button grid (buttons injected by inline script)
 ├── projects.js       THE registry — the only file to edit when adding a project
 ├── css.css           styles for index.html and hub.html
-├── hero.jpg          background image, index.html + hub.html
+├── roccafiorita.jpg  background image, index.html + hub.html
 ├── robots.txt        Disallow: / — keeps the site out of search engines
 ├── CNAME             progetti.occhino.it
 ├── .nojekyll         disables the Jekyll build — required by bisplot/, see Deployment
@@ -68,7 +68,7 @@ Nothing else needs touching. Do not add markup for the button to `hub.html`; the
 ## Conventions
 
 - **Folder names use descriptive mixed case** — `TenMStudio`, `nuovoProgetto`. `elezioni18` and `elezioni23` predate this rule and stay as they are; do not rename them, their URLs are public.
-- **Projects are fully self-contained.** Each folder carries its own CSS, JS, images and fonts, and must never reference the root `css.css` or `hero.jpg`. The root, in turn, never reaches into a project folder. There is no shared root dependency any more.
+- **Projects are fully self-contained.** Each folder carries its own CSS, JS, images and fonts, and must never reference the root `css.css` or `roccafiorita.jpg`. The root, in turn, never reaches into a project folder. There is no shared root dependency any more.
 - **Relative paths inside projects.** Reference a project's own assets as `styles.css`, not `/styles.css` — a leading slash resolves to the domain root, not the project folder, and will break. `carportitalia/` is the exception: it is a prerendered bundle whose asset URLs are pinned to `/carportitalia/` at build time, which is why renaming that folder would break it outright.
 - **A project can be opened standalone via `file://`.** Nothing depends on a root-absolute script, so opening a project's `index.html` straight from Finder works. A local static server (`python3 -m http.server` from the repo root) is still the way to test root-relative links. `carportitalia/` is the exception — its root-absolute paths need the static server.
 - **Add `<meta name="robots" content="noindex, nofollow">` to every new page**, matching the rest of the site.
