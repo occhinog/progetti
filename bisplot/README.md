@@ -1,6 +1,6 @@
 # Bisplot — brand system canvas export
 
-**The `*.dc.html` artboards and `support.js` are generated output. Do not edit them by hand** — a re-export from the Claude Design canvas replaces them wholesale. `index.html` and this README are hand-written and must survive a re-export.
+**The `*.dc.html` artboards and `support.js` are generated output. Do not edit them by hand** — a re-export from the Claude Design canvas replaces them wholesale. `index.html`, `7_Business_Model.html` and this README are hand-written and must survive a re-export.
 
 | | |
 | --- | --- |
@@ -21,6 +21,14 @@ Seven artboards, each a standalone page linked from `index.html`:
 | `5b_Brand_HouseOfVibes_Samaritan.dc.html` | HouseOfVibes × Samaritan unified mark |
 | `6_Mascotte.dc.html` | Milo, Mila, Semino |
 
+One hand-written sheet sits alongside them, outside the canvas export:
+
+| File | Sheet |
+| --- | --- |
+| `7_Business_Model.html` | How the group earns — funnel, revenue streams, cost base, invoicing entity |
+
+It is numbered `7_` to continue the sequence but deliberately carries no `.dc.` segment, so a re-export cannot overwrite it. It is styled by hand to match the canvas sheets and depends on neither `support.js` nor `_ds/`.
+
 ## Two hard dependencies
 
 1. **`.nojekyll` at the repo root.** The artboards load their CSS and JS from `_ds/`, and GitHub Pages' Jekyll build drops any path starting with `_`. Without that file, sheets 1, 2, 3, 5b and 6 render unstyled on the live site while looking correct locally. `_ds/` holds two design systems — `sai-ten-m-…` (1, 2, 3, 6) and `samaritan-…` (5b) — and the files inside are `_`-prefixed too, so renaming the folder is not a fix.
@@ -39,7 +47,7 @@ A re-export brings all of these back; drop them again unless a published sheet h
 ## Re-exporting
 
 1. Export the canvas over `~/Desktop/Bisplot` as before.
-2. Copy the seven artboards, `support.js`, `_ds/` and only the referenced `uploads/` into this folder, leaving `index.html` and this README in place.
+2. Copy the seven artboards, `support.js`, `_ds/` and only the referenced `uploads/` into this folder, leaving `index.html`, `7_Business_Model.html` and this README in place.
 3. If an artboard was added, removed or retitled, update the card grid in `index.html` by hand — the cards are static markup, not generated.
 4. Commit to `parent`.
 

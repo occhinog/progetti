@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bisplot S.r.l. &mdash; Business model</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --paper: #EDEAE3;
+            --card: #fff;
+            --hairline: #D6D2CA;
+            --ink: #16170F;
+            --body: #1B1D1A;
+            --sage: #5A6650;
+            --muted: #6B675E;
+            --radius: 7px;
+            --sai: #3438EA;
+            --academy: #24406B;
+            --hov: #0E7C66;
+            --tbd: #9A6A1F;
+            --tbd-bg: #F7EFDF;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--body);
+            font-family: Inter, system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrap {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 70px 42px 84px;
+            display: flex;
+            flex-direction: column;
+            gap: 42px;
+        }
+
+        .eyebrow {
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--sage);
+        }
+
+        .masthead {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            max-width: 840px;
+        }
+
+        h1 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700;
+            font-size: 42px;
+            line-height: 1.15;
+            margin: 0;
+            color: var(--ink);
+        }
+
+        .masthead p { margin: 7px 0 0; max-width: 720px; }
+
+        .rule { height: 1px; background: var(--hairline); border: 0; margin: 0; }
+
+        h2 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700;
+            font-size: 25px;
+            line-height: 1.25;
+            margin: 0 0 6px;
+            color: var(--ink);
+        }
+
+        h3 {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin: 0 0 10px;
+            color: var(--muted);
+        }
+
+        .section { display: flex; flex-direction: column; gap: 21px; }
+
+        .section__lede { margin: 0; max-width: 780px; color: var(--muted); }
+
+        /* --- the rule: hairline closed by a solid square --- */
+        .mark { display: flex; align-items: center; gap: 7px; }
+        .mark__line { height: 1px; flex: 1; background: currentColor; opacity: .45; }
+        .mark__sq { width: 7px; height: 7px; background: currentColor; flex: none; }
+
+        /* --- funnel --- */
+        .funnel { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 21px; }
+
+        .stage {
+            background: var(--card);
+            border: 1px solid var(--hairline);
+            border-radius: var(--radius);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stage__step {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11px; font-weight: 500; letter-spacing: 0.2em; color: var(--muted);
+        }
+
+        .stage__brand {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700; font-size: 21px; line-height: 1.25;
+        }
+
+        .stage__desc { font-size: 14.5px; line-height: 1.55; margin: 6px 0 0; }
+
+        .stage--sai .stage__brand, .stage--sai .mark { color: var(--sai); }
+        .stage--academy .stage__brand, .stage--academy .mark { color: var(--academy); }
+        .stage--hov .stage__brand, .stage--hov .mark { color: var(--hov); }
+
+        /* --- brand blocks --- */
+        .brand {
+            background: var(--card);
+            border: 1px solid var(--hairline);
+            border-radius: var(--radius);
+            border-top: 3px solid currentColor;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .brand--sai { color: var(--sai); --accent: var(--sai); }
+        .brand--academy { color: var(--academy); --accent: var(--academy); }
+        .brand--hov { color: var(--hov); --accent: var(--hov); }
+        .brand--bisplot { color: var(--sage); --accent: var(--sage); }
+
+        .brand__head { display: flex; flex-direction: column; gap: 4px; }
+
+        .brand__name {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700; font-size: 27px; line-height: 1.2;
+        }
+
+        .brand__role {
+            font-size: 11px; font-weight: 600; letter-spacing: 0.32em;
+            text-transform: uppercase; color: var(--muted);
+        }
+
+        .brand__body { color: var(--body); display: flex; flex-direction: column; gap: 22px; }
+
+        .brand__body p { margin: 0; }
+
+        .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+
+        ul.tight { margin: 0; padding-left: 19px; }
+        ul.tight li { margin: 5px 0; font-size: 14.5px; line-height: 1.55; }
+
+        .kv { display: flex; flex-direction: column; gap: 9px; }
+
+        .kv__row {
+            display: flex; justify-content: space-between; gap: 16px;
+            padding-bottom: 8px; border-bottom: 1px solid var(--hairline);
+            font-size: 14.5px;
+        }
+
+        .kv__row:last-child { border-bottom: 0; padding-bottom: 0; }
+        .kv__k { color: var(--muted); }
+        .kv__v { font-weight: 600; text-align: right; color: var(--ink); }
+
+        /* --- tables --- */
+        .tablecard {
+            background: var(--card);
+            border: 1px solid var(--hairline);
+            border-radius: var(--radius);
+            overflow-x: auto;
+        }
+
+        table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 620px; }
+
+        caption {
+            text-align: left; padding: 24px 28px 0;
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--sage);
+        }
+
+        th, td { text-align: left; padding: 13px 18px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+        th:first-child, td:first-child { padding-left: 28px; }
+        th:last-child, td:last-child { padding-right: 28px; }
+
+        thead th {
+            font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--muted); white-space: nowrap;
+        }
+
+        tbody tr:last-child td { border-bottom: 0; }
+        tbody th { font-weight: 600; color: var(--ink); white-space: nowrap; }
+
+        .num { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 13.5px; white-space: nowrap; }
+
+        tfoot td, tfoot th { border-top: 1px solid var(--ink); border-bottom: 0; font-weight: 600; color: var(--ink); }
+
+        .dot { display: inline-block; width: 7px; height: 7px; margin-right: 9px; vertical-align: 0.5px; flex: none; }
+        .dot--sai { background: var(--sai); }
+        .dot--academy { background: var(--academy); }
+        .dot--hov { background: var(--hov); }
+        .dot--bisplot { background: var(--sage); }
+
+        /* --- per-brand funnel ladder --- */
+        .funnelblock { display: flex; flex-direction: column; gap: 12px; }
+
+        .ladder { display: flex; flex-direction: column; gap: 3px; }
+
+        .ladder__step {
+            position: relative;
+            display: flex; align-items: baseline; gap: 14px;
+            padding: 11px 15px; border-radius: 5px;
+        }
+
+        .ladder__bar {
+            position: absolute; left: 0; top: 0; bottom: 0;
+            background: var(--accent); opacity: .10;
+            border-radius: 5px;
+        }
+
+        .ladder__n {
+            position: relative; flex: none; width: 22px;
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11px; font-weight: 500; letter-spacing: .12em;
+            color: var(--accent);
+        }
+
+        .ladder__txt { position: relative; flex: 1; min-width: 0; }
+        .ladder__t { font-weight: 600; font-size: 14.5px; color: var(--ink); }
+        .ladder__d { display: block; font-size: 13.5px; line-height: 1.5; color: var(--muted); margin-top: 1px; }
+
+        .ladder__m {
+            position: relative; flex: none;
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11.5px; color: var(--muted); text-align: right;
+        }
+
+        @media (max-width: 560px) {
+            .ladder__step { flex-wrap: wrap; }
+            .ladder__m { width: 100%; text-align: left; padding-left: 36px; margin-top: 4px; }
+        }
+
+        /* --- annotations --- */
+        .tbd {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11.5px; font-weight: 500; letter-spacing: 0.06em;
+            color: var(--tbd); background: var(--tbd-bg);
+            border: 1px dashed var(--tbd); border-radius: 4px;
+            padding: 2px 8px; white-space: nowrap;
+        }
+
+        .rulebox {
+            border: 1px solid var(--hairline);
+            border-left: 3px solid currentColor;
+            border-radius: var(--radius);
+            padding: 18px 22px;
+            background: var(--paper);
+        }
+
+        .rulebox__label {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+            text-transform: uppercase; display: block; margin-bottom: 6px;
+        }
+
+        .rulebox p { font-size: 14.5px; line-height: 1.55; color: var(--body); }
+
+        .note {
+            background: var(--tbd-bg);
+            border: 1px solid var(--tbd);
+            border-left-width: 3px;
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            font-size: 14.5px;
+        }
+
+        .note strong { color: var(--tbd); }
+        .note ol, .note ul { margin: 10px 0 0; padding-left: 20px; }
+        .note li { margin: 5px 0; }
+
+        .callout {
+            background: var(--card);
+            border: 1px solid var(--hairline);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            font-size: 14.5px;
+        }
+
+        .callout p { margin: 0; }
+        .callout p + p { margin-top: 9px; }
+
+        footer {
+            display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline;
+            font-size: 13px; color: var(--sage);
+        }
+
+        footer a { color: var(--sage); }
+        footer a:hover { color: var(--ink); }
+
+        @media (max-width: 640px) {
+            .wrap { padding: 48px 22px 60px; gap: 32px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 21px; }
+            .brand { padding: 24px; }
+            .brand__name { font-size: 22px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+
+        <header class="masthead">
+            <div class="eyebrow">Bisplot S.r.l. &middot; Business model</div>
+            <h1>How the group earns</h1>
+            <p>Bisplot owns the companies and signs the invoices. Three brands face the market: SAI opens the door,
+                BusinessAI sells the work, HouseOfVibes builds the products. This sheet sets out how each one makes
+                money, what it costs to run, and on what terms value returns to the holding.</p>
+        </header>
+
+        <hr class="rule" />
+
+        <section class="section">
+            <div>
+                <h2>The group funnel</h2>
+                <p class="section__lede">One acquisition path, three monetisation points. A professional meets the group
+                    on a free surface and is carried across &mdash; a <code>.wiki</code> page never quotes a paid price,
+                    it links to the academy. Each brand then runs its own funnel inside this one; they are set out
+                    brand by brand below.</p>
+            </div>
+
+            <div class="funnel">
+
+                <article class="stage stage--sai">
+                    <span class="stage__step">01 &middot; Attract</span>
+                    <span class="stage__brand">sai.wiki</span>
+                    <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                    <p class="stage__desc"><strong>Free for all.</strong> Webinar, podcast, reel &mdash; zero cost to
+                        the audience. Aperitivi and dinners are ticketed at cost recovery. Builds the credibility the
+                        academy sells against.</p>
+                </article>
+
+                <article class="stage stage--academy">
+                    <span class="stage__step">02 &middot; Convert</span>
+                    <span class="stage__brand">businessai.academy</span>
+                    <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                    <p class="stage__desc"><strong>The cash engine.</strong> Modular courses from &euro;&nbsp;2.500,
+                        fundable through <em>formazione finanziata</em>, opening into consultancy engagements of
+                        &euro;&nbsp;10&ndash;45k.</p>
+                </article>
+
+                <article class="stage stage--hov">
+                    <span class="stage__step">03 &middot; Compound</span>
+                    <span class="stage__brand">houseofvibes.ai</span>
+                    <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                    <p class="stage__desc"><strong>The asset builder.</strong> Holds the group&rsquo;s software stack
+                        and runs the startups. Converts service cash and in-house capability into equity.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <hr class="rule" />
+
+        <section class="section">
+            <div>
+                <h2>How each brand makes money</h2>
+                <p class="section__lede">Three different engines &mdash; cost recovery, fee-for-service, and equity.
+                    Only the middle one is expected to generate margin today.</p>
+            </div>
+
+            <!-- ============ SAI.WIKI ============ -->
+            <article class="brand brand--sai">
+                <div class="brand__head">
+                    <span class="brand__role">Formazione AI aperta</span>
+                    <span class="brand__name">sai.wiki</span>
+                    <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                </div>
+
+                <div class="brand__body">
+                    <p><strong>Free for all.</strong> The brand does not sell knowledge. It sells nothing at all on its
+                        own surfaces &mdash; its return is the qualified audience it hands to BusinessAI.</p>
+
+                    <div class="cols">
+                        <div>
+                            <h3>Free, always</h3>
+                            <ul class="tight">
+                                <li>Webinar</li>
+                                <li>Podcast</li>
+                                <li>Reel and web pillole</li>
+                                <li>Probono activities</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Ticketed at cost</h3>
+                            <ul class="tight">
+                                <li><strong>Aperitivi</strong> &mdash; food and drink included in the ticket</li>
+                                <li><strong>Dinners</strong> &mdash; same principle, larger basket</li>
+                                <li>Sold through <strong>Luma</strong>; the account and the takings sit with Bisplot</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Economics</h3>
+                            <div class="kv">
+                                <div class="kv__row"><span class="kv__k">Ticket price</span><span class="kv__v"><span class="tbd">&euro; ?</span></span></div>
+                                <div class="kv__row"><span class="kv__k">F&amp;B cost / head</span><span class="kv__v"><span class="tbd">&euro; ?</span></span></div>
+                                <div class="kv__row"><span class="kv__k">Attendees / event</span><span class="kv__v"><span class="tbd">?</span></span></div>
+                                <div class="kv__row"><span class="kv__k">Events / year</span><span class="kv__v"><span class="tbd">?</span></span></div>
+                                <div class="kv__row"><span class="kv__k">Target margin</span><span class="kv__v">&asymp; 0</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="funnelblock">
+                        <h3>Funnel &mdash; the ladder of commitment</h3>
+                        <div class="ladder">
+                            <div class="ladder__step"><span class="ladder__bar" style="width:100%"></span><span class="ladder__n">01</span><div class="ladder__txt"><span class="ladder__t">Reel</span><span class="ladder__d">Anonymous reach. No commitment asked, no contact captured.</span></div><span class="ladder__m"><span class="tbd">reach?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:72%"></span><span class="ladder__n">02</span><div class="ladder__txt"><span class="ladder__t">Podcast</span><span class="ladder__d">Repeat listener. The brand becomes familiar before it is useful.</span></div><span class="ladder__m"><span class="tbd">subs?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:48%"></span><span class="ladder__n">03</span><div class="ladder__txt"><span class="ladder__t">Webinar</span><span class="ladder__d">Registration captures the first identified contact.</span></div><span class="ladder__m"><span class="tbd">signups?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:26%"></span><span class="ladder__n">04</span><div class="ladder__txt"><span class="ladder__t">Aperitivo / dinner</span><span class="ladder__d">Pays a ticket and shows up in person. High intent, face to face.</span></div><span class="ladder__m"><span class="tbd">attendees?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:13%"></span><span class="ladder__n">05</span><div class="ladder__txt"><span class="ladder__t">Handoff &rarr; businessai.academy</span><span class="ladder__d">Named, warm, already convinced the group knows the subject.</span></div><span class="ladder__m"><span class="tbd">handoffs?</span></span></div>
+                        </div>
+                    </div>
+                    <div class="rulebox">
+                        <span class="rulebox__label">Open question &mdash; sponsorship</span>
+                        <p>A <strong>hosted edition</strong> is the one sponsorship format that does not damage the
+                            brand: a venue, association or vendor wants the event live in presence at their site and
+                            covers venue, F&amp;B and a fee, while SAI keeps full control of the content and the stage.
+                            That converts the events line from cost-recovery to contribution without ever putting a
+                            price on a <code>.wiki</code> surface. Cash-for-audience media sponsorship is the format to
+                            refuse &mdash; it turns the free surface into a sales surface and destroys exactly the
+                            credibility that makes the funnel work. Fee to be set:
+                            <span class="tbd">&euro; ? per hosted edition</span>.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============ BUSINESSAI.ACADEMY ============ -->
+            <article class="brand brand--academy">
+                <div class="brand__head">
+                    <span class="brand__role">Academy &amp; consulenza</span>
+                    <span class="brand__name">businessai.academy</span>
+                    <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                </div>
+
+                <div class="brand__body">
+                    <p><strong>We set up and teach everything; the client runs the transformation.</strong> That
+                        division of labour is the whole commercial design &mdash; it caps our delivery cost and puts
+                        the change management where the domain knowledge already is.</p>
+
+                    <div class="cols">
+                        <div>
+                            <h3>1 &middot; Modular course</h3>
+                            <p style="font-size:14.5px">The SME picks from a catalogue of modules and we assemble a
+                                tailored course. <strong>Every course opens with SETUP</strong>, run on the LLM the
+                                client has chosen &mdash; non-negotiable, it is what makes the rest teachable.</p>
+                            <div class="kv" style="margin-top:14px">
+                                <div class="kv__row"><span class="kv__k">Base &mdash; 3 modules</span><span class="kv__v">&euro; 2.500</span></div>
+                                <div class="kv__row"><span class="kv__k">Implied per module</span><span class="kv__v">&euro; 833</span></div>
+                                <div class="kv__row"><span class="kv__k">Each module beyond 3</span><span class="kv__v"><span class="tbd">&euro; ?</span></span></div>
+                                <div class="kv__row"><span class="kv__k">Courses / year</span><span class="kv__v"><span class="tbd">?</span></span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>2 &middot; Consultancy</h3>
+                            <p style="font-size:14.5px">The course surfaces the real demand: process efficiency. That
+                                is quoted separately as a proposal covering <strong>setup, teaching, transformation and
+                                follow-up</strong>.</p>
+                            <div class="kv" style="margin-top:14px">
+                                <div class="kv__row"><span class="kv__k">Proposal range</span><span class="kv__v">&euro; 10k &ndash; 45k</span></div>
+                                <div class="kv__row"><span class="kv__k">Average deal</span><span class="kv__v"><span class="tbd">&euro; ?</span></span></div>
+                                <div class="kv__row"><span class="kv__k">Deals / year</span><span class="kv__v"><span class="tbd">?</span></span></div>
+                                <div class="kv__row"><span class="kv__k">Course&rarr;consultancy rate</span><span class="kv__v"><span class="tbd">% ?</span></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="funnelblock">
+                        <h3>Funnel &mdash; from vertical campaign to consultancy</h3>
+                        <div class="ladder">
+                            <div class="ladder__step"><span class="ladder__bar" style="width:100%"></span><span class="ladder__n">01</span><div class="ladder__txt"><span class="ladder__t">Vertical campaign</span><span class="ladder__d">A dedicated campaign per course &mdash; avvocati, commercialisti, PMI, veterinari &mdash; plus the SAI handoff.</span></div><span class="ladder__m"><span class="tbd">reach?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:58%"></span><span class="ladder__n">02</span><div class="ladder__txt"><span class="ladder__t">Discovery</span><span class="ladder__d">Needs assessment. The client picks the LLM; we pick the modules.</span></div><span class="ladder__m"><span class="tbd">calls?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:44%"></span><span class="ladder__n">03</span><div class="ladder__txt"><span class="ladder__t">Formazione finanziata</span><span class="ladder__d">The partner routes the funding. Lowers the client&rsquo;s net cost, not our invoice.</span></div><span class="ladder__m"><span class="tbd">% funded?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:30%"></span><span class="ladder__n">04</span><div class="ladder__txt"><span class="ladder__t">Course sold</span><span class="ladder__d">SETUP first, always. Then the modules. From &euro;&nbsp;2.500.</span></div><span class="ladder__m"><span class="tbd">courses?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:30%"></span><span class="ladder__n">05</span><div class="ladder__txt"><span class="ladder__t">Delivery</span><span class="ladder__d">Teaching surfaces the process gaps. The audit is a by-product of the course.</span></div><span class="ladder__m">&mdash;</span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:14%"></span><span class="ladder__n">06</span><div class="ladder__txt"><span class="ladder__t">Consultancy proposal</span><span class="ladder__d">&euro;&nbsp;10&ndash;45k: setup, teaching, transformation, follow-up. The client runs the change.</span></div><span class="ladder__m"><span class="tbd">deals?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:8%"></span><span class="ladder__n">07</span><div class="ladder__txt"><span class="ladder__t">Follow-up</span><span class="ladder__d">Renewal, extra modules, or the next department.</span></div><span class="ladder__m"><span class="tbd">renewals?</span></span></div>
+                        </div>
+                    </div>
+                    <div class="rulebox">
+                        <span class="rulebox__label">Formazione finanziata</span>
+                        <p>The training leg qualifies as funded training, routed through a partner &mdash;
+                            <strong>aboutJob</strong>. This is the price lever that matters: it lowers the client&rsquo;s
+                            net outlay without lowering our invoice, which makes the &euro;&nbsp;2.500 entry point far
+                            easier to clear and pulls the consultancy proposal forward.
+                            <strong>Status: partner not yet engaged &mdash; aboutJob still to be contacted, and no
+                            second partner exists.</strong> Until that agreement is signed, every course is sold at
+                            full cost to the client and the model above is optimistic.</p>
+                        <p style="margin-top:14px"><strong>Build the panel to four.</strong> One partner is a single
+                            point of failure on the academy&rsquo;s best pricing lever, and in Italy accreditation is
+                            regional &mdash; each Region keeps its own list of accredited bodies, so a single partner
+                            also means a single territory. Target a second, third and fourth partner chosen for
+                            regional coverage rather than for terms, working from the regional lists; the marginal cost
+                            of an extra partner agreement is near zero and each one opens a territory the others cannot
+                            serve. Regions to cover: <span class="tbd">priority list?</span></p>
+                    </div>
+
+                    <div class="rulebox">
+                        <span class="rulebox__label">Delivery principle</span>
+                        <p><strong>External SaaS preferred to internal tools.</strong> We recommend and configure
+                            third-party software rather than building our own for client work &mdash; no build cost, no
+                            maintenance liability, no support obligation carried on our P&amp;L after the engagement
+                            closes. Internal tooling stays inside HouseOfVibes, where it is an asset rather than a
+                            deliverable.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============ HOUSEOFVIBES.AI ============ -->
+            <article class="brand brand--hov">
+                <div class="brand__head">
+                    <span class="brand__role">Venture building</span>
+                    <span class="brand__name">houseofvibes.ai</span>
+                    <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                </div>
+
+                <div class="brand__body">
+                    <p>Two jobs in one brand: it <strong>holds the software</strong> the group runs on, and it
+                        <strong>runs the startups</strong>. The first is a cost centre that buys leverage; the second is
+                        where the equity value accrues.</p>
+
+                    <div class="cols">
+                        <div>
+                            <h3>The software stack</h3>
+                            <p style="font-size:14.5px">All software used by the other brands and to run the company is
+                                settled here. Selected modules may also be deployed with a client &mdash; the one
+                                sanctioned exception to the academy&rsquo;s external-SaaS rule.</p>
+                            <div class="kv" style="margin-top:14px">
+                                <div class="kv__row"><span class="kv__k">Annual stack cost</span><span class="kv__v"><span class="tbd">&euro; ?</span></span></div>
+                                <div class="kv__row"><span class="kv__k">Recharged to brands</span><span class="kv__v"><span class="tbd">? </span></span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>The products</h3>
+                            <p style="font-size:14.5px">We produce new marketable products, or help others do so by
+                                branding the project and driving go-to-market. <strong>Gruzzy</strong> and
+                                <strong>Shrtn.link</strong> run on their own feet under the directive of their creator;
+                                the partners sit as counsellors, not operators.</p>
+                            <div class="kv" style="margin-top:14px">
+                                <div class="kv__row"><span class="kv__k">Gruzzy &mdash; MRR</span><span class="kv__v"><span class="tbd">&euro; ?</span></span></div>
+                                <div class="kv__row"><span class="kv__k">Shrtn.link &mdash; MRR</span><span class="kv__v"><span class="tbd">&euro; ?</span></span></div>
+                                <div class="kv__row"><span class="kv__k">New products / year</span><span class="kv__v"><span class="tbd">?</span></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="funnelblock">
+                        <h3>Funnel A &mdash; products (Gruzzy, Shrtn.link)</h3>
+                        <div class="ladder">
+                            <div class="ladder__step"><span class="ladder__bar" style="width:100%"></span><span class="ladder__n">01</span><div class="ladder__txt"><span class="ladder__t">Creator-led reach</span><span class="ladder__d">The creator&rsquo;s own channels. HouseOfVibes brands and supports; it does not operate.</span></div><span class="ladder__m"><span class="tbd">reach?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:55%"></span><span class="ladder__n">02</span><div class="ladder__txt"><span class="ladder__t">Free use</span><span class="ladder__d">Product-led. The tool proves itself before anyone is asked to pay.</span></div><span class="ladder__m"><span class="tbd">users?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:14%"></span><span class="ladder__n">03</span><div class="ladder__txt"><span class="ladder__t">Paid subscription</span><span class="ladder__d">Conversion to MRR, under the creator&rsquo;s directive.</span></div><span class="ladder__m"><span class="tbd">subs?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:8%"></span><span class="ladder__n">04</span><div class="ladder__txt"><span class="ladder__t">Expansion</span><span class="ladder__d">Retention and upsell inside the account.</span></div><span class="ladder__m"><span class="tbd">churn?</span></span></div>
+                        </div>
+                    </div>
+                    <div class="funnelblock">
+                        <h3>Funnel B &mdash; ventures</h3>
+                        <div class="ladder">
+                            <div class="ladder__step"><span class="ladder__bar" style="width:100%"></span><span class="ladder__n">01</span><div class="ladder__txt"><span class="ladder__t">Deal flow</span><span class="ladder__d">Partner ideas, BusinessAI SME clients, the SAI audience, inbound founders.</span></div><span class="ladder__m"><span class="tbd">pipeline?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:38%"></span><span class="ladder__n">02</span><div class="ladder__txt"><span class="ladder__t">Evaluation</span><span class="ladder__d">Is it marketable, who is the creator, can we brand it and take it to market.</span></div><span class="ladder__m"><span class="tbd">screened?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:18%"></span><span class="ladder__n">03</span><div class="ladder__txt"><span class="ladder__t">Structure</span><span class="ladder__d">SPV if partial, direct if 100%, standalone company if new.</span></div><span class="ladder__m">&mdash;</span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:12%"></span><span class="ladder__n">04</span><div class="ladder__txt"><span class="ladder__t">Build &amp; GTM</span><span class="ladder__d">Branding and go-to-market. The creator keeps the directive.</span></div><span class="ladder__m"><span class="tbd">builds?</span></span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:5%"></span><span class="ladder__n">05</span><div class="ladder__txt"><span class="ladder__t">Scale or exit</span><span class="ladder__d">Capital gain to Bisplot; the creator holds their direct stake plus their third of the holding.</span></div><span class="ladder__m"><span class="tbd">exits?</span></span></div>
+                        </div>
+                    </div>
+                    <div class="rulebox">
+                        <span class="rulebox__label">Attribution</span>
+                        <p>Every product is addressed to <strong>the creator</strong> and to
+                            <strong>HouseOfVibes by Bisplot</strong>. The creator is never anonymised by the house
+                            brand, and the house brand never appears without the holding behind it.</p>
+                    </div>
+
+                    <div class="rulebox">
+                        <span class="rulebox__label">Acquisitions</span>
+                        <p>Any acquisition of a startup is done through an <strong>SPV</strong>, unless it is a
+                            <strong>100% acquisition</strong> &mdash; in which case it can be taken directly. The SPV
+                            ring-fences minority deals so a single failure cannot reach the holding or the other
+                            brands.</p>
+                    </div>
+
+                    <div class="rulebox">
+                        <span class="rulebox__label">Spin-out cap table &mdash; at incorporation</span>
+                        <p>When a product goes to market as a standalone company from the start:</p>
+                        <div class="kv" style="margin-top:12px">
+                            <div class="kv__row"><span class="kv__k">Bisplot</span><span class="kv__v">&ge; 60%</span></div>
+                            <div class="kv__row"><span class="kv__k">Creator &mdash; CEO</span><span class="kv__v">&ge; 20%</span></div>
+                            <div class="kv__row"><span class="kv__k">Investors / partners</span><span class="kv__v">&le; 20% &mdash; the remainder</span></div>
+                        </div>
+                        <p style="margin-top:16px"><strong>The creator sits in the holding as well.</strong> The direct
+                            stake is only half the incentive &mdash; the creator is one of the three Bisplot partners,
+                            so they also own a third of the holding&rsquo;s 60%. Read through, at the floor values:</p>
+                        <div class="kv" style="margin-top:12px">
+                            <div class="kv__row"><span class="kv__k">Creator &mdash; direct</span><span class="kv__v">20%</span></div>
+                            <div class="kv__row"><span class="kv__k">Creator &mdash; via Bisplot (33,3% of 60%)</span><span class="kv__v">20%</span></div>
+                            <div class="kv__row"><span class="kv__k"><strong>Creator &mdash; effective</strong></span><span class="kv__v"><strong>40%</strong></span></div>
+                            <div class="kv__row"><span class="kv__k">Each other partner &mdash; effective</span><span class="kv__v">20%</span></div>
+                            <div class="kv__row"><span class="kv__k">Investors / partners</span><span class="kv__v">20%</span></div>
+                        </div>
+                        <p style="margin-top:16px">That 40% is the <strong>premium incentive</strong>: whoever builds
+                            the thing ends up with double the look-through of the partners who advised on it, while the
+                            group still consolidates the company. It is also what makes the structure fundable &mdash;
+                            a CEO at an effective 40% is inside normal venture-studio range, which a nominal 20% alone
+                            would not be.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============ BISPLOT ============ -->
+            <article class="brand brand--bisplot">
+                <div class="brand__head">
+                    <span class="brand__role">Societ&agrave; di partecipazioni</span>
+                    <span class="brand__name">bisplot.com</span>
+                    <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                </div>
+
+                <div class="brand__body">
+                    <p><strong>The heart, the bill payer and the cash vault.</strong> Bisplot earns nothing on its own
+                        name and campaigns on nothing. Everything runs through it.</p>
+
+                    <div class="cols">
+                        <div>
+                            <h3>Everything routes here</h3>
+                            <ul class="tight">
+                                <li>Acquisition of SMEs</li>
+                                <li>Spin-off of products</li>
+                                <li>Consultancy parcels</li>
+                                <li>The Luma account for SAI&rsquo;s few paid events</li>
+                                <li><em>Soggetto fatturante per tutte le attivit&agrave;</em></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Struttura</h3>
+                            <div class="kv">
+                                <div class="kv__row"><span class="kv__k">Form</span><span class="kv__v">S.r.l. innovativa sociale</span></div>
+                                <div class="kv__row"><span class="kv__k">Davide</span><span class="kv__v">33%</span></div>
+                                <div class="kv__row"><span class="kv__k">Gabriel</span><span class="kv__v">33%</span></div>
+                                <div class="kv__row"><span class="kv__k">Matteo</span><span class="kv__v">33%</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="funnelblock">
+                        <h3>The capital cycle</h3>
+                        <div class="ladder">
+                            <div class="ladder__step"><span class="ladder__bar" style="width:100%"></span><span class="ladder__n">01</span><div class="ladder__txt"><span class="ladder__t">Collect</span><span class="ladder__d">Every invoice lands here &mdash; courses, consultancy, tickets, subscriptions.</span></div><span class="ladder__m">&mdash;</span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:100%"></span><span class="ladder__n">02</span><div class="ladder__txt"><span class="ladder__t">Cover</span><span class="ladder__d">Cost base: domains, software stack, marketing, professional fees.</span></div><span class="ladder__m">&mdash;</span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:100%"></span><span class="ladder__n">03</span><div class="ladder__txt"><span class="ladder__t">Allocate</span><span class="ladder__d">Reinvest in campaigns, fund a product build, or acquire an SME.</span></div><span class="ladder__m">&mdash;</span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:100%"></span><span class="ladder__n">04</span><div class="ladder__txt"><span class="ladder__t">Accrue</span><span class="ladder__d">Equity from spin-outs and SPVs accumulates on the balance sheet.</span></div><span class="ladder__m">&mdash;</span></div>
+                            <div class="ladder__step"><span class="ladder__bar" style="width:100%"></span><span class="ladder__n">05</span><div class="ladder__txt"><span class="ladder__t">Distribute or retain</span><span class="ladder__d">33 / 33 / 33, or retained to fund the next build.</span></div><span class="ladder__m">&mdash;</span></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <hr class="rule" />
+
+        <section class="section">
+            <div>
+                <h2>Revenue streams</h2>
+                <p class="section__lede">The brand proposes the activities; the invoice comes from Bisplot S.r.l.</p>
+            </div>
+
+            <div class="tablecard">
+                <table>
+                    <caption>Per brand &middot; FY figures</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Stream</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Unit price</th>
+                            <th scope="col">Volume</th>
+                            <th scope="col">Revenue</th>
+                            <th scope="col">Lead</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><span class="dot dot--sai"></span>sai.wiki</th>
+                            <td>Webinar, podcast, reel, probono</td>
+                            <td>Free &mdash; funnel entry</td>
+                            <td class="num">&mdash;</td>
+                            <td class="num"><span class="tbd">reach?</span></td>
+                            <td class="num">&euro; 0</td>
+                            <td>Davide &amp; Gabriel</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="dot dot--sai"></span>sai.wiki</th>
+                            <td>Aperitivi &amp; dinners</td>
+                            <td>Ticketed, F&amp;B included &mdash; cost recovery</td>
+                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                            <td class="num"><span class="tbd">events?</span></td>
+                            <td class="num">&asymp; break-even</td>
+                            <td>Davide &amp; Gabriel</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="dot dot--sai"></span>sai.wiki</th>
+                            <td>Hosted edition &mdash; sponsor covers venue &amp; F&amp;B</td>
+                            <td>Under evaluation</td>
+                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                            <td class="num"><span class="tbd">?</span></td>
+                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                            <td>Davide &amp; Gabriel</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="dot dot--academy"></span>businessai</th>
+                            <td>Modular course &mdash; SETUP + modules</td>
+                            <td>Per course, scales with modules</td>
+                            <td class="num">&euro; 2.500<span style="color:var(--muted)">/3 mod</span></td>
+                            <td class="num"><span class="tbd">courses?</span></td>
+                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                            <td>Davide &amp; Matteo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="dot dot--academy"></span>businessai</th>
+                            <td>Consultancy &mdash; process efficiency</td>
+                            <td>Fixed-price proposal</td>
+                            <td class="num">&euro; 10k&ndash;45k</td>
+                            <td class="num"><span class="tbd">deals?</span></td>
+                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                            <td>Davide &amp; Matteo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="dot dot--hov"></span>houseofvibes</th>
+                            <td>Gruzzy, Shrtn.link and other SaaS</td>
+                            <td>Subscription &mdash; creator-run</td>
+                            <td class="num"><span class="tbd">&euro; ?/mo</span></td>
+                            <td class="num"><span class="tbd">subs?</span></td>
+                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                            <td>Gabriel &amp; Matteo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="dot dot--hov"></span>houseofvibes</th>
+                            <td>Spin-outs &amp; acquisitions</td>
+                            <td>Equity &mdash; &ge;60% at incorporation, SPV if partial</td>
+                            <td class="num">&mdash;</td>
+                            <td class="num"><span class="tbd">?</span></td>
+                            <td class="num">Capital gain</td>
+                            <td>Gabriel &amp; Matteo</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="row"><span class="dot dot--bisplot"></span>Bisplot S.r.l.</th>
+                            <td colspan="4">Soggetto fatturante &mdash; every stream above is invoiced here</td>
+                            <td class="num"><span class="tbd">&euro; ? tot</span></td>
+                            <td>33 / 33 / 33</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <hr class="rule" />
+
+        <section class="section">
+            <div>
+                <h2>Cost base</h2>
+                <p class="section__lede">Domains are deliberate: the group owns every brand site outright rather than
+                    renting presence on someone else&rsquo;s platform. &euro;&nbsp;280 a year is the price of that
+                    control.</p>
+            </div>
+
+            <div class="tablecard">
+                <table>
+                    <caption>Annual, recurring</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">Detail</th>
+                            <th scope="col">Cost / anno</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><span class="dot dot--sai"></span>sai.wiki</th>
+                            <td>Domain</td>
+                            <td class="num">&euro; 90</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="dot dot--bisplot"></span>bisplot</th>
+                            <td>bisplot.com + bisplot.ai</td>
+                            <td class="num">&euro; 85</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="dot dot--hov"></span>houseofvibes.ai</th>
+                            <td>Domain</td>
+                            <td class="num">&euro; 70</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><span class="dot dot--academy"></span>businessai.academy</th>
+                            <td>Domain</td>
+                            <td class="num">&euro; 35</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Software stack</th>
+                            <td>Held in HouseOfVibes &mdash; AI subscriptions, hosting, SaaS infra</td>
+                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Marketing</th>
+                            <td>Dedicated campaign per course</td>
+                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Events</th>
+                            <td>Aperitivi &amp; dinners F&amp;B &mdash; recovered through tickets</td>
+                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Professional</th>
+                            <td>Commercialista, legal, compliance</td>
+                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="row">Domini</th>
+                            <td>Totale domini &mdash; tutti i siti di propriet&agrave;</td>
+                            <td class="num">&euro; 280</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <hr class="rule" />
+
+        <section class="section">
+            <div>
+                <h2>Open items</h2>
+            </div>
+
+            <div class="note">
+                <strong>Decisions and actions outstanding.</strong>
+                <ol>
+                    <li><strong>aboutJob &mdash; to be contacted.</strong> No <em>formazione finanziata</em> channel
+                        exists until this partner agreement is signed. It gates the academy&rsquo;s pricing power, so
+                        it is the highest-value open action on this sheet.</li>
+                    <li><strong>Second, third and fourth funding partners &mdash; to be found.</strong> Accreditation
+                        lists are held region by region, so partner count is really territory count. Pick the priority
+                        regions first, then work each regional list.</li>
+                    <li><strong>SAI sponsorship &mdash; decide the format.</strong> Hosted editions only, or also
+                        standing sponsors? Set the fee once decided.</li>
+                    <li><strong>Price per module beyond the base three</strong> &mdash; the &euro;&nbsp;2.500 / 3
+                        modules entry implies &euro;&nbsp;833, but the incremental rate should not simply be linear.</li>
+                    <li><strong>Consultancy banding</strong> &mdash; what moves a proposal from &euro;&nbsp;10k to
+                        &euro;&nbsp;45k needs written criteria, or the range becomes a negotiation weakness.</li>
+                </ol>
+            </div>
+
+            <div class="note">
+                <strong>Figures still to confirm.</strong> Every dashed slot above.
+                <ul>
+                    <li>SAI &mdash; ticket price, F&amp;B cost per head, attendees per event, events per year.</li>
+                    <li>BusinessAI &mdash; courses per year, average consultancy deal, course-to-consultancy conversion.</li>
+                    <li>HouseOfVibes &mdash; Gruzzy and Shrtn.link MRR, annual software stack cost.</li>
+                    <li>Group &mdash; marketing, tooling and professional costs.</li>
+                </ul>
+            </div>
+
+            <div class="callout">
+                <p><strong>Nota sulla riservatezza.</strong> This page is served publicly at
+                    <code>progetti.occhino.it/bisplot/</code> with no access control &mdash; <code>robots.txt</code>
+                    keeps it out of search engines, but anyone holding the URL can read it, quote sociali and pricing
+                    included. Fill the remaining slots only with figures you accept as public.</p>
+            </div>
+        </section>
+
+        <hr class="rule" />
+
+        <footer>
+            <span>&copy; <span id="year"></span> Bisplot S.r.l.</span>
+            <span>&middot;</span>
+            <a href="index.html">Brand system</a>
+            <span>&middot;</span>
+            <a href="/hub.html">progetti.occhino.it</a>
+        </footer>
+
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
