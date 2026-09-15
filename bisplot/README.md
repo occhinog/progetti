@@ -1,6 +1,6 @@
 # Bisplot — brand system canvas export
 
-**The `*.dc.html` artboards and `support.js` are generated output. Do not edit them by hand** — a re-export from the Claude Design canvas replaces them wholesale. `index.html`, `7_Business_Model.html` and this README are hand-written and must survive a re-export.
+**The `*.dc.html` artboards and `support.js` are generated output. Do not edit them by hand** — a re-export from the Claude Design canvas replaces them wholesale. `index.html`, `7_Business_Model.html`, `8_Funnels.html` and this README are hand-written and must survive a re-export.
 
 | | |
 | --- | --- |
@@ -25,9 +25,12 @@ One hand-written sheet sits alongside them, outside the canvas export:
 
 | File | Sheet |
 | --- | --- |
-| `7_Business_Model.html` | How the group earns — funnel, revenue streams, cost base, invoicing entity |
+| `7_Business_Model.html` | How the group earns — revenue streams, cost base, invoicing entity |
+| `8_Funnels.html` | How people move — one funnel per brand, every rate tied to a stated base |
 
-It is numbered `7_` to continue the sequence but deliberately carries no `.dc.` segment, so a re-export cannot overwrite it. It is styled by hand to match the canvas sheets and depends on neither `support.js` nor `_ds/`.
+They continue the numbering but deliberately carry no `.dc.` segment, so a re-export cannot overwrite them. Both are styled by hand to match the canvas sheets and depend on neither `support.js` nor `_ds/`.
+
+`8_Funnels.html` records one open conflict: sheet 3 publishes an *Attestato di partecipazione* that SAI does not issue. Correcting it needs a canvas re-export.
 
 ## Two hard dependencies
 
@@ -47,7 +50,7 @@ A re-export brings all of these back; drop them again unless a published sheet h
 ## Re-exporting
 
 1. Export the canvas over `~/Desktop/Bisplot` as before.
-2. Copy the seven artboards, `support.js`, `_ds/` and only the referenced `uploads/` into this folder, leaving `index.html`, `7_Business_Model.html` and this README in place.
+2. Copy the seven artboards, `support.js`, `_ds/` and only the referenced `uploads/` into this folder, leaving `index.html`, `7_Business_Model.html`, `8_Funnels.html` and this README in place.
 3. If an artboard was added, removed or retitled, update the card grid in `index.html` by hand — the cards are static markup, not generated.
 4. Commit to `parent`.
 

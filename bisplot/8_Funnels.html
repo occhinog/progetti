@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bisplot S.r.l. &mdash; Funnels</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --paper: #EDEAE3;
+            --card: #fff;
+            --hairline: #D6D2CA;
+            --ink: #16170F;
+            --body: #1B1D1A;
+            --sage: #5A6650;
+            --muted: #6B675E;
+            --radius: 7px;
+            --sai: #3438EA;
+            --academy: #24406B;
+            --hov: #0E7C66;
+            --tbd: #9A6A1F;
+            --tbd-bg: #F7EFDF;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--body);
+            font-family: Inter, system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 70px 42px 84px;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .eyebrow {
+            font-weight: 600; font-size: 11px; letter-spacing: 0.32em;
+            text-transform: uppercase; color: var(--sage);
+        }
+
+        .masthead { display: flex; flex-direction: column; gap: 9px; max-width: 840px; }
+
+        h1 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700; font-size: 42px; line-height: 1.15;
+            margin: 0; color: var(--ink);
+        }
+
+        .masthead p { margin: 7px 0 0; max-width: 720px; }
+
+        .rule { height: 1px; background: var(--hairline); border: 0; margin: 0; }
+
+        h2 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700; font-size: 25px; line-height: 1.25;
+            margin: 0 0 6px; color: var(--ink);
+        }
+
+        h3 {
+            font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
+            text-transform: uppercase; margin: 0 0 12px; color: var(--muted);
+        }
+
+        .section { display: flex; flex-direction: column; gap: 22px; }
+        .section__lede { margin: 0; max-width: 780px; color: var(--muted); }
+
+        .mark { display: flex; align-items: center; gap: 7px; }
+        .mark__line { height: 1px; flex: 1; background: currentColor; opacity: .45; }
+        .mark__sq { width: 7px; height: 7px; background: currentColor; flex: none; }
+
+        /* ---------- jump nav ---------- */
+        .toc {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px;
+        }
+
+        .toc a {
+            display: flex; flex-direction: column; gap: 3px;
+            background: var(--card); border: 1px solid var(--hairline);
+            border-top: 3px solid currentColor;
+            border-radius: var(--radius); padding: 16px 18px;
+            text-decoration: none; transition: transform .18s ease;
+        }
+
+        .toc a:hover { transform: translateY(-2px); }
+        .toc a > .toc__n { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .2em; }
+        .toc a > .toc__t { font-weight: 600; font-size: 15px; color: var(--ink); }
+        .toc a > .toc__d { font-size: 13px; color: var(--muted); }
+        .toc .t--sai { color: var(--sai); }
+        .toc .t--academy { color: var(--academy); }
+        .toc .t--hov { color: var(--hov); }
+        .toc .t--bisplot { color: var(--sage); }
+
+        /* ---------- brand section ---------- */
+        .brand {
+            display: flex; flex-direction: column; gap: 26px;
+            scroll-margin-top: 20px;
+        }
+
+        .brand--sai { --accent: var(--sai); }
+        .brand--academy { --accent: var(--academy); }
+        .brand--hov { --accent: var(--hov); }
+        .brand--bisplot { --accent: var(--sage); }
+
+        .brand__head { display: flex; flex-direction: column; gap: 4px; color: var(--accent); }
+        .brand__role {
+            font-size: 11px; font-weight: 600; letter-spacing: 0.32em;
+            text-transform: uppercase; color: var(--muted);
+        }
+        .brand__name {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700; font-size: 31px; line-height: 1.2;
+        }
+        .brand__sum { margin: 10px 0 0; color: var(--body); max-width: 760px; }
+
+        /* ---------- stage cards ---------- */
+        .stages { display: flex; flex-direction: column; gap: 12px; }
+
+        .fstage {
+            background: var(--card);
+            border: 1px solid var(--hairline);
+            border-left: 3px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 22px 26px;
+        }
+
+        .fstage__head {
+            display: flex; align-items: baseline; gap: 13px; flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .fstage__n {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11px; font-weight: 500; letter-spacing: .14em;
+            color: var(--accent); flex: none;
+        }
+
+        .fstage__name {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700; font-size: 19px; line-height: 1.25;
+            margin: 0; color: var(--ink); flex: 1; min-width: 160px;
+        }
+
+        .fstage__target {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11.5px; color: var(--accent);
+            border: 1px solid var(--accent); border-radius: 4px;
+            padding: 2px 9px; flex: none; opacity: .85;
+        }
+
+        .fstage__grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 16px 26px; margin: 0;
+        }
+
+        .fstage__grid > div { min-width: 0; }
+
+        .fstage__grid dt {
+            font-size: 10.5px; font-weight: 600; letter-spacing: .16em;
+            text-transform: uppercase; color: var(--muted); margin-bottom: 3px;
+        }
+
+        .fstage__grid dd { margin: 0; font-size: 14.5px; line-height: 1.55; }
+
+        .fstage__note {
+            margin: 16px 0 0; padding-top: 14px;
+            border-top: 1px solid var(--hairline);
+            font-size: 14px; line-height: 1.55; color: var(--body);
+        }
+
+        /* ---------- tables ---------- */
+        .tablecard {
+            background: var(--card); border: 1px solid var(--hairline);
+            border-radius: var(--radius); overflow-x: auto;
+        }
+
+        table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 580px; }
+
+        caption {
+            text-align: left; padding: 22px 26px 0;
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--sage);
+        }
+
+        th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+        th:first-child, td:first-child { padding-left: 26px; }
+        th:last-child, td:last-child { padding-right: 26px; }
+
+        thead th {
+            font-size: 10.5px; font-weight: 600; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--muted); white-space: nowrap;
+        }
+
+        tbody tr:last-child td { border-bottom: 0; }
+        tbody th { font-weight: 600; color: var(--ink); }
+
+        .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 13px; }
+
+        /* ---------- annotations ---------- */
+        .tbd {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11.5px; font-weight: 500; letter-spacing: .06em;
+            color: var(--tbd); background: var(--tbd-bg);
+            border: 1px dashed var(--tbd); border-radius: 4px;
+            padding: 2px 8px; white-space: nowrap;
+        }
+
+        .rulebox {
+            background: var(--card);
+            border: 1px solid var(--hairline);
+            border-left: 3px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 18px 24px;
+        }
+
+        .rulebox__label {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+            text-transform: uppercase; display: block; margin-bottom: 7px;
+            color: var(--accent);
+        }
+
+        .rulebox p { margin: 0; font-size: 14.5px; line-height: 1.55; }
+        .rulebox p + p { margin-top: 9px; }
+
+        .note {
+            background: var(--tbd-bg); border: 1px solid var(--tbd);
+            border-left-width: 3px; border-radius: var(--radius);
+            padding: 18px 24px; font-size: 14.5px;
+        }
+
+        .note strong { color: var(--tbd); }
+        .note p { margin: 0; }
+
+        .howto {
+            background: var(--card); border: 1px solid var(--hairline);
+            border-radius: var(--radius); padding: 24px 26px;
+        }
+
+        .howto p { margin: 0 0 14px; font-size: 14.5px; }
+
+        footer {
+            display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline;
+            font-size: 13px; color: var(--sage);
+        }
+
+        footer a { color: var(--sage); }
+        footer a:hover { color: var(--ink); }
+
+        @media (max-width: 640px) {
+            .wrap { padding: 48px 20px 60px; gap: 36px; }
+            h1 { font-size: 31px; }
+            h2 { font-size: 21px; }
+            .brand__name { font-size: 25px; }
+            .fstage { padding: 20px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+
+        <header class="masthead">
+            <div class="eyebrow">Bisplot S.r.l. &middot; Funnels</div>
+            <h1>How people move</h1>
+            <p>Sheet 07 sets out how the group earns. This one sets out how someone gets from never
+                having heard of us to signing something &mdash; brand by brand, with every rate tied to a
+                stated base.</p>
+        </header>
+
+        <div class="howto">
+            <h3>How to read a rate on this sheet</h3>
+            <p>A percentage is meaningless without its denominator, and the denominator changes from stage
+                to stage &mdash; a repeat attendee adds attendance but adds no contact. Every rate below
+                names its own base. Targets are <strong>proposals to validate</strong> against the first
+                measured cycle, not forecasts and not measurements.</p>
+            <div class="tablecard">
+                <table>
+                    <caption>Metric conventions</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Rate</th>
+                            <th scope="col">Numerator</th>
+                            <th scope="col">Denominator</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row">Registration rate</th><td>registrations</td><td>landing-page visits</td></tr>
+                        <tr><th scope="row">Attendance rate</th><td>live attendees</td><td>registrations for that session</td></tr>
+                        <tr><th scope="row">Repeat rate</th><td>attendees seen before</td><td>live attendees</td></tr>
+                        <tr><th scope="row">Net new contacts</th><td>first-time registrations</td><td>registrations</td></tr>
+                        <tr><th scope="row">Signpost CTR</th><td>clicks to businessai.academy</td><td>contacts emailed</td></tr>
+                        <tr><th scope="row">Event fill</th><td>tickets sold</td><td>seats offered</td></tr>
+                        <tr><th scope="row">Win rate</th><td>proposals won</td><td>proposals sent</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <nav class="toc" aria-label="Brands">
+            <a href="#sai"><span class="toc__n t--sai">01</span><span class="toc__t">sai.wiki</span><span class="toc__d">Contact engine</span></a>
+            <a href="#academy"><span class="toc__n t--academy">02</span><span class="toc__t">businessai.academy</span><span class="toc__d">Course &rarr; consultancy</span></a>
+            <a href="#hov"><span class="toc__n t--hov">03</span><span class="toc__t">houseofvibes.ai</span><span class="toc__d">Products &amp; ventures</span></a>
+            <a href="#bisplot"><span class="toc__n t--bisplot">04</span><span class="toc__t">bisplot.com</span><span class="toc__d">Capital cycle</span></a>
+        </nav>
+
+        <hr class="rule" />
+
+        <!-- ==================== SAI ==================== -->
+        <section class="brand brand--sai" id="sai">
+            <div class="brand__head">
+                <span class="brand__role">Formazione AI aperta</span>
+                <span class="brand__name">sai.wiki</span>
+                <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                <p class="brand__sum"><strong>Not a sales funnel &mdash; a contact engine.</strong> SAI sells
+                    nothing and is a permanent loss centre. Its product is the email pool; its only ask is a
+                    standing signpost to the academy. Judge it on cost per contact, never on revenue.</p>
+            </div>
+
+            <div>
+                <h3>Production &mdash; two originals, one derivative</h3>
+                <div class="tablecard">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Format</th>
+                                <th scope="col">Spec</th>
+                                <th scope="col">Cadence</th>
+                                <th scope="col">Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Webinar</th>
+                                <td>45 min on one vertical topic + 15 min live Q&amp;A. Practical and narrow &mdash; build a website and manage it, register your voice and implement automation, create a Telegram bot for taking your orders. No more messy webinars covering many things</td>
+                                <td class="mono">1 / month</td>
+                                <td>The capture event</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Podcast</th>
+                                <td>3 hosts + 2 guests &mdash; one AI, one human. Online first, in person later</td>
+                                <td class="mono">2 / month</td>
+                                <td>Familiarity and reach</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Vimeo / YouTube</th>
+                                <td>The full webinar, published openly after the live session. One-way: comments are not answered</td>
+                                <td class="mono">per webinar</td>
+                                <td>Evergreen reach and search</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Reel</th>
+                                <td>Cut from the webinar or the podcast &mdash; never produced independently</td>
+                                <td class="mono">continuous</td>
+                                <td>Distribution at zero marginal cost</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Pro bono</th>
+                                <td>Social fairness activities</td>
+                                <td class="mono">on request</td>
+                                <td>Mission track</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Events</th>
+                                <td>Aperitivo, dinner, hosted editions</td>
+                                <td class="mono">on request</td>
+                                <td>Convening</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="section__lede" style="margin-top:14px"><strong>Only two things are ever produced.</strong>
+                    Everything on social is a cut of one of them. That is what makes a permanent loss centre
+                    affordable &mdash; the cost base is two productions, not six content streams.</p>
+            </div>
+
+            <div class="stages">
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">01</span>
+                        <h4 class="fstage__name">Capture</h4>
+                        <span class="fstage__target">the only conversion event</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>The ask</dt><dd>Email + <strong>professione</strong> + <strong>azienda</strong>. Three fields; the friction is accepted deliberately.</dd></div>
+                        <div><dt>Why they say yes</dt><dd><strong>Interaction.</strong> The live session is a two-way registered room. The upload is one-way.</dd></div>
+                        <div><dt>Captured</dt><dd>Name, email, vertical, company, source channel.</dd></div>
+                        <div><dt>Metric</dt><dd>Net new contacts / month &mdash; first-time registrations.</dd></div>
+                    </dl>
+                    <p class="fstage__note"><strong>The asymmetry is the product.</strong> The recording is public,
+                        so registering buys you nothing except the ability to ask. That is honest and costs nothing
+                        to maintain. <strong>Make it explicit:</strong> pin a comment and a description line on every
+                        upload &mdash; <em>&ldquo;questa &egrave; una registrazione; per fare domande, iscriviti alla
+                        prossima sessione live su sai.wiki&rdquo;</em>. Without it an unanswered comment section reads
+                        as neglect rather than policy, and the back-catalogue captures nothing.</p>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">02</span>
+                        <h4 class="fstage__name">Attend</h4>
+                        <span class="fstage__target">target 35%</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Base</dt><dd>Live attendees &divide; registrations for that webinar.</dd></div>
+                        <div><dt>The draw</dt><dd>The 15-minute Q&amp;A &mdash; the only place you get an answer about your own case.</dd></div>
+                        <div><dt>Non-attendees</dt><dd>Stay in the pool, re-invited next month.</dd></div>
+                        <div><dt>Metric</dt><dd>Attendance rate; repeat rate.</dd></div>
+                    </dl>
+                    <p class="fstage__note">Set at 35% rather than 40% because the full session is published openly
+                        afterwards, so anyone who only wants the content has no reason to attend live.
+                        <strong>That is the intended trade &mdash; reach is bought with attendance.</strong></p>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">03</span>
+                        <h4 class="fstage__name">Retain &mdash; the pool is the asset</h4>
+                        <span class="fstage__target">target repeat 25%</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>What it is</dt><dd>The pool is what SAI produces. Everything else is the cost of producing it.</dd></div>
+                        <div><dt>Kept warm by</dt><dd>Monthly webinar, twice-monthly podcast, the open library.</dd></div>
+                        <div><dt>Careful</dt><dd>Repeat attendees add attendance but <strong>no new contact</strong>.</dd></div>
+                        <div><dt>Metric</dt><dd>Pool size, net growth / month, unsubscribe rate.</dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">04</span>
+                        <h4 class="fstage__name">Convene &mdash; aperitivo &amp; dinner</h4>
+                        <span class="fstage__target">margin zero</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Aperitivo</dt><dd><strong>Open ticketing to everyone.</strong> Ticket covers cost.</dd></div>
+                        <div><dt>Dinner</dt><dd><strong>Picked from the email pool.</strong> Ticket covers cost.</dd></div>
+                        <div><dt>Not required</dt><dd>Neither is a step anyone must pass through.</dd></div>
+                        <div><dt>Metric</dt><dd>Event fill; contacts added per event.</dd></div>
+                    </dl>
+                    <p class="fstage__note"><strong>Brand consequence.</strong> The ticket page is a
+                        <em>priced surface</em>. Per sheet 03 no mascot appears next to a price and no paid pricing
+                        belongs on a <code>.wiki</code> surface. Luma hosting resolves it &mdash; <code>.wiki</code>
+                        announces and links across, the price lives off-brand. The existing Luma-through-Bisplot
+                        setup already does the right thing.</p>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">05</span>
+                        <h4 class="fstage__name">Signpost &mdash; the only ask</h4>
+                        <span class="fstage__target">target CTR 3%</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>The message</dt><dd><em>Se ti serve qualcosa di pi&ugrave; strutturato per la tua piccola azienda o per la tua professione &rarr; businessai.academy</em></dd></div>
+                        <div><dt>Where</dt><dd>Standing and always-on, on every surface. Never pitched per event.</dd></div>
+                        <div><dt>Rule</dt><dd>SAI never quotes a price. It only links across.</dd></div>
+                        <div><dt>Metric</dt><dd>Clicks &divide; contacts emailed, split by vertical.</dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">06</span>
+                        <h4 class="fstage__name">Account signal &mdash; the second handoff route</h4>
+                        <span class="fstage__target">what <code>azienda</code> buys</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Trigger</dt><dd><span class="tbd">propose: 2+ contacts from one azienda, or 1 contact across 3+ webinars</span></dd></div>
+                        <div><dt>Action</dt><dd>BusinessAI approaches the firm directly, by vertical.</dd></div>
+                        <div><dt>Why</dt><dd>The signpost only catches self-declared intent. This catches interest nobody voiced.</dd></div>
+                        <div><dt>Metric</dt><dd>Flagged accounts / month; flagged &rarr; discovery call.</dd></div>
+                    </dl>
+                    <p class="fstage__note">On an SME sale the person who attends a webinar is often not the person
+                        who signs. Repeat attendance from one firm is a buying signal that no individual ever has to
+                        declare &mdash; and it is the only thing the third registration field makes possible.</p>
+                </article>
+
+            </div>
+
+            <div class="rulebox">
+                <span class="rulebox__label">Economics &mdash; state the loss plainly</span>
+                <p><strong>Revenue: structurally none.</strong> Events and sponsorships are occasional cost
+                    offsets and are deliberately not modelled as a stream. Cost: domain &euro;&nbsp;90, two
+                    productions, uncovered F&amp;B, marketing &mdash; all <span class="tbd">&euro; ?</span>.</p>
+                <p><strong>The one number:</strong> <code>cost per contact acquired = total SAI cost &divide; net
+                    new contacts</code>. Judged against what a contact is worth once BusinessAI converts it &mdash;
+                    never against revenue SAI itself produces.</p>
+            </div>
+
+            <div class="note">
+                <p><strong>Open item &mdash; sheet 03 contradicts this.</strong> <code>3_Brand_SmartAI.dc.html</code>
+                    publishes an <em>Attestato di partecipazione</em> (codice <code>SW-2026-0148</code>, emesso da
+                    Bisplot S.r.l.) that will not be issued. The artboards are generated output and cannot be
+                    hand-edited, so correcting it needs a canvas re-export. Its <strong>45 MIN</strong> card is fine
+                    &mdash; that is the content block before the Q&amp;A.</p>
+            </div>
+        </section>
+
+        <hr class="rule" />
+
+        <!-- ==================== BUSINESSAI ==================== -->
+        <section class="brand brand--academy" id="academy">
+            <div class="brand__head">
+                <span class="brand__role">Academy &amp; consulenza</span>
+                <span class="brand__name">businessai.academy</span>
+                <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                <p class="brand__sum"><strong>The only brand that carries margin.</strong> The course is not the
+                    product &mdash; it is paid access to the client&rsquo;s own process gaps, which is what the
+                    consultancy then fixes. We set up and teach; the client runs the transformation.</p>
+            </div>
+
+            <div>
+                <h3>Demand in &mdash; three sources</h3>
+                <div class="tablecard">
+                    <table>
+                        <thead>
+                            <tr><th scope="col">Source</th><th scope="col">What arrives</th><th scope="col">Quality</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Vertical campaign</th><td>A dedicated campaign per course &mdash; avvocati, commercialisti, PMI, veterinari</td><td>Cold, high volume</td></tr>
+                            <tr><th scope="row">SAI signpost</th><td>Self-declared intent, already vertical-tagged</td><td>Warm</td></tr>
+                            <tr><th scope="row">SAI account signal</th><td>A firm flagged by repeat attendance, approached directly</td><td>Warm, account-level</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="stages">
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">01</span>
+                        <h4 class="fstage__name">Discovery</h4>
+                        <span class="fstage__target">target 2% of campaign reach</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>The call</dt><dd>Needs assessment. The client picks the LLM; we pick the modules.</dd></div>
+                        <div><dt>Output</dt><dd>A module list and a funding route.</dd></div>
+                        <div><dt>Base</dt><dd>Discovery calls &divide; campaign reach.</dd></div>
+                        <div><dt>Metric</dt><dd>Calls / month by source.</dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">02</span>
+                        <h4 class="fstage__name">Funding check &mdash; formazione finanziata</h4>
+                        <span class="fstage__target"><span class="tbd">% funded?</span></span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Mechanism</dt><dd>A partner routes the funding. Lowers the client&rsquo;s net cost, <strong>not our invoice</strong>.</dd></div>
+                        <div><dt>Partner</dt><dd>aboutJob &mdash; <strong>not yet engaged</strong>. No second partner exists.</dd></div>
+                        <div><dt>Base</dt><dd>Funded courses &divide; courses sold.</dd></div>
+                        <div><dt>Metric</dt><dd>% funded; time-to-approval.</dd></div>
+                    </dl>
+                    <p class="fstage__note"><strong>Build the panel to four.</strong> Accreditation in Italy is
+                        regional &mdash; each Region keeps its own list &mdash; so partner count is really
+                        <em>territory</em> count, not redundancy. One partner means one territory. Target a second,
+                        third and fourth chosen for regional coverage rather than for terms; marginal cost per extra
+                        agreement is near zero. Priority regions: <span class="tbd">list?</span></p>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">03</span>
+                        <h4 class="fstage__name">Course sold</h4>
+                        <span class="fstage__target">target 30% of discovery</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Structure</dt><dd><strong>SETUP first, always</strong>, on the client&rsquo;s chosen LLM. Then the modules.</dd></div>
+                        <div><dt>Price</dt><dd>&euro;&nbsp;2.500 for 3 modules; rises with module count. Beyond 3: <span class="tbd">&euro; ?</span></dd></div>
+                        <div><dt>Base</dt><dd>Courses sold &divide; discovery calls.</dd></div>
+                        <div><dt>Metric</dt><dd>Courses / year; average modules per course.</dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">04</span>
+                        <h4 class="fstage__name">Delivery &mdash; where the real sale happens</h4>
+                        <span class="fstage__target">100% of courses</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>What happens</dt><dd>Teaching surfaces the process gaps. The audit is a by-product of the course.</dd></div>
+                        <div><dt>Principle</dt><dd><strong>External SaaS preferred to internal tools</strong> &mdash; no build cost, no maintenance liability after the engagement closes.</dd></div>
+                        <div><dt>Division of labour</dt><dd>We set up and teach. The client runs the transformation.</dd></div>
+                        <div><dt>Metric</dt><dd>Gaps documented per course.</dd></div>
+                    </dl>
+                    <p class="fstage__note"><strong>This is the structural point of the whole model:</strong>
+                        delivery and audit are the same step. Teaching is paid lead generation for the consultancy,
+                        which is why the course can be priced low and still be the most valuable hour the academy
+                        spends.</p>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">05</span>
+                        <h4 class="fstage__name">Consultancy proposal</h4>
+                        <span class="fstage__target">target 45% of courses</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Scope</dt><dd>Setup, teaching, transformation, follow-up.</dd></div>
+                        <div><dt>Price</dt><dd>&euro;&nbsp;10k &ndash; 45k. Average deal <span class="tbd">&euro; ?</span></dd></div>
+                        <div><dt>Base</dt><dd>Proposals sent &divide; courses delivered.</dd></div>
+                        <div><dt>Metric</dt><dd>Proposals / month; win rate <span class="tbd">target ?</span></dd></div>
+                    </dl>
+                    <p class="fstage__note"><strong>The range is 4.5&times; wide and needs written banding criteria.</strong>
+                        What moves a proposal from &euro;&nbsp;10k to &euro;&nbsp;45k should be written down &mdash;
+                        headcount, number of processes, systems touched &mdash; or the range becomes a negotiation
+                        weakness the client will use.</p>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">06</span>
+                        <h4 class="fstage__name">Follow-up</h4>
+                        <span class="fstage__target">target 25%</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Routes</dt><dd>Renewal, extra modules, or the next department.</dd></div>
+                        <div><dt>Base</dt><dd>Repeat engagements &divide; closed engagements.</dd></div>
+                        <div><dt>Metric</dt><dd>Renewals / year.</dd></div>
+                    </dl>
+                </article>
+
+            </div>
+        </section>
+
+        <hr class="rule" />
+
+        <!-- ==================== HOUSEOFVIBES ==================== -->
+        <section class="brand brand--hov" id="hov">
+            <div class="brand__head">
+                <span class="brand__role">Venture building</span>
+                <span class="brand__name">houseofvibes.ai</span>
+                <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                <p class="brand__sum">Two jobs, two funnels. It <strong>holds the software</strong> the group runs
+                    on &mdash; a cost centre that buys leverage &mdash; and it <strong>runs the startups</strong>,
+                    where the equity value accrues.</p>
+            </div>
+
+            <h3>Funnel A &mdash; products (Gruzzy, Shrtn.link)</h3>
+            <div class="stages">
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">A1</span>
+                        <h4 class="fstage__name">Creator-led reach</h4>
+                        <span class="fstage__target">base</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Who drives it</dt><dd>The creator&rsquo;s own channels. HouseOfVibes brands and supports; it does not operate.</dd></div>
+                        <div><dt>Governance</dt><dd>The partners are <strong>counsellors</strong>, not operators.</dd></div>
+                        <div><dt>Metric</dt><dd>Reach / month per product.</dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">A2</span>
+                        <h4 class="fstage__name">Free use</h4>
+                        <span class="fstage__target">target 8% of reach</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Model</dt><dd>Product-led. The tool proves itself before anyone is asked to pay.</dd></div>
+                        <div><dt>Base</dt><dd>Signups &divide; reach.</dd></div>
+                        <div><dt>Metric</dt><dd>Active free users.</dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">A3</span>
+                        <h4 class="fstage__name">Paid subscription</h4>
+                        <span class="fstage__target">target 4% of free</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Model</dt><dd>Subscription, under the creator&rsquo;s directive.</dd></div>
+                        <div><dt>Base</dt><dd>Paying subs &divide; active free users.</dd></div>
+                        <div><dt>Metric</dt><dd>MRR &mdash; Gruzzy <span class="tbd">&euro; ?</span>, Shrtn <span class="tbd">&euro; ?</span></dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">A4</span>
+                        <h4 class="fstage__name">Expansion</h4>
+                        <span class="fstage__target">target churn &lt; 5% / mo</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Routes</dt><dd>Retention and upsell inside the account.</dd></div>
+                        <div><dt>Base</dt><dd>Cancellations &divide; paying subs at period start.</dd></div>
+                        <div><dt>Metric</dt><dd>Net revenue retention.</dd></div>
+                    </dl>
+                </article>
+            </div>
+
+            <h3>Funnel B &mdash; ventures</h3>
+            <div class="stages">
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">B1</span>
+                        <h4 class="fstage__name">Deal flow</h4>
+                        <span class="fstage__target">base</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Sources</dt><dd>Partner ideas, BusinessAI SME clients, the SAI pool, inbound founders.</dd></div>
+                        <div><dt>Metric</dt><dd>Pipeline / quarter <span class="tbd">?</span></dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">B2</span>
+                        <h4 class="fstage__name">Evaluation</h4>
+                        <span class="fstage__target">target 20% pass</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Three tests</dt><dd>Is it marketable? Who is the creator? Can we brand it and take it to market?</dd></div>
+                        <div><dt>Base</dt><dd>Passed &divide; evaluated.</dd></div>
+                        <div><dt>Metric</dt><dd>Screened / quarter.</dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">B3</span>
+                        <h4 class="fstage__name">Structure</h4>
+                        <span class="fstage__target">rule-bound</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Partial acquisition</dt><dd><strong>SPV, always.</strong> Ring-fences the deal so one failure cannot reach the holding.</dd></div>
+                        <div><dt>Full acquisition</dt><dd>100% can be taken directly.</dd></div>
+                        <div><dt>New product</dt><dd>Standalone company &mdash; cap table below.</dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">B4</span>
+                        <h4 class="fstage__name">Build &amp; GTM</h4>
+                        <span class="fstage__target">target 12% of pipeline</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>What we do</dt><dd>Branding and go-to-market. The creator keeps the directive.</dd></div>
+                        <div><dt>Attribution</dt><dd>Every product addressed to <strong>the creator</strong> and to <strong>HouseOfVibes by Bisplot</strong>.</dd></div>
+                        <div><dt>Metric</dt><dd>Builds / year <span class="tbd">?</span></dd></div>
+                    </dl>
+                </article>
+
+                <article class="fstage">
+                    <div class="fstage__head">
+                        <span class="fstage__n">B5</span>
+                        <h4 class="fstage__name">Scale or exit</h4>
+                        <span class="fstage__target">capital gain</span>
+                    </div>
+                    <dl class="fstage__grid">
+                        <div><dt>Return</dt><dd>Capital gain to Bisplot; the creator holds their direct stake plus their third of the holding.</dd></div>
+                        <div><dt>Metric</dt><dd>Exits <span class="tbd">?</span>; realised gain.</dd></div>
+                    </dl>
+                </article>
+            </div>
+
+            <div class="rulebox">
+                <span class="rulebox__label">Spin-out cap table &mdash; at incorporation</span>
+                <p>Bisplot <strong>&ge;&nbsp;60%</strong> &middot; creator-CEO <strong>&ge;&nbsp;20%</strong> &middot;
+                    investors and partners take the remainder.</p>
+                <p><strong>Read it through, not at face value.</strong> The creator is also one of the three Bisplot
+                    partners, so at the floor values they hold 20% directly plus a third of the holding&rsquo;s 60%
+                    &mdash; an <strong>effective 40%</strong>, against 20% for each partner who only advised. That
+                    doubling is the premium incentive, and it is what puts the structure inside normal venture-studio
+                    range while the group still consolidates.</p>
+            </div>
+        </section>
+
+        <hr class="rule" />
+
+        <!-- ==================== BISPLOT ==================== -->
+        <section class="brand brand--bisplot" id="bisplot">
+            <div class="brand__head">
+                <span class="brand__role">Societ&agrave; di partecipazioni</span>
+                <span class="brand__name">bisplot.com</span>
+                <div class="mark"><span class="mark__line"></span><span class="mark__sq"></span></div>
+                <p class="brand__sum"><strong>Not a funnel &mdash; a cycle.</strong> Bisplot acquires no one and
+                    campaigns on nothing. It is the heart, the bill payer and the cash vault; money enters, gets
+                    allocated, and comes back as equity.</p>
+            </div>
+
+            <div class="stages">
+                <article class="fstage">
+                    <div class="fstage__head"><span class="fstage__n">01</span><h4 class="fstage__name">Collect</h4></div>
+                    <dl class="fstage__grid">
+                        <div><dt>Sources</dt><dd>Courses, consultancy, event tickets, subscriptions &mdash; every invoice lands here.</dd></div>
+                        <div><dt>Rule</dt><dd><em>Soggetto fatturante per tutte le attivit&agrave;.</em> The brand proposes; Bisplot invoices.</dd></div>
+                    </dl>
+                </article>
+                <article class="fstage">
+                    <div class="fstage__head"><span class="fstage__n">02</span><h4 class="fstage__name">Cover</h4></div>
+                    <dl class="fstage__grid">
+                        <div><dt>Cost base</dt><dd>Domains &euro;&nbsp;280, software stack, marketing, professional fees.</dd></div>
+                        <div><dt>Absorbs</dt><dd>SAI&rsquo;s permanent loss &mdash; a deliberate purchase of contacts.</dd></div>
+                    </dl>
+                </article>
+                <article class="fstage">
+                    <div class="fstage__head"><span class="fstage__n">03</span><h4 class="fstage__name">Allocate</h4></div>
+                    <dl class="fstage__grid">
+                        <div><dt>Choices</dt><dd>Reinvest in campaigns, fund a product build, or acquire an SME.</dd></div>
+                        <div><dt>Open</dt><dd>Allocation policy between the three <span class="tbd">rule?</span></dd></div>
+                    </dl>
+                </article>
+                <article class="fstage">
+                    <div class="fstage__head"><span class="fstage__n">04</span><h4 class="fstage__name">Accrue</h4></div>
+                    <dl class="fstage__grid">
+                        <div><dt>What builds</dt><dd>Equity from spin-outs and SPVs accumulates on the balance sheet.</dd></div>
+                        <div><dt>Metric</dt><dd>Portfolio value <span class="tbd">&euro; ?</span></dd></div>
+                    </dl>
+                </article>
+                <article class="fstage">
+                    <div class="fstage__head"><span class="fstage__n">05</span><h4 class="fstage__name">Distribute or retain</h4></div>
+                    <dl class="fstage__grid">
+                        <div><dt>Split</dt><dd>33 / 33 / 33 &mdash; Davide, Gabriel, Matteo.</dd></div>
+                        <div><dt>Form</dt><dd>S.r.l. innovativa sociale.</dd></div>
+                    </dl>
+                </article>
+            </div>
+
+            <div class="note">
+                <p><strong>To verify with the commercialista.</strong> The <em>innovativa sociale</em> standing is
+                    plausibly substantiated by SAI&rsquo;s pro bono track, but the category carries sector and
+                    reporting requirements I have not checked, and it interacts with how <em>formazione finanziata</em>
+                    may be billed. Confirm before this sheet is shown to anyone external.</p>
+            </div>
+        </section>
+
+        <hr class="rule" />
+
+        <footer>
+            <span>&copy; <span id="year"></span> Bisplot S.r.l.</span>
+            <span>&middot;</span>
+            <a href="7_Business_Model.html">Business model</a>
+            <span>&middot;</span>
+            <a href="index.html">Brand system</a>
+            <span>&middot;</span>
+            <a href="/hub.html">progetti.occhino.it</a>
+        </footer>
+
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
