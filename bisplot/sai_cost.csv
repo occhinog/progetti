@@ -1,15 +1,10 @@
 item,basis,hours,eur
-Podcast,12/yr (week 3) x 3 hosts x 1h,108,3682
-Events,4/yr: 4h organising + 3h x 2 attending,40,1364
-Webinar,12/yr (week 1) x 1 presenter x 1h (45+15),36,1227
-Automation oversight,"1h/month - monitoring, not producing",12,409
-Labour subtotal,34.09 EUR/h,196,6682
+Podcast,3 hosts x 1h x 12 = 36 front + 72 editing/prep,108,3682
+Webinar,2 hosts x 1h x 12 = 24 front + 24 preparation,48,1636
+Events,2 hosts x 4h x 4 quarters,32,1091
+Automation oversight,2h x 12 months,24,818
+Labour subtotal,34.09 EUR/h,212,7227
 Instagram sponsorship,200 EUR/month,,2400
-Automation server,$20/month = 207 EUR/yr,,207
+Automation server,$20/month,,207
 Domain sai.wiki,annual,,90
-TOTAL,,196,9379
-
-Cost per contact @ 50 reg/webinar,,,20.84
-Cost per contact @ 100 reg/webinar,,,10.42
-Cost per contact @ 200 reg/webinar,,,5.21
-Break-even course customers/yr,,,1.66
+TOTAL,,212,9924
