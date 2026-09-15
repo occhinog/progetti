@@ -1,6 +1,6 @@
 # Bisplot — brand system canvas export
 
-**The `*.dc.html` artboards and `support.js` are generated output. Do not edit them by hand** — a re-export from the Claude Design canvas replaces them wholesale. `index.html`, `7_Business_Model.html`, `8_Funnels.html` and this README are hand-written and must survive a re-export.
+**The `*.dc.html` artboards and `support.js` are generated output. Do not edit them by hand** — a re-export from the Claude Design canvas replaces them wholesale. `index.html`, `7_Business_Model.html`, `8_Funnels.html`, `nav.js`, `apply-nav.py` and this README are hand-written and must survive a re-export.
 
 | | |
 | --- | --- |
@@ -32,6 +32,17 @@ They continue the numbering but deliberately carry no `.dc.` segment, so a re-ex
 
 `8_Funnels.html` records one open conflict: sheet 3 publishes an *Attestato di partecipazione* that SAI does not issue. Correcting it needs a canvas re-export.
 
+## Navigation
+
+Every sheet carries a prev/next bar, plus `←` and `→` arrow keys. Two hand-written files drive it:
+
+| File | Role |
+| --- | --- |
+| `nav.js` | The bar. Holds the sheet order, renders into a **shadow root** so neither design system in `_ds/` can reach its styles, and appends to `<body>` after `<x-dc>` — which `support.js` never replaces. Hidden in print. |
+| `apply-nav.py` | Stamps `<script src="nav.js" defer></script>` before `</body>` in all ten sheets. Idempotent — a sheet that already loads it is skipped. |
+
+The artboards are generated, so a re-export strips the tag. **Re-run `python3 apply-nav.py` after every export** (step 3 below). If a sheet is added, removed or reordered, edit the `SHEETS` array in `nav.js` and the matching list in `apply-nav.py`.
+
 ## Two hard dependencies
 
 1. **`.nojekyll` at the repo root.** The artboards load their CSS and JS from `_ds/`, and GitHub Pages' Jekyll build drops any path starting with `_`. Without that file, sheets 1, 2, 3, 5b and 6 render unstyled on the live site while looking correct locally. `_ds/` holds two design systems — `sai-ten-m-…` (1, 2, 3, 6) and `samaritan-…` (5b) — and the files inside are `_`-prefixed too, so renaming the folder is not a fix.
@@ -51,7 +62,13 @@ A re-export brings all of these back; drop them again unless a published sheet h
 
 1. Export the canvas over `~/Desktop/Bisplot` as before.
 2. Copy the seven artboards, `support.js`, `_ds/` and only the referenced `uploads/` into this folder, leaving `index.html`, `7_Business_Model.html`, `8_Funnels.html` and this README in place.
-3. If an artboard was added, removed or retitled, update the card grid in `index.html` by hand — the cards are static markup, not generated.
-4. Commit to `parent`.
+3. Re-stamp the navigation, which the export strips from the artboards:
+
+   ```
+   python3 apply-nav.py
+   ```
+
+4. If an artboard was added, removed or retitled, update the card grid in `index.html` by hand — the cards are static markup, not generated — and the `SHEETS` array in `nav.js`.
+5. Commit to `parent`.
 
 The artboards carry no `<meta name="robots">`; the root `robots.txt` `Disallow: /` covers them. Re-adding the tag after each export is optional and gets overwritten anyway.
