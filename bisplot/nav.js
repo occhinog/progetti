@@ -13,14 +13,14 @@
   var SHEETS = [
     ['index.html', 'Index', 'Brand system'],
     ['1_Brand_Whole_System.dc.html', '01', 'One company, four brands'],
-    ['2_Brand_Bisplot.dc.html', '02', 'The holding, applied'],
-    ['3_Brand_SmartAI.dc.html', '03', 'SAI.wiki'],
-    ['4_Brand_BusinessAI.dc.html', '04', 'BusinessAI.academy'],
-    ['5_Brand_HouseOfVibes.dc.html', '05', 'HouseOfVibes'],
-    ['5b_Brand_HouseOfVibes_Samaritan.dc.html', '05b', 'HouseOfVibes × Samaritan'],
-    ['6_Mascotte.dc.html', '06', 'Three characters, two brands'],
-    ['7_Business_Model.html', '07', 'How the group earns'],
-    ['8_Funnels.html', '08', 'How people move']
+    ['2_Business_Model.html', '02', 'How the group earns'],
+    ['3_Funnels.html', '03', 'How people move'],
+    ['4_Brand_Bisplot.dc.html', '04', 'The holding, applied'],
+    ['5_Brand_SmartAI.dc.html', '05', 'SAI.wiki'],
+    ['6_Brand_BusinessAI.dc.html', '06', 'BusinessAI.academy'],
+    ['7_Brand_HouseOfVibes.dc.html', '07', 'HouseOfVibes'],
+    ['7b_Brand_HouseOfVibes_Samaritan.dc.html', '07b', 'HouseOfVibes \u00D7 Samaritan'],
+    ['8_Mascotte.dc.html', '08', 'Three characters, two brands']
   ];
 
   function basename(path) {
