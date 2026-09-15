@@ -35,15 +35,15 @@
             background: var(--paper);
             color: var(--body);
             font-family: Inter, system-ui, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 15px;
+            line-height: 1.55;
             -webkit-font-smoothing: antialiased;
         }
 
         .wrap {
-            max-width: 1360px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 70px 42px 84px;
+            padding: 56px 36px 72px;
             display: flex;
             flex-direction: column;
             gap: 42px;
@@ -67,7 +67,7 @@
         h1 {
             font-family: 'Libre Baskerville', Georgia, serif;
             font-weight: 700;
-            font-size: 42px;
+            font-size: 34px;
             line-height: 1.15;
             margin: 0;
             color: var(--ink);
@@ -270,6 +270,28 @@
         .crosslink a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
         .crosslink a:hover { color: var(--ink); }
 
+        details {
+            background: var(--card); border: 1px solid var(--hairline);
+            border-left: 3px solid var(--accent, var(--sage)); border-radius: var(--radius);
+        }
+
+        summary {
+            cursor: pointer; padding: 11px 18px; list-style: none;
+            font-size: 12.5px; font-weight: 600; letter-spacing: .04em;
+            color: var(--accent, var(--sage));
+        }
+
+        summary::-webkit-details-marker { display: none; }
+        summary::before { content: "+ "; font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+        details[open] summary::before { content: "\2212 "; }
+        details[open] summary { border-bottom: 1px solid var(--hairline); }
+
+        .dbody { padding: 14px 18px 16px; font-size: 14px; }
+        .dbody p { margin: 0; }
+        .dbody p + p { margin-top: 9px; }
+        .warn { --accent: var(--tbd); }
+        .warn summary { color: var(--tbd); }
+
         /* --- annotations --- */
         .tbd {
             font-family: 'IBM Plex Mono', ui-monospace, monospace;
@@ -453,8 +475,9 @@
                         </div>
                         <p class="crosslink"><a href="8_Funnels.html#sai">Full funnel &rarr;</a></p>
                     </div>
-                    <div class="rulebox">
-                        <span class="rulebox__label">Open question &mdash; sponsorship</span>
+                    <details>
+                        <summary>Open question &mdash; sponsorship</summary>
+                        <div class="dbody">
                         <p>A <strong>hosted edition</strong> is the one sponsorship format that does not damage the
                             brand: a venue, association or vendor wants the event live in presence at their site and
                             covers venue, F&amp;B and a fee, while SAI keeps full control of the content and the stage.
@@ -463,7 +486,8 @@
                             refuse &mdash; it turns the free surface into a sales surface and destroys exactly the
                             credibility that makes the funnel work. Fee to be set:
                             <span class="tbd">&euro; ? per hosted edition</span>.</p>
-                    </div>
+                        </div>
+                    </details>
                 </div>
             </article>
 
@@ -520,8 +544,9 @@
                         </div>
                         <p class="crosslink"><a href="8_Funnels.html#academy">Full funnel &rarr;</a></p>
                     </div>
-                    <div class="rulebox">
-                        <span class="rulebox__label">Formazione finanziata</span>
+                    <details>
+                        <summary>Formazione finanziata</summary>
+                        <div class="dbody">
                         <p>The training leg qualifies as funded training, routed through a partner &mdash;
                             <strong>aboutJob</strong>. This is the price lever that matters: it lowers the client&rsquo;s
                             net outlay without lowering our invoice, which makes the &euro;&nbsp;2.500 entry point far
@@ -536,16 +561,19 @@
                             regional coverage rather than for terms, working from the regional lists; the marginal cost
                             of an extra partner agreement is near zero and each one opens a territory the others cannot
                             serve. Regions to cover: <span class="tbd">priority list?</span></p>
-                    </div>
+                        </div>
+                    </details>
 
-                    <div class="rulebox">
-                        <span class="rulebox__label">Delivery principle</span>
+                    <details>
+                        <summary>Delivery principle</summary>
+                        <div class="dbody">
                         <p><strong>External SaaS preferred to internal tools.</strong> We recommend and configure
                             third-party software rather than building our own for client work &mdash; no build cost, no
                             maintenance liability, no support obligation carried on our P&amp;L after the engagement
                             closes. Internal tooling stays inside HouseOfVibes, where it is an asset rather than a
                             deliverable.</p>
-                    </div>
+                        </div>
+                    </details>
                 </div>
             </article>
 
@@ -608,23 +636,28 @@
                         </div>
                         <p class="crosslink"><a href="8_Funnels.html#hov">Full funnel &rarr;</a></p>
                     </div>
-                    <div class="rulebox">
-                        <span class="rulebox__label">Attribution</span>
+                    <details>
+                        <summary>Attribution</summary>
+                        <div class="dbody">
                         <p>Every product is addressed to <strong>the creator</strong> and to
                             <strong>HouseOfVibes by Bisplot</strong>. The creator is never anonymised by the house
                             brand, and the house brand never appears without the holding behind it.</p>
-                    </div>
+                        </div>
+                    </details>
 
-                    <div class="rulebox">
-                        <span class="rulebox__label">Acquisitions</span>
+                    <details>
+                        <summary>Acquisitions</summary>
+                        <div class="dbody">
                         <p>Any acquisition of a startup is done through an <strong>SPV</strong>, unless it is a
                             <strong>100% acquisition</strong> &mdash; in which case it can be taken directly. The SPV
                             ring-fences minority deals so a single failure cannot reach the holding or the other
                             brands.</p>
-                    </div>
+                        </div>
+                    </details>
 
-                    <div class="rulebox">
-                        <span class="rulebox__label">Spin-out cap table &mdash; at incorporation</span>
+                    <details>
+                        <summary>Spin-out cap table &mdash; at incorporation</summary>
+                        <div class="dbody">
                         <p>When a product goes to market as a standalone company from the start:</p>
                         <div class="kv" style="margin-top:12px">
                             <div class="kv__row"><span class="kv__k">Bisplot</span><span class="kv__v">&ge; 60%</span></div>
@@ -646,7 +679,8 @@
                             group still consolidates the company. It is also what makes the structure fundable &mdash;
                             a CEO at an effective 40% is inside normal venture-studio range, which a nominal 20% alone
                             would not be.</p>
-                    </div>
+                        </div>
+                    </details>
                 </div>
             </article>
 
@@ -878,8 +912,10 @@
                 <h2>Open items</h2>
             </div>
 
-            <div class="note">
-                <strong>Decisions and actions outstanding.</strong>
+            <details class="warn">
+                <summary>Decisions and actions outstanding</summary>
+                <div class="dbody">
+                    <strong>Decisions and actions outstanding.</strong>
                 <ol>
                     <li><strong>aboutJob &mdash; to be contacted.</strong> No <em>formazione finanziata</em> channel
                         exists until this partner agreement is signed. It gates the academy&rsquo;s pricing power, so
@@ -894,17 +930,21 @@
                     <li><strong>Consultancy banding</strong> &mdash; what moves a proposal from &euro;&nbsp;10k to
                         &euro;&nbsp;45k needs written criteria, or the range becomes a negotiation weakness.</li>
                 </ol>
-            </div>
+                </div>
+            </details>
 
-            <div class="note">
-                <strong>Figures still to confirm.</strong> Every dashed slot above.
+            <details class="warn">
+                <summary>Figures still to confirm</summary>
+                <div class="dbody">
+                    <strong>Figures still to confirm.</strong> Every dashed slot above.
                 <ul>
                     <li>SAI &mdash; ticket price, F&amp;B cost per head, attendees per event, events per year.</li>
                     <li>BusinessAI &mdash; courses per year, average consultancy deal, course-to-consultancy conversion.</li>
                     <li>HouseOfVibes &mdash; Gruzzy and Shrtn.link MRR, annual software stack cost.</li>
                     <li>Group &mdash; marketing, tooling and professional costs.</li>
                 </ul>
-            </div>
+                </div>
+            </details>
 
             <div class="callout">
                 <p><strong>Nota sulla riservatezza.</strong> This page is served publicly at
