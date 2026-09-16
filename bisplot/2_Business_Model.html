@@ -621,20 +621,68 @@
                     </details>
 
                     <div>
-                        <h3>Due prodotti</h3>
+                        <h3>Davide and Matteo&rsquo;s decision</h3>
                         <div class="tablecard">
                             <table>
-                                <caption>Formazione finanziata come sconto sulla consulenza</caption>
-                                <thead>
-                                    <tr><th scope="col">Prodotto</th><th scope="col">Composizione</th><th scope="col">Listino</th><th scope="col">Copre il fondo</th><th scope="col">Paga il cliente</th><th scope="col">Fatturiamo</th></tr>
-                                </thead>
+                                <thead><tr><th scope="col">Theirs to set</th><th scope="col">Fixed by this model</th></tr></thead>
                                 <tbody>
-                                    <tr><th scope="row">A &mdash; Corso modulare</th><td>&euro;&nbsp;500 a persona &times; 10 persone, standalone</td><td class="num">5.000</td><td class="num">3.500</td><td class="num">1.500</td><td class="num">5.000</td></tr>
-                                    <tr><th scope="row">B &mdash; Trasformazione</th><td>&euro;&nbsp;15.000 consulenza + &euro;&nbsp;5.000 formazione inclusa</td><td class="num">20.000</td><td class="num">3.500</td><td class="num">16.500</td><td class="num">20.000</td></tr>
+                                    <tr><td>What is taught, and how</td><td>Revenue target &mdash; &euro;&nbsp;271.000</td></tr>
+                                    <tr><td>Product structure and composition</td><td>Client count and cadence</td></tr>
+                                    <tr><td>Price per product</td><td>Average revenue per client</td></tr>
+                                    <tr><td>How much of a package is training</td><td>The fondo covers 70% of whatever it is</td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
+                    <div>
+                        <h3>Il ritmo &mdash; un cliente al mese, due soci per cliente</h3>
+                        <div class="tablecard">
+                            <table>
+                                <caption>La rotazione si ripete ogni tre mesi</caption>
+                                <thead><tr><th scope="col">Mese</th><th scope="col">Lead</th><th scope="col">Supporto</th><th scope="col">Libero</th></tr></thead>
+                                <tbody>
+                                    <tr><th scope="row">1, 4, 7, 10</th><td>Davide</td><td>Gabriel</td><td>Matteo</td></tr>
+                                    <tr><th scope="row">2, 5, 8, 11</th><td>Gabriel</td><td>Matteo</td><td>Davide</td></tr>
+                                    <tr><th scope="row">3, 6, 9, 12</th><td>Matteo</td><td>Davide</td><td>Gabriel</td></tr>
+                                </tbody>
+                                <tfoot><tr><th scope="row">Per socio</th><td>4 da lead</td><td>4 da supporto</td><td>4 mesi liberi</td></tr></tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>Capienza a 12 clienti</h3>
+                        <div class="tablecard">
+                            <table>
+                                <caption>&euro;&nbsp;22.600 a cliente &middot; margine 60% &middot; &euro;&nbsp;34/h interni</caption>
+                                <thead><tr><th scope="col">Voce</th><th scope="col">Ore per socio</th><th scope="col">Quota anno</th></tr></thead>
+                                <tbody>
+                                    <tr><th scope="row">Consegna &mdash; 265 h a cliente, 133 per socio</th><td class="num">1.061</td><td class="num">60%</td></tr>
+                                    <tr><th scope="row">SAI</th><td class="num">71</td><td class="num">4%</td></tr>
+                                    <tr><th scope="row">Restano &mdash; vendita, HouseOfVibes, admin, ferie</th><td class="num">629</td><td class="num">36%</td></tr>
+                                </tbody>
+                                <tfoot><tr><th scope="row">Anno per socio</th><td class="num">1.760</td><td class="num">100%</td></tr></tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    <details class="warn">
+                        <summary>The rotation only works if a client closes inside its month</summary>
+                        <div class="dbody">
+                            <p>At 60% margin a client is 265 hours, 133 each for the two partners on it &mdash;
+                                <strong>3,8 weeks at 35 h/week</strong>. It fits, barely. At 50% margin it is 4,7 weeks
+                                and <strong>it does not fit</strong>: engagements overlap, the free month disappears,
+                                and all three are on delivery with nobody selling.</p>
+                            <p>Fondo pre-approval sits between sold and delivered, so the sales calendar has to run
+                                ahead of the delivery calendar. <strong>The month a partner is free is the month they
+                                sell</strong> &mdash; that is the only slack in the design.</p>
+                            <p><strong>12 clients needs about double the pipeline of 6:</strong> 40 discovery calls a
+                                year at a 30% close, 3,3 a month. From SAI&rsquo;s ~900 contacts that is 1,33%
+                                conversion against 0,67% at six clients, so the vertical campaigns have to carry more
+                                of it.</p>
+                        </div>
+                    </details>
 
                     <details>
                         <summary>A larger package lets the fondo carry more of the bill</summary>
@@ -667,8 +715,8 @@
                         <summary>The whole price list rests on an unsigned partner</summary>
                         <div class="dbody">
                             <p>The funding is routed through a partner &mdash; <strong>aboutJob, still not engaged, and
-                                no second partner exists.</strong> Until it is signed there is no &euro;&nbsp;1.500
-                                price anywhere in the offer.</p>
+                                no second partner exists.</strong> Until it is signed there is no funded price anywhere in
+                                the offer, whatever Davide and Matteo set the products at.</p>
                             <p><strong>Build the panel to four.</strong> Accreditation is regional, so partner count is
                                 really <em>territory</em> count. Choose the second, third and fourth for coverage rather
                                 than terms. Priority regions <span class="tbd">list?</span></p>
@@ -898,20 +946,11 @@
                         </tr>
                         <tr>
                             <th scope="row"><span class="dot dot--academy"></span>businessai</th>
-                            <td>Corso modulare, standalone</td>
-                            <td>Per head, standalone</td>
-                            <td class="num">&euro; 500<span style="color:var(--muted)">/pax</span></td>
-                            <td class="num"><span class="tbd">courses?</span></td>
-                            <td class="num"><span class="tbd">&euro; ?</span></td>
-                            <td>Davide &amp; Matteo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><span class="dot dot--academy"></span>businessai</th>
-                            <td>Trasformazione &mdash; consulenza + formazione inclusa</td>
-                            <td>Pacchetto a prezzo fisso</td>
-                            <td class="num">&euro; 20.000</td>
-                            <td class="num"><span class="tbd">deals?</span></td>
-                            <td class="num"><span class="tbd">&euro; ?</span></td>
+                            <td>Corsi e trasformazione &mdash; struttura decisa da Davide e Matteo</td>
+                            <td>Media per cliente</td>
+                            <td class="num">&euro; 22.600</td>
+                            <td class="num">12 / anno</td>
+                            <td class="num">271.000</td>
                             <td>Davide &amp; Matteo</td>
                         </tr>
                         <tr>
