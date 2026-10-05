@@ -46,6 +46,7 @@
       <span class="pill">Friday exit</span>
     </div>
 
+    <p class="intro">Week 4/52 · €917.04 (simulated) · No trade this week; Sunday review 2026-10-11</p>
     <h2>Fixed rules</h2>
     <div class="rules">
       <div class="rule"><b>1 · Select on Sunday</b><span>AI-assisted analysis selects one FTSE MIB share using public information. The publisher validates the evidence and remains responsible for the recommendation.</span></div>
@@ -55,6 +56,15 @@
       <div class="rule"><b>5 · Report the full result</b><span>The next Sunday digest records the platform, instrument, quantity, execution timestamps and prices, fees, taxes, gross result, net result and remaining project cash.</span></div>
       <div class="rule"><b>6 · Preserve the record</b><span>Every issue remains accessible. Changes are timestamped; losing weeks and non-executed recommendations are never removed.</span></div>
     </div>
+
+    <h2>52-week clarification · 5 October 2026</h2>
+<div class="compliance">
+<p><b>Duration and capital.</b> Week 1 is 14–18 September 2026; week 52 ends 10 September 2027, with final review on 12 September. No-trade weeks count. Preserve current capital and history; the €1,000 starting balance is never reset. No new position is proposed after week 52.</p>
+<p><b>Whole-share compounding.</b> At a qualifying Monday entry, buy the maximum affordable integer quantity: floor(available cash / entry price) with zero fees. With fees, choose the largest quantity whose full cost fits. Retain residual cash. After the full Friday exit, carry sale proceeds plus residual cash into the next week. Prices retain source precision; monetary postings round half-up to cents.</p>
+<p><b>Evidence and timing.</b> Supplied prices represent user-confirmed executions; missing quantity, timestamp, fees or taxes remain pending reconciliation. Broker evidence overrides simulation through an auditable correction. Otherwise use validated, cached timestamped exchange data, evaluate published 15-minute entry confirmation and cancellations chronologically, and prefer the first eligible trade or the first subsequent completed one-minute close inside the band. Exit strictly after Friday noon Europe/Rome. Unverified timestamps, missing observations or ambiguous sequencing remain unresolved. Historical exceptions are preserved.</p>
+<p><b>Weekly process.</b> One manual run processes due entry, exit, ledger, retrospective, next selection, challenge and publication stages. Python handles bookkeeping and rendering. Codex reviews the result, VibeTrading compares candidates, and Codex challenges the proposal. Routine ledger updates may publish automatically; exact Sunday analysis requires Gabriel’s approval. Scheduling is deferred.</p>
+<p><b>Learning and finish line.</b> Preserve contradictory evidence and version strategies; changes need prospective approval. A profitable week alone does not establish improvement. Final review reconciles cash, return, weekly closing-cash drawdown and evidence quality. Actual subscription costs are recorded separately without reducing trading capital. Compare final cash minus €1,000 with supplied costs; missing costs mean coverage is not assessed.</p>
+</div>
 
     <h2>Latest issue</h2>
     <a class="report" href="ftse-mib-weekly-stock-focus-prysmian-2026-10-05.html">
