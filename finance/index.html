@@ -37,20 +37,20 @@
   <main>
     <div class="eyebrow">Public investment experiment · Rules v1.0</div>
     <h1>€1,000. One stock. One week.</h1>
-    <p class="intro">An AI-assisted FTSE MIB project with a fixed weekly cycle. Every Sunday, the digest publishes the verified result of the previous trade and the selected stock and execution conditions for the coming week.</p>
+    <p class="intro">An AI-assisted FTSE MIB project with a fixed weekly cycle. The review and next thesis are published by Monday 09:00 Europe/Rome, before the market opens.</p>
 
     <div class="status">
       <span class="pill">FTSE MIB only</span>
-      <span class="pill">Sunday publication</span>
+      <span class="pill">Pre-open publication</span>
       <span class="pill">Monday purchase</span>
       <span class="pill">Friday exit</span>
     </div>
 
-    <p class="intro">Week 4/52 · €917.04 (simulated) · No trade this week; Sunday review 2026-10-11</p>
+    <p class="intro">Week 4/52 · €13.69 (simulated) · Week 4 exit: Friday after 12:00 Europe/Rome; Friday exit not due</p>
     <h2>Fixed rules</h2>
     <div class="rules">
-      <div class="rule"><b>1 · Select on Sunday</b><span>AI-assisted analysis selects one FTSE MIB share using public information. The publisher validates the evidence and remains responsible for the recommendation.</span></div>
-      <div class="rule"><b>2 · Buy on Monday</b><span>Invest the available project cash during Monday's regular session, only under the entry conditions published on Sunday. If those conditions cannot be met on Monday, record no trade.</span></div>
+      <div class="rule"><b>1 · Select before Monday 09:00</b><span>AI-assisted analysis selects one FTSE MIB share using public information. The publisher validates the evidence and publishes the thesis before the Monday opening.</span></div>
+      <div class="rule"><b>2 · Buy on Monday</b><span>Invest the available project cash during Monday's regular session, only under entry conditions published before 09:00. If those conditions cannot be met on Monday, record no trade.</span></div>
       <div class="rule"><b>3 · Hold one position</b><span>No additional shares, averaging down, leverage, short selling or derivatives. The position remains unchanged during the week.</span></div>
       <div class="rule"><b>4 · Sell on Friday</b><span>Close the full position at the first available execution after 12:00 Europe/Rome, regardless of profit or loss. A market closure or suspension is documented as an exception.</span></div>
       <div class="rule"><b>5 · Report the full result</b><span>The next Sunday digest records the platform, instrument, quantity, execution timestamps and prices, fees, taxes, gross result, net result and remaining project cash.</span></div>
@@ -62,16 +62,16 @@
 <p><b>Duration and capital.</b> Week 1 is 14–18 September 2026; week 52 ends 10 September 2027, with final review on 12 September. No-trade weeks count. Preserve current capital and history; the €1,000 starting balance is never reset. No new position is proposed after week 52.</p>
 <p><b>Whole-share compounding.</b> At a qualifying Monday entry, buy the maximum affordable integer quantity: floor(available cash / entry price) with zero fees. With fees, choose the largest quantity whose full cost fits. Retain residual cash. After the full Friday exit, carry sale proceeds plus residual cash into the next week. Prices retain source precision; monetary postings round half-up to cents.</p>
 <p><b>Evidence and timing.</b> Supplied prices represent user-confirmed executions; missing quantity, timestamp, fees or taxes remain pending reconciliation. Broker evidence overrides simulation through an auditable correction. Otherwise use validated, cached timestamped exchange data, evaluate published 15-minute entry confirmation and cancellations chronologically, and prefer the first eligible trade or the first subsequent completed one-minute close inside the band. Exit strictly after Friday noon Europe/Rome. Unverified timestamps, missing observations or ambiguous sequencing remain unresolved. Historical exceptions are preserved.</p>
-<p><b>6 October paper-trade default.</b> The Sunday proposal states one indicative price and whole-share quantity inside its allowed range. If Gabriel supplies no broker fill, a qualifying Monday entry is modelled at the first eligible observed exchange price, with quantity recalculated from available cash; it may differ from the Sunday indication. The Friday exit is likewise modelled from the first eligible exchange observation after noon. These are simulated project transactions, not confirmed broker activity. A complete Monday session without a qualifying entry is recorded as no trade and reviewed in the following retrospective. Missing or ambiguous market evidence remains unresolved; no fill is invented. Later broker evidence replaces a simulation through an auditable correction.</p>
-<p><b>Weekly process.</b> From ~/finance, use <code>finance run</code>. The terminal offers to record actual broker buy and sell details; pressing Enter keeps the labelled simulation. One manual run processes due entry, exit, ledger, retrospective, next selection, challenge and publication stages. Python handles bookkeeping and rendering. Codex reviews the result, VibeTrading compares candidates, and Codex challenges the proposal. Routine ledger updates may publish automatically; exact Sunday analysis is shown for Gabriel’s approval before publication. Scheduling is deferred.</p>
+<p><b>6 October paper-trade default.</b> The pre-open proposal states one indicative price and whole-share quantity inside its allowed range. If Gabriel supplies no broker fill, a qualifying Monday entry is modelled at the first eligible observed exchange price, with quantity recalculated from available cash; it may differ from the pre-open indication. The Friday exit is likewise modelled from the first eligible exchange observation after noon. These are simulated project transactions, not confirmed broker activity. A complete Monday session without a qualifying entry is recorded as no trade and reviewed in the following retrospective. Missing or ambiguous market evidence remains unresolved; no fill is invented. Later broker evidence replaces a simulation through an auditable correction.</p>
+<p><b>Weekly process.</b> From ~/finance, use <code>finance run</code>. The terminal offers to record actual broker buy and sell details; pressing Enter keeps the labelled simulation. One manual run processes due entry, exit, ledger, retrospective, next selection, challenge and publication stages. Python handles bookkeeping and rendering. Codex reviews the result, VibeTrading compares candidates, and Codex challenges the proposal. Routine ledger updates may publish automatically; exact pre-open analysis is shown for Gabriel’s approval before publication. Scheduling is deferred.</p>
 <p><b>Learning and finish line.</b> Preserve contradictory evidence and version strategies; changes need prospective approval. A profitable week alone does not establish improvement. Final review reconciles cash, return, weekly closing-cash drawdown and evidence quality. Actual subscription costs are recorded separately without reducing trading capital. Compare final cash minus €1,000 with supplied costs; missing costs mean coverage is not assessed.</p>
 </div>
 
     <h2>Latest issue</h2>
     <a class="report" href="ftse-mib-weekly-stock-focus-prysmian-2026-10-05.html">
-      <span class="tag">Late research note · no Monday trade</span>
+      <span class="tag">Pre-open research · simulated Monday entry</span>
       <h3>Prysmian · 5–9 October</h3>
-      <p>Conditional Prysmian analysis prepared after the Sunday deadline. No Monday entry under the published project rules.</p>
+      <p>Published Monday at 00:59 CEST. The exchange feed models 7 shares at €129.05 at 09:15:01 CEST; broker evidence remains pending.</p>
     </a>
     <br>
     <a class="report" href="ftse-mib-weekly-stock-focus-poste-2026-09-28.html">
@@ -102,7 +102,7 @@
 
     <h2>Publication and MAR record</h2>
     <div class="compliance">
-      <p>The only scheduled publication is the Sunday digest. Each recommendation states the responsible publisher, completion and publication times, price source and timestamp, current position, intended transaction, methodology, assumptions, risks, conflicts, validity period and planned update frequency.</p>
+      <p>The weekly issue is published by Monday 09:00 Europe/Rome. Each recommendation states the responsible publisher, completion and publication times, price source and timestamp, current position, intended transaction, methodology, assumptions, risks, conflicts, validity period and planned update frequency.</p>
       <p>Material factual errors may be corrected outside the Sunday schedule. The original issue remains archived with a dated correction notice.</p>
       <p>Framework: <a href="https://eur-lex.europa.eu/eli/reg/2014/596/oj/eng">Market Abuse Regulation</a> and <a href="https://eur-lex.europa.eu/eli/reg_del/2016/958/oj/eng">Delegated Regulation (EU) 2016/958</a>.</p>
     </div>
