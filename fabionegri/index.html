@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Proposta Centro Servizi Negri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #3438EA;
+    --primary-dark: #292BD4;
+    --primary-light: #5B5FF5;
+    --ink: #070707;
+    --paper: #FFFFFF;
+    --g1: #F5F5F5;
+    --g2: #EEEEEE;
+    --g3: #D9D9D9;
+    --g4: #BFBFBF;
+    --g5: #999999;
+    --surface: var(--paper);
+    --panel: var(--g1);
+    --line: var(--g3);
+    --muted: #5C5C5C;
+    --display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    --measure: 66ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #F2F2F2;
+      --paper: #101010;
+      --surface: #101010;
+      --panel: #1A1A1A;
+      --line: #333333;
+      --muted: #A8A8A8;
+      --primary: #7A7DFF;
+      --primary-dark: #5B5FF5;
+      --g1: #1A1A1A;
+      --g2: #222222;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #F2F2F2;
+    --paper: #101010;
+    --surface: #101010;
+    --panel: #1A1A1A;
+    --line: #333333;
+    --muted: #A8A8A8;
+    --primary: #7A7DFF;
+    --primary-dark: #5B5FF5;
+    --g1: #1A1A1A;
+    --g2: #222222;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.62;
+    font-weight: 400;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px 96px; }
+  p { max-width: var(--measure); }
+
+  /* ---------- masthead ---------- */
+  header.masthead { padding: 72px 0 40px; border-bottom: 2px solid var(--ink); }
+  .brand {
+    font-family: var(--display); font-weight: 700; font-size: 20px;
+    letter-spacing: -0.01em; color: var(--primary);
+  }
+  .brand span { color: var(--ink); }
+  .kicker {
+    font-family: var(--body); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    margin-top: 40px;
+  }
+  h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(34px, 6.4vw, 54px); line-height: 1.06;
+    letter-spacing: -0.025em; margin: 10px 0 0;
+  }
+  .meta {
+    margin-top: 22px; font-size: 15px; color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: 8px 18px;
+  }
+  .meta b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- sections ---------- */
+  section { padding-top: 56px; }
+  h2 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(22px, 3.6vw, 29px); line-height: 1.2;
+    letter-spacing: -0.02em; margin: 0 0 6px;
+    display: flex; gap: 14px; align-items: baseline;
+  }
+  h2 .num {
+    font-size: 14px; font-weight: 500; color: var(--primary);
+    font-variant-numeric: tabular-nums; flex: none;
+  }
+  .lede { font-size: 19px; line-height: 1.55; margin: 18px 0 0; }
+
+  /* ---------- block cards ---------- */
+  .block {
+    border: 1px solid var(--line); border-radius: 14px;
+    background: var(--panel); padding: 28px; margin-top: 22px;
+  }
+  .block-head {
+    display: flex; flex-wrap: wrap; gap: 12px 24px;
+    align-items: baseline; justify-content: space-between;
+    padding-bottom: 16px; border-bottom: 1px solid var(--line);
+  }
+  .block-title { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: -0.015em; }
+  .block-price { text-align: right; }
+  .block-price .amount {
+    font-family: var(--display); font-weight: 700; font-size: 26px;
+    letter-spacing: -0.02em; color: var(--primary); font-variant-numeric: tabular-nums;
+    display: block;
+  }
+  .block-price .basis { font-size: 13px; color: var(--muted); display: block; margin-top: 2px; }
+  .block ul { margin: 18px 0 0; padding: 0; list-style: none; }
+  .block li { position: relative; padding-left: 22px; margin-bottom: 9px; max-width: var(--measure); }
+  .block li::before {
+    content: ""; position: absolute; left: 4px; top: 0.72em;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--primary);
+  }
+  .pledge {
+    margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-size: 15.5px; max-width: var(--measure);
+  }
+  .pledge b { font-weight: 600; }
+  .pledge span { color: var(--muted); }
+
+  .gate {
+    margin-top: 22px; padding: 14px 16px; border-left: 3px solid var(--primary);
+    background: var(--surface); border-radius: 0 8px 8px 0;
+    font-size: 15px; max-width: var(--measure);
+  }
+  .gate b {
+    display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--primary); margin-bottom: 4px;
+  }
+
+  /* ---------- tables ---------- */
+  .tablewrap { margin-top: 24px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; min-width: 460px; }
+  th {
+    text-align: left; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; padding: 0 12px 10px 0;
+    border-bottom: 1px solid var(--ink);
+  }
+  td { padding: 13px 12px 13px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; padding-right: 0; white-space: nowrap; }
+  tr.total td {
+    border-bottom: none; border-top: 2px solid var(--ink);
+    font-family: var(--display); font-weight: 700; font-size: 20px;
+    letter-spacing: -0.015em; padding-top: 16px;
+  }
+  tr.total td.num { color: var(--primary); }
+
+  /* ---------- asks ---------- */
+  .asks { margin-top: 24px; display: grid; gap: 14px; }
+  @media (min-width: 720px) { .asks { grid-template-columns: repeat(3, 1fr); } }
+  .ask {
+    border: 1px solid var(--line); border-radius: 12px; padding: 20px;
+    background: var(--panel);
+  }
+  .ask .n {
+    font-family: var(--display); font-weight: 700; font-size: 13px;
+    color: var(--primary); display: block; margin-bottom: 8px;
+  }
+  .ask h3 { font-family: var(--display); font-size: 16px; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .ask p { font-size: 14.5px; color: var(--muted); margin: 0; }
+
+  .note {
+    margin-top: 24px; padding: 18px 20px; border-radius: 12px;
+    background: var(--panel); border: 1px solid var(--line);
+    font-size: 15.5px; max-width: var(--measure);
+  }
+
+  .out { margin: 22px 0 0; padding: 0; list-style: none; }
+  .out li {
+    padding: 12px 0; border-bottom: 1px solid var(--line);
+    max-width: var(--measure); font-size: 15.5px;
+  }
+  .out li:last-child { border-bottom: none; }
+  .out b { font-weight: 600; }
+  .out span { color: var(--muted); }
+
+  footer {
+    margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line);
+    font-size: 13.5px; color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: 6px 20px; justify-content: space-between;
+  }
+
+  .actions { margin-top: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--body); font-size: 14.5px; font-weight: 600;
+    color: var(--paper); background: var(--primary);
+    border: none; border-radius: 999px; padding: 11px 20px;
+    cursor: pointer; text-decoration: none;
+    transition: background 120ms ease;
+  }
+  .btn:hover { background: var(--primary-dark); }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .btn svg { width: 15px; height: 15px; flex: none; }
+
+  @media print {
+    :root { --surface: #fff; --panel: #fff; --ink: #000; }
+    body { font-size: 11pt; }
+    .wrap { max-width: none; padding: 0; }
+    section { page-break-inside: avoid; padding-top: 28px; }
+    .block { page-break-inside: avoid; border-color: #bbb; }
+    header.masthead { padding-top: 0; }
+    .actions { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="brand">Smart<span>AI</span></div>
+    <div class="kicker">Proposta di collaborazione</div>
+    <h1>Centro Servizi Negri</h1>
+    <div class="meta">
+      <span><b>Per</b> Fabio</span>
+      <span><b>Data</b> 23 settembre 2026</span>
+      <span><b>Validità</b> 30 giorni</span>
+    </div>
+    <div class="actions">
+      <button class="btn" type="button" onclick="window.print()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M4 21h16"/>
+        </svg>
+        Scarica in PDF
+      </button>
+    </div>
+  </header>
+
+  <section>
+    <h2><span class="num">01</span> Da dove partiamo</h2>
+    <p class="lede">Una mattinata nello studio, sette conversazioni, trenta esigenze
+    raccolte in nove aree. Quasi tutto quello che abbiamo sentito torna a tre cose.</p>
+    <p>La conoscenza di ogni cliente vive nella testa di una persona sola, e i protocolli
+    della certificazione ISO sono su carta da anni. Nessuno ha rimisurato quanto lavoro
+    stia davvero in una pratica da quando la fatturazione elettronica ha tolto ore:
+    chi seguiva quaranta ditte oggi potrebbe seguirne un numero diverso, e non lo sa
+    nessuno. E le decisioni sull'organizzazione si prendono dentro il picco, non prima.</p>
+    <p>Questa proposta non è un preventivo per degli strumenti. È un percorso che parte
+    dal misurare e finisce con un modo di lavorare che regge quando noi non ci siamo più.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span> Come lavoriamo</h2>
+    <p>Tre blocchi in sequenza. Ognuno si apre solo se il precedente ha superato il suo
+    <b>cancello</b>: un criterio scritto e verificabile, non un'impressione. Se un cancello
+    non passa, ci si ferma lì e si decide insieme cosa cambia — nessun blocco parte per
+    inerzia, e nessun blocco si fattura prima di essere aperto.</p>
+    <p>La seconda regola vale per tutto quello che vi lasciamo: ogni cosa ha un proprietario
+    interno con un nome prima che il percorso finisca. Alla consegna lo studio deve saper
+    usare, modificare e all'occorrenza spegnere ognuno degli strumenti, senza chiamarci.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span> I tre blocchi</h2>
+
+    <div class="block">
+      <div class="block-head">
+        <div class="block-title">1 · Analisi e diagnosi</div>
+        <div class="block-price">
+          <span class="amount">24.000 €</span>
+          <span class="basis">10 giornate × 2.400 €</span>
+        </div>
+      </div>
+      <ul>
+        <li>Il vostro annuncio alla squadra, prima di qualunque raccolta di dati</li>
+        <li>Questionario anonimo a tutte le persone dello studio e colloqui individuali con chi fa il lavoro</li>
+        <li>Diario delle interruzioni su cinque giorni, per sapere quante telefonate spezzano davvero la giornata e a chi</li>
+        <li>Cinque processi mappati e validati da chi li esegue</li>
+        <li>Prima lettura dei carichi per persona e per tipo di pratica, a partire dal pacchetto dati che avete già acquistato</li>
+        <li>Inventario degli strumenti e decisione scritta su dove possono stare i dati dei vostri clienti</li>
+        <li><b>Piano di trasformazione</b>: le priorità, l'ordine in cui affrontarle, e cosa lasciare fuori</li>
+      </ul>
+      <div class="gate">
+        <b>Cancello</b>
+        I numeri di partenza hanno una definizione sola possibile, e il piano è approvato
+        per iscritto. Senza la fotografia iniziale non esiste il confronto finale.
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <div class="block-title">2 · Progettazione e messa in opera</div>
+        <div class="block-price">
+          <span class="amount">20.000 €</span>
+          <span class="basis">a corpo</span>
+        </div>
+      </div>
+      <ul>
+        <li><b>Il sito, che è già costruito e vi viene consegnato</b> — sette schede di servizio e sedici brochure che escono da un'unica fonte, così una vostra correzione si propaga da sola. Servono la conferma dei contenuti e la vostra decisione di andare online</li>
+        <li>Le richieste dal sito e dalla mail etichettate e portate alla persona giusta, invece che a tutti</li>
+        <li>Brochure e biglietto da visita, cartaceo e digitale</li>
+        <li>Schede cliente standard, popolate su un pacchetto di ditte</li>
+        <li>Tre protocolli ISO digitali e aggiornabili, a partire da quello del 730</li>
+        <li>La ricerca in italiano sopra schede e protocolli: una domanda su un cliente o una pratica, una risposta</li>
+        <li>Memoria dei fronti aperti del titolare, alimentabile con una nota vocale dal telefono e trascritta in locale</li>
+        <li>Prospetto dei carichi che si rigenera da solo</li>
+      </ul>
+      <div class="gate">
+        <b>Cancello</b>
+        Tre pratiche vere prese in mano da una persona che non le segue di solito, e le
+        richieste in ingresso che arrivano alla persona preposta.
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <div class="block-title">3 · Adozione, formazione e misura</div>
+        <div class="block-price">
+          <span class="amount">8.000 €</span>
+          <span class="basis">2 giornate di formazione × 2.400 € + 3.200 € a corpo</span>
+        </div>
+      </div>
+      <ul>
+        <li>Workshop per tutto l'ufficio e formazione differenziata per ruolo — non la stessa per tutti</li>
+        <li>Il ritmo breve e ricorrente su obiettivi e ostacoli, avviato e affidato a un responsabile interno</li>
+        <li>Ruoli riscritti a distanza di anni dalla ISO, con dentro il passaggio di consegne del coordinamento</li>
+        <li>Piano del picco 730, scritto prima che il picco arrivi</li>
+        <li>Elenco chiaro di cosa è compreso in un incarico e cosa è straordinario</li>
+        <li>Misura finale e confronto prima / dopo, sugli stessi numeri del blocco 1</li>
+      </ul>
+      <div class="pledge">
+        <b>Il percorso del titolare si chiude entro il 30 novembre</b>,
+        <span>come ci avete chiesto.</span>
+      </div>
+      <div class="gate">
+        <b>Cancello</b>
+        Il ritmo gira per tre cicli senza di noi, e ogni strumento ha un proprietario
+        interno con un nome.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span> L'investimento</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Blocco</th><th>Come</th><th class="num">Importo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1 · Analisi e diagnosi</td><td>10 giornate × 2.400 €</td><td class="num">24.000 €</td></tr>
+          <tr><td>2 · Progettazione e messa in opera</td><td>a corpo</td><td class="num">20.000 €</td></tr>
+          <tr><td>3 · Adozione, formazione e misura</td><td>2 giornate × 2.400 € + a corpo</td><td class="num">8.000 €</td></tr>
+          <tr class="total"><td>Totale</td><td></td><td class="num">52.000 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      Importi al netto di IVA. Tariffa di riferimento <b>2.400 € + IVA al giorno</b>.
+      Ogni blocco si paga alla partenza, non a consuntivo. Il blocco successivo si apre
+      solo dopo il cancello del precedente: se un cancello non passa, quel blocco non parte
+      e non si fattura.
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span> Cosa chiediamo in cambio</h2>
+    <p>Siete il primo studio con cui facciamo questo percorso per intero, e questo per noi
+    vale più di quanto vi costa. Le tre cose qui sotto fanno parte dell'accordo quanto le
+    giornate, e il prezzo che le riflette lo concordiamo a voce.</p>
+    <div class="asks">
+      <div class="ask">
+        <span class="n">01</span>
+        <h3>Caso studio</h3>
+        <p>Con il nome e il logo dello studio, e i numeri prima e dopo. Non un ringraziamento generico.</p>
+      </div>
+      <div class="ask">
+        <span class="n">02</span>
+        <h3>Testimonianza</h3>
+        <p>La vostra voce, e il permesso di usare il materiale del percorso nelle nostre pagine e nelle nostre proposte.</p>
+      </div>
+      <div class="ask">
+        <span class="n">03</span>
+        <h3>L'evento con i vostri clienti</h3>
+        <p>Una serata con le vostre aziende clienti, presentati da voi. È la cosa che per noi vale di più.</p>
+      </div>
+    </div>
+    <div class="note">Le tre cose si chiedono insieme: o valgono tutte e tre, o l'accordo
+    resta quello a listino qui sopra.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">06</span> Cosa resta fuori, e lo diciamo adesso</h2>
+    <ul class="out">
+      <li><b>L'assistente vocale che risponde al telefono al posto del titolare.</b>
+      <span>È un'altra categoria di rischio rispetto al resto. Dentro il percorso c'è la parte
+      che raccoglie e riordina le richieste; la voce, se la volete, si misura e si quota a parte.</span></li>
+      <li><b>La base di conoscenza su tutti i clienti.</b>
+      <span>Si parte da un pacchetto di ditte e da tre protocolli. L'estensione si valuta quando
+      il primo pacchetto è in uso davvero.</span></li>
+      <li><b>Il servizio di pre-apertura della partita IVA.</b>
+      <span>Si misura durante l'ascolto quanti casi ci sono davvero in un anno, e si quota quando
+      quel numero c'è.</span></li>
+      <li><b>Toccare o sostituire il gestionale.</b>
+      <span>Non lo tocchiamo. Leggiamo i dati che già estrae.</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>SmartAI</span>
+    <span>Proposta del 23 settembre 2026 · valida 30 giorni</span>
+  </footer>
+
+</div>
+</body>
+</html>
