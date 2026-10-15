@@ -1,74 +1,64 @@
-# Bisplot — brand system canvas export
+# Bisplot — landing page
 
-**The `*.dc.html` artboards and `support.js` are generated output. Do not edit them by hand** — a re-export from the Claude Design canvas replaces them wholesale. `index.html`, `7_Business_Model.html`, `8_Funnels.html`, `nav.js`, `apply-nav.py` and this README are hand-written and must survive a re-export.
+Single-page site for Bisplot (data systems and AI tools for SMEs). React 19 + TypeScript + Tailwind CSS 3, built with Vite into **one self-contained `index.html`** — JS and CSS inlined — because this repo has no build step: what is committed is what GitHub Pages serves.
 
 | | |
 | --- | --- |
-| Source | Claude Design canvas, exported to `~/Desktop/Bisplot` on `mcmn` |
-| Exported | 2026-09-13 |
-| Stack | `.dc.html` artboards rendered client-side by `support.js` (Claude Design canvas runtime) |
 | Public URL | https://progetti.occhino.it/bisplot/ |
+| Served file | `index.html` (generated — do not edit by hand) |
+| Source | `app/` |
+| Runtime network | Google Fonts only (Plus Jakarta Sans, Inter, JetBrains Mono). Offline it falls back to system fonts. |
 
-Seven artboards, each a standalone page linked from `index.html`:
+Until 2026-10-15 this folder held the Bisplot Brand System (Claude Design canvas export). It was replaced by this site; the old files are in git history at commit `2772c72`.
 
-| File | Sheet |
-| --- | --- |
-| `1_Brand_Whole_System.dc.html` | One company, four brands — the whole system |
-| `2_Brand_Bisplot.dc.html` | The holding, applied |
-| `3_Brand_SmartAI.dc.html` | SAI.wiki — open education arm |
-| `4_Brand_BusinessAI.dc.html` | BusinessAI.academy — paid arm |
-| `5_Brand_HouseOfVibes.dc.html` | HouseOfVibes — venture building arm |
-| `5b_Brand_HouseOfVibes_Samaritan.dc.html` | HouseOfVibes × Samaritan unified mark |
-| `6_Mascotte.dc.html` | Milo, Mila, Semino |
+## Layout
 
-One hand-written sheet sits alongside them, outside the canvas export:
+```
+bisplot/
+├── index.html        BUILD OUTPUT — regenerate, never hand-edit
+├── README.md
+└── app/              Vite project (source of truth)
+    ├── index.html    dev template: <head> meta, fonts, favicon, noindex
+    ├── tailwind.config.ts   design tokens (colours, fonts, radii)
+    ├── vite.config.ts       outDir '..' + vite-plugin-singlefile
+    └── src/
+        ├── config.ts        form endpoint + privacy URL  ← edit before production
+        ├── App.tsx
+        └── components/      Navbar, Hero, ProblemSection, SolutionsSection,
+                             HumanFactorSection, MethodSection, ContactSection,
+                             Footer, Logo, SectionHeader
+```
 
-| File | Sheet |
-| --- | --- |
-| `7_Business_Model.html` | How the group earns — revenue streams, cost base, invoicing entity |
-| `8_Funnels.html` | How people move — one funnel per brand, every rate tied to a stated base |
+## Build
 
-They continue the numbering but deliberately carry no `.dc.` segment, so a re-export cannot overwrite them. Both are styled by hand to match the canvas sheets and depend on neither `support.js` nor `_ds/`.
+```sh
+cd bisplot/app
+npm install
+npm run dev       # local dev server
+npm run build     # typecheck, then writes ../index.html
+```
 
-`8_Funnels.html` records one open conflict: sheet 3 publishes an *Attestato di partecipazione* that SAI does not issue. Correcting it needs a canvas re-export.
+`vite.config.ts` writes to the parent folder with `emptyOutDir: false` — that folder also contains `app/`, so never switch it to `true`. Commit the regenerated `bisplot/index.html` together with the source change.
 
-## Navigation
+## Before real use
 
-Every sheet carries a prev/next bar, plus `←` and `→` arrow keys. Two hand-written files drive it:
+Two values in `app/src/config.ts` are still at their staging defaults:
 
-| File | Role |
-| --- | --- |
-| `nav.js` | The bar. Holds the sheet order, renders into a **shadow root** so neither design system in `_ds/` can reach its styles, and appends to `<body>` after `<x-dc>` — which `support.js` never replaces. Hidden in print. |
-| `apply-nav.py` | Stamps `<script src="nav.js" defer></script>` before `</body>` in all ten sheets. Idempotent — a sheet that already loads it is skipped. |
+| Setting | Default | Effect |
+| --- | --- | --- |
+| `contactEndpoint` | `''` | **Demo mode.** The "diagnosi operativa" form validates and shows the success screen, but sends nothing (a console notice says so). Set a URL that accepts a JSON POST `{ name, email, message }` — e.g. a Formspree endpoint. |
+| `privacyUrl` | `'#'` | Target of the footer "Privacy" link. Point it at the privacy policy. |
 
-The artboards are generated, so a re-export strips the tag. **Re-run `python3 apply-nav.py` after every export** (step 3 below). If a sheet is added, removed or reordered, edit the `SHEETS` array in `nav.js` and the matching list in `apply-nav.py`.
+The form collects names and email addresses, so it needs a privacy notice before it goes live.
 
-## Two hard dependencies
+## Design rules (from the brief)
 
-1. **`.nojekyll` at the repo root.** The artboards load their CSS and JS from `_ds/`, and GitHub Pages' Jekyll build drops any path starting with `_`. Without that file, sheets 1, 2, 3, 5b and 6 render unstyled on the live site while looking correct locally. `_ds/` holds two design systems — `sai-ten-m-…` (1, 2, 3, 6) and `samaritan-…` (5b) — and the files inside are `_`-prefixed too, so renaming the folder is not a fix.
-2. **Internet at page load.** `support.js` fetches React 18, ReactDOM and Babel standalone from `unpkg.com` before it boots. Offline, the pages stay blank.
+- Light canvas (`canvas-white`, `canvas-subtle`, `canvas-muted`), text in `ink-900` / `ink-500`, 1px hairlines (`border-border-light`).
+- Terracotta `#D96B43` is reserved for the logo and primary actions (plus the 01–03 numbers in "Cosa realizziamo", as specified).
+- Radii: 4px badges, 8px inputs/buttons, 12px cards. No pill shapes.
+- All copy is the client's wording — change it only on request.
+- Icons: `lucide-react`. Logo: inline SVG in `Logo.tsx`; the favicon in `app/index.html` is the same mark as a data URI.
 
-## Not copied from the export
+## Build provenance
 
-The source folder holds more than what is published here:
-
-- `Brainstorming_Archived.dc.html` — archived exploration, deliberately not published.
-- `uploads/hov.png`, `uploads/spritesheet.webp` — referenced only by that archived sheet (3.8 MB).
-- `uploads/smartaiMasterLogo.png`, `uploads/sai-logo.png`, `uploads/sai-logo-white.png` — not referenced by any published sheet.
-
-A re-export brings all of these back; drop them again unless a published sheet has started using them.
-
-## Re-exporting
-
-1. Export the canvas over `~/Desktop/Bisplot` as before.
-2. Copy the seven artboards, `support.js`, `_ds/` and only the referenced `uploads/` into this folder, leaving `index.html`, `7_Business_Model.html`, `8_Funnels.html` and this README in place.
-3. Re-stamp the navigation, which the export strips from the artboards:
-
-   ```
-   python3 apply-nav.py
-   ```
-
-4. If an artboard was added, removed or retitled, update the card grid in `index.html` by hand — the cards are static markup, not generated — and the `SHEETS` array in `nav.js`.
-5. Commit to `parent`.
-
-The artboards carry no `<meta name="robots">`; the root `robots.txt` `Disallow: /` covers them. Re-adding the tag after each export is optional and gets overwritten anyway.
+The first committed `index.html` was produced in a sandbox without npm access, using an equivalent pipeline: Tailwind 3.4.17 standalone CLI with the same config, the same sources bundled by Bun (React 19.2.8, lucide 1.57.0 icon geometry), inlined into one file the way `vite-plugin-singlefile` does. Typecheck passed under TypeScript 6.0. The first `npm run build` replaces it with Vite's output; the page should look identical.

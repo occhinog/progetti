@@ -4,5 +4,5 @@ const projects = [
     { name: "SMARTAI / BusinessAI Academy", link: "businessai/" },
     { name: "FTSE MIB Weekly Project", link: "finance/" },
     { name: "Carport Italia", link: "carportitalia/" },
-    { name: "Bisplot — Brand System", link: "bisplot/" }
+    { name: "Bisplot", link: "bisplot/" }
 ];
