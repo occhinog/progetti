@@ -1,16 +1,32 @@
+import { Fragment } from 'react';
 import { Check } from 'lucide-react';
 import SectionHeader from './SectionHeader';
+import sailGroupLogo from '../assets/clients/sail-group.jpg';
+import centroServiziNegriLogo from '../assets/clients/centro-servizi-negri.svg';
 
 /*
  * Real clients only. Integrity rule: each card states what is VERIFIED (client, sector, services
  * actually delivered) and DESCRIPTIVE context — never a measured result. Result metrics stay out of
  * the copy until the client validates them (see the DA CONFERMARE markers).
+ *
+ * Logos are the clients' own files (src/assets/clients/), never redrawn. A card without a logo
+ * simply omits the slot — search for LOGO DA RICEVERE.
  */
+
+type ClientLogo = {
+  src: string;
+  /** Intrinsic size of the file, so the browser reserves the right box. */
+  width: number;
+  height: number;
+  /** Rendered height, tuned per mark so wide wordmarks and compact monograms read at the same weight. */
+  heightClass: string;
+};
 
 type CaseStudy = {
   client: string;
   sector: string;
   url: string;
+  logo?: ClientLogo;
   scope: string;
   /** Services actually delivered, one activity per entry. */
   intervention: string[];
@@ -21,6 +37,7 @@ const CASES: CaseStudy[] = [
     client: 'SAIL Group',
     sector: 'Costruzioni e gestione cantieri',
     url: 'https://www.sailgroup.eu',
+    logo: { src: sailGroupLogo, width: 456, height: 78, heightClass: 'h-9' },
     scope: 'Coordinare la comunicazione tra ufficio e cantieri attivi, con documentazione e offerte da gestire su più fronti.',
     intervention: [
       'Organizzazione della comunicazione tra ufficio e cantieri.',
@@ -31,10 +48,11 @@ const CASES: CaseStudy[] = [
   },
   {
     client: 'Centro Servizi Negri',
-    sector: 'Centro servizi per imprese',
+    sector: 'Studio commercialista · finanza agevolata e bandi',
     url: 'https://nuovo-sito-rhkm20ixt-hg-matts-projects.vercel.app',
+    logo: { src: centroServiziNegriLogo, width: 1017, height: 910, heightClass: 'h-12' },
     scope:
-      'Un centro servizi che gestisce pratiche e richieste di più clienti, con processi interni da strutturare e valutazioni da rendere più efficienti.',
+      'Uno studio commercialista che, oltre ai servizi contabili e fiscali, segue per i clienti finanza agevolata e bandi: pratiche e richieste da gestire su più fronti, con processi interni da strutturare e valutazioni da rendere più efficienti.',
     intervention: [
       "Organizzazione dell'ufficio e strutturazione dei processi interni.",
       'Realizzazione di un assistente personale per la gestione delle richieste.',
@@ -46,6 +64,7 @@ const CASES: CaseStudy[] = [
     client: 'Helio H2',
     sector: "Soluzioni per l'idrogeno e l'energia",
     url: 'https://www.helioh2.com',
+    // [LOGO DA RICEVERE: file ufficiale non ancora disponibile]
     scope:
       'Gestire il flusso di richieste e offerte in un settore tecnico altamente specializzato, con bisogno di visibilità digitale.',
     intervention: [
@@ -59,6 +78,7 @@ const CASES: CaseStudy[] = [
     client: 'Pintore',
     sector: 'Editoria e gestione manoscritti',
     url: 'https://www.pintore.com',
+    // [LOGO DA RICEVERE: file ufficiale non ancora disponibile]
     scope:
       "Un flusso editoriale con manoscritti da valutare, riassumere e promuovere, dove l'organizzazione del lavoro di revisione incide direttamente sui tempi.",
     intervention: [
@@ -89,15 +109,38 @@ export default function CaseStudiesSection() {
               <article
                 key={item.client}
                 aria-labelledby={id}
-                className="flex flex-col rounded-lg border border-border-light bg-white p-7 sm:p-9"
+                className="group flex flex-col rounded-lg border border-border-light bg-white p-7 sm:p-9"
               >
-                {/* Intestazione: cliente reale + settore */}
+                {/* Intestazione: logo del cliente (se disponibile) + nome + settore */}
                 <header>
+                  {item.logo && (
+                    // Decorative: the client's name is the heading right below.
+                    <div className="mb-6 flex h-12 items-center">
+                      <img
+                        src={item.logo.src}
+                        width={item.logo.width}
+                        height={item.logo.height}
+                        alt=""
+                        decoding="async"
+                        draggable={false}
+                        className={`${item.logo.heightClass} w-auto max-w-full select-none opacity-80 mix-blend-multiply grayscale transition duration-300 group-focus-within:opacity-100 group-focus-within:grayscale-0 group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none`}
+                      />
+                    </div>
+                  )}
                   <h3 id={id} className="font-sans text-xl font-semibold tracking-tight text-ink-900 sm:text-2xl">
                     {item.client}
                   </h3>
                   <p className="mt-3 inline-block rounded-sm border border-border-light bg-canvas-subtle px-2.5 py-1 font-mono text-xs text-ink-500">
-                    {item.sector}
+                    {/* Multi-part sectors ("A · B") wrap only at the separator on narrow cards. */}
+                    {item.sector.split(' · ').map((part, i, parts) => (
+                      <Fragment key={part}>
+                        {i > 0 && ' '}
+                        <span className="whitespace-nowrap">
+                          {part}
+                          {i < parts.length - 1 && ' ·'}
+                        </span>
+                      </Fragment>
+                    ))}
                   </p>
                 </header>
 

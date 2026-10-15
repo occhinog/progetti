@@ -24,6 +24,7 @@ bisplot/
     └── src/
         ├── config.ts        form endpoint + privacy / legal URLs  ← edit before production
         ├── App.tsx
+        ├── assets/clients/  client logos for the case studies (inlined at build)
         └── components/      Navbar, Hero, PhilosophySection, BrainSection,
                              CaseStudiesSection, MethodSection, SupportSection,
                              ContactSection, Footer, Logo, SectionHeader
@@ -57,6 +58,10 @@ The form collects names and email addresses, so it needs a privacy notice before
 - **No invented metrics.** No result figures (hours saved, percentages, reduced times, ROI) unless the client has supplied them.
 - **Case studies are real clients only** (`CaseStudiesSection.tsx`): client, sector and services actually delivered are verified; the context is descriptive; no measured results. Each case carries a `// [DA CONFERMARE: eventuale metrica di risultato — in attesa di validazione cliente]` marker — search for `DA CONFERMARE` to find every placeholder to complete once a client validates a figure.
 - Client links open in a new tab with `rel="noopener noreferrer"`. Centro Servizi Negri currently points to a Vercel preview URL (`nuovo-sito-…-hg-matts-projects.vercel.app`): swap in the definitive domain when it is live.
+- **Client logos** are the clients' own files in `app/src/assets/clients/`, never redrawn. They sit above the client name, in greyscale at 80% opacity, and turn full colour when the card is hovered or focused. They are decorative (`alt=""`) because the client's name is the heading right below.
+  - SAIL Group: `sail-group.jpg` — `sailgroup-logo.jpg` from the SAIL website's WordPress theme, unchanged (white background, blended away with `mix-blend-multiply`).
+  - Centro Servizi Negri: `centro-servizi-negri.svg` — the CSN v2 vector (`csn-centro-servizi-negri-v2.svg`) with the paths untouched, keeping the N monogram + CSN lettering. The "CENTRO SERVIZI NEGRI" descriptor line is left out and the viewBox is cropped to the artwork: at card size the descriptor would be about 2 px tall.
+  - Helio H2 and Pintore: **no logo yet** — search for `LOGO DA RICEVERE`. To add one, put the file in `assets/clients/`, import it in `CaseStudiesSection.tsx` and set `logo: { src, width, height, heightClass }` (the file's intrinsic size, plus a Tailwind height: `h-9` suits a wide wordmark, `h-12` a compact or stacked mark). Cards without a logo simply omit the slot.
 - Sober, engineering tone: no marketing superlatives.
 
 ## Design rules (from the brief)
@@ -81,4 +86,4 @@ The one dark band on the page (`#cervello`, ink-900): an interactive animation o
 
 ## Build provenance
 
-The committed `index.html` was produced in a sandbox without npm access, using an equivalent pipeline: Tailwind 3.4.17 standalone CLI with the same config, the same sources bundled by Bun (React 19.2.8, lucide 1.57.0 icon geometry), inlined into one file the way `vite-plugin-singlefile` does. Typecheck passed under TypeScript 6.0. The first `npm run build` replaces it with Vite's output; the page should look identical.
+The committed `index.html` was produced in a sandbox without npm access, using an equivalent pipeline: Tailwind 3.4.17 standalone CLI with the same config, the same sources bundled by Bun (React 19.2.8, lucide 1.57.0 icon geometry), inlined into one file the way `vite-plugin-singlefile` does — imported images included, as base64 `data:` URIs. Typecheck passed under TypeScript 6.0. The first `npm run build` replaces it with Vite's output; the page should look identical.
