@@ -24,9 +24,9 @@ bisplot/
     └── src/
         ├── config.ts        form endpoint + privacy / legal URLs  ← edit before production
         ├── App.tsx
-        └── components/      Navbar, Hero, PhilosophySection, CaseStudiesSection,
-                             MethodSection, SupportSection, ContactSection,
-                             Footer, Logo, SectionHeader
+        └── components/      Navbar, Hero, PhilosophySection, BrainSection,
+                             CaseStudiesSection, MethodSection, SupportSection,
+                             ContactSection, Footer, Logo, SectionHeader
 ```
 
 ## Build
@@ -61,6 +61,16 @@ The form collects names and email addresses, so it needs a privacy notice before
 - All copy is the client's wording — change it only on request.
 - Icons: `lucide-react`, used sparingly.
 - Logo: `Logo.tsx` holds the monogram as inline SVG — a geometric redraw of the master artwork (331 × 424 units: grid-aligned straight edges, parallel 45° cuts, elliptical bowls, constant 13.5-unit gap; ≥99% pixel overlap with the source PNG). Structure `#0A1118`, lower bowl `#D96B43`. The favicon in `app/index.html` is the same mark as a data URI. The wordmark is live text in Plus Jakarta Sans Bold.
+
+## Business Second Brain (`BrainSection.tsx`)
+
+The one dark band on the page (`#cervello`, ink-900): an interactive SVG animation of a company's operating "brain" — six departments (Finance, Operations, Marketing, Knowledge, HR, Sales) around an AI core that carries the Bisplot mark.
+
+- Four phases, ~17 s, then a continuous loop: 01 Frammentazione (nodes pulse on their own, data goes nowhere) → 02 Connessione (spokes draw to the core, packets flow in) → 03 Intelligenza (the core sends each department its result) → 04 Automazione (continuous flow, department-to-department links).
+- Interaction: hover, focus or tap a department to highlight its link and result and fire a round trip; click the core to send results to every department; the stepper jumps between phases; Pausa / Ricomincia.
+- Starts when the scene's top reaches the upper ~65% of the viewport; the animation loop stops whenever the scene is off screen. `prefers-reduced-motion` draws the finished scene statically.
+- Two layouts (`WIDE` from 860px of scene width, `TALL` below); department content and phase timings are the constants at the top of the file.
+- Implementation: React renders the scene once per layout; a `requestAnimationFrame` loop writes SVG attributes directly from fixed element pools — no per-frame React renders.
 
 ## Build provenance
 

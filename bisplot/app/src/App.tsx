@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import PhilosophySection from './components/PhilosophySection';
+import BrainSection from './components/BrainSection';
 import CaseStudiesSection from './components/CaseStudiesSection';
 import MethodSection from './components/MethodSection';
 import SupportSection from './components/SupportSection';
@@ -20,6 +21,7 @@ export default function App() {
       <main id="contenuto">
         <Hero />
         <PhilosophySection />
+        <BrainSection />
         <CaseStudiesSection />
         <MethodSection />
         <SupportSection />

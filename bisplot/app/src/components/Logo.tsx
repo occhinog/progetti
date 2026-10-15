@@ -1,3 +1,5 @@
+import type { SVGProps } from 'react';
+
 type LogoProps = {
   /** `md` for the navbar, `sm` for the footer. */
   size?: 'md' | 'sm';
@@ -19,16 +21,22 @@ const ACCENT =
   'M0 424V408.59L90 318.59V357H182.86A54.49 50.12 0 0 0 237.35 306.88A54.49 53.64 0 0 0 208.94 259.79' +
   'A146.88 143.16 0 0 0 278.97 222.17A116.66 103.94 0 0 1 330.57 308.44A116.66 115.56 0 0 1 213.91 424Z';
 
-export function LogoMark({ className = '' }: { className?: string }) {
+type LogoMarkProps = Omit<SVGProps<SVGSVGElement>, 'viewBox'> & {
+  /** `inverse` draws the structure in white, for dark backgrounds. */
+  tone?: 'default' | 'inverse';
+};
+
+export function LogoMark({ className = '', tone = 'default', ...rest }: LogoMarkProps) {
   return (
     <svg
+      {...rest}
       viewBox="0 0 331 424"
       className={className}
       aria-hidden="true"
       focusable="false"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d={STRUCTURE} fillRule="evenodd" className="fill-ink-900" />
+      <path d={STRUCTURE} fillRule="evenodd" className={tone === 'inverse' ? 'fill-white' : 'fill-ink-900'} />
       <path d={ACCENT} className="fill-terracotta" />
     </svg>
   );
