@@ -1,55 +1,75 @@
+import { Check } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 
+/*
+ * Real clients only. Integrity rule: each card states what is VERIFIED (client, sector, services
+ * actually delivered) and DESCRIPTIVE context — never a measured result. Result metrics stay out of
+ * the copy until the client validates them (see the DA CONFERMARE markers).
+ */
+
 type CaseStudy = {
-  number: string;
-  company: string;
-  scenario: string;
-  before: string;
-  intervention: string;
-  result: string;
+  client: string;
+  sector: string;
+  url: string;
+  scope: string;
+  /** Services actually delivered, one activity per entry. */
+  intervention: string[];
 };
 
 const CASES: CaseStudy[] = [
   {
-    number: '01',
-    company: 'Azienda di fornitura tecnica e ricambistica',
-    scenario: 'Gestione di 80+ ordini fornitore e bolle al giorno via PDF.',
-    before:
-      'Due impiegate amministrative passavano l\'intera mattinata ad aprire allegati email, leggere codici articolo e ricopiarli manualmente riga per riga nel gestionale. Errori frequenti sui codici a 12 cifre.',
-    intervention:
-      "Nessun gestionale sostituito. Abbiamo impostato un lettore intelligente in background: appena arriva l'email del fornitore, i dati vengono estratti, verificati con il listino e precaricati nel sistema esistente.",
-    result:
-      'L\'impiegata riceve una notifica sul suo schermo abituale, verifica la corrispondenza in 10 secondi con un colpo d\'occhio e preme "Conferma". Risparmiate 3 ore al giorno a persona, dedicate al servizio clienti.',
+    client: 'SAIL Group',
+    sector: 'Costruzioni e gestione cantieri',
+    url: 'https://www.sailgroup.eu',
+    scope: 'Coordinare la comunicazione tra ufficio e cantieri attivi, con documentazione e offerte da gestire su più fronti.',
+    intervention: [
+      'Organizzazione della comunicazione tra ufficio e cantieri.',
+      'Ottimizzazione del processo di predisposizione delle offerte.',
+      'Posizionamento digitale SEO e GEO.',
+    ],
+    // [DA CONFERMARE: eventuale metrica di risultato — in attesa di validazione cliente]
   },
   {
-    number: '02',
-    company: 'Società di servizi e consulenza aziendale',
-    scenario: 'Fascicoli commessa dispersi tra email, cartelle server e chat.',
-    before:
-      'Per ogni nuova richiesta, il responsabile doveva rintracciare preventivi storici, clausole contrattuali concordate in passato e allegati tecnici sparsi tra 5 persone diverse.',
-    intervention:
-      'Abbiamo unificato la procedura di archiviazione senza cambiare le cartelle preferite dai collaboratori. Un sistema semantico interno indicizza i documenti storici in modo invisibile e sicuro.',
-    result:
-      'Una ricerca che richiedeva 40 minuti di messaggi interni ora restituisce il precedente contrattuale esatto in 5 secondi. I nuovi assunti sono autonomi fin dalla prima settimana.',
+    client: 'Centro Servizi Negri',
+    sector: 'Centro servizi per imprese',
+    url: 'https://nuovo-sito-rhkm20ixt-hg-matts-projects.vercel.app',
+    scope:
+      'Un centro servizi che gestisce pratiche e richieste di più clienti, con processi interni da strutturare e valutazioni da rendere più efficienti.',
+    intervention: [
+      "Organizzazione dell'ufficio e strutturazione dei processi interni.",
+      'Realizzazione di un assistente personale per la gestione delle richieste.',
+      'Creazione di una dashboard per la valutazione dei clienti.',
+    ],
+    // [DA CONFERMARE: eventuale metrica di risultato — in attesa di validazione cliente]
   },
   {
-    number: '03',
-    company: 'Piccola azienda manifatturiera su commessa',
-    scenario: 'Preventivazione tecnica e passaggio dati tra commerciale e produzione.',
-    before:
-      "Le richieste clienti arrivavano con formati e note differenti; il commerciale doveva attendere giorni che l'ufficio tecnico decifrasse le misure e verificasse i materiali disponibili.",
-    intervention:
-      'Abbiamo creato una procedura standard assistita: una volta inserita la richiesta via email, il sistema verifica in background le compatibilità dei materiali sui cataloghi interni e suggerisce la base del preventivo.',
-    result:
-      "Il tempo di risposta al cliente è sceso da 4 giorni a 4 ore lavorative. La decisione finale sui margini e sui tempi di consegna resta al 100% nelle mani dell'ufficio tecnico.",
+    client: 'Helio H2',
+    sector: "Soluzioni per l'idrogeno e l'energia",
+    url: 'https://www.helioh2.com',
+    scope:
+      'Gestire il flusso di richieste e offerte in un settore tecnico altamente specializzato, con bisogno di visibilità digitale.',
+    intervention: [
+      'Ottimizzazione dei processi di predisposizione delle offerte.',
+      'Supporto alla lead generation.',
+      'Posizionamento digitale SEO e GEO.',
+    ],
+    // [DA CONFERMARE: eventuale metrica di risultato — in attesa di validazione cliente]
+  },
+  {
+    client: 'Pintore',
+    sector: 'Editoria e gestione manoscritti',
+    url: 'https://www.pintore.com',
+    scope:
+      "Un flusso editoriale con manoscritti da valutare, riassumere e promuovere, dove l'organizzazione del lavoro di revisione incide direttamente sui tempi.",
+    intervention: [
+      'Efficientamento del workflow di gestione dei manoscritti.',
+      'Supporto alla creazione di abstract e materiali di promozione.',
+    ],
+    // [DA CONFERMARE: eventuale metrica di risultato — in attesa di validazione cliente]
   },
 ];
 
-const STAGES = [
-  { key: 'before', label: 'Prima' },
-  { key: 'intervention', label: "L'intervento Bisplot" },
-  { key: 'result', label: 'Il risultato oggi' },
-] as const;
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
 export default function CaseStudiesSection() {
   return (
@@ -57,64 +77,68 @@ export default function CaseStudiesSection() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           label="SUL CAMPO"
-          title="Tre storie di routine aziendale trasformata."
-          subtitle="Cosa succede quando la tecnologia lavora in silenzio a supporto delle persone."
+          title="Quattro realtà che lavorano con procedure più ordinate."
+          subtitle="Interventi concreti su comunicazione, processi e visibilità digitale. Ogni caso riporta solo ciò che è stato effettivamente realizzato."
           titleId="casi-title"
         />
 
-        <div className="mt-12 space-y-6 sm:mt-16">
-          {CASES.map((item) => (
-            <article
-              key={item.number}
-              aria-labelledby={`caso-${item.number}`}
-              className="rounded-lg border border-border-light bg-white p-7 sm:p-10"
-            >
-              <header className="border-b border-border-light pb-6 sm:pb-8">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="font-mono text-xs uppercase tracking-wider text-ink-500">Caso {item.number}</span>
-                  <span className="rounded-sm border border-border-light bg-canvas-subtle px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-ink-900">
-                    {item.company}
-                  </span>
-                </div>
-                <p className="mt-5 font-mono text-xs uppercase tracking-wider text-ink-500">Scenario</p>
-                <h3
-                  id={`caso-${item.number}`}
-                  className="mt-2 text-balance font-sans text-xl font-semibold leading-snug tracking-tight text-ink-900 sm:text-2xl"
-                >
-                  {item.scenario}
-                </h3>
-              </header>
+        <div className="mt-12 grid gap-4 sm:mt-16 sm:gap-6 md:grid-cols-2">
+          {CASES.map((item) => {
+            const id = `caso-${slug(item.client)}`;
+            return (
+              <article
+                key={item.client}
+                aria-labelledby={id}
+                className="flex flex-col rounded-lg border border-border-light bg-white p-7 sm:p-9"
+              >
+                {/* Intestazione: cliente reale + settore */}
+                <header>
+                  <h3 id={id} className="font-sans text-xl font-semibold tracking-tight text-ink-900 sm:text-2xl">
+                    {item.client}
+                  </h3>
+                  <p className="mt-3 inline-block rounded-sm border border-border-light bg-canvas-subtle px-2.5 py-1 font-mono text-xs text-ink-500">
+                    {item.sector}
+                  </p>
+                </header>
 
-              <ol className="grid gap-8 pt-6 sm:pt-8 lg:grid-cols-3 lg:gap-0">
-                {STAGES.map((stage, index) => {
-                  const isResult = stage.key === 'result';
-                  return (
-                    <li
-                      key={stage.key}
-                      className={
-                        index === 0
-                          ? 'lg:pr-8'
-                          : 'border-t border-border-light pt-8 lg:border-l lg:border-t-0 lg:px-8 lg:pt-0 lg:last:pr-0'
-                      }
-                    >
-                      <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-ink-500">
-                        <span className="text-ink-900">{String(index + 1).padStart(2, '0')}</span>
-                        {stage.label}
-                      </p>
-                      <p
-                        className={`mt-3 font-body text-[15px] leading-relaxed ${
-                          isResult ? 'text-ink-900' : 'text-ink-500'
-                        }`}
-                      >
-                        {item[stage.key]}
-                      </p>
-                    </li>
-                  );
-                })}
-              </ol>
-            </article>
-          ))}
+                {/* L'ambito — descrittivo */}
+                <div className="mt-7 border-t border-border-light pt-6">
+                  <h4 className="font-mono text-xs uppercase tracking-wider text-ink-500">L'ambito</h4>
+                  <p className="mt-3 font-body text-[15px] leading-relaxed text-ink-500">{item.scope}</p>
+                </div>
+
+                {/* L'intervento — attività svolte, nessun risultato misurato */}
+                <div className="mt-6">
+                  <h4 className="font-mono text-xs uppercase tracking-wider text-ink-500">L'intervento</h4>
+                  <ul className="mt-3 space-y-2.5">
+                    {item.intervention.map((activity) => (
+                      <li key={activity} className="flex gap-3">
+                        <Check className="mt-1 h-4 w-4 shrink-0 text-ink-900" strokeWidth={2} aria-hidden="true" />
+                        <span className="font-body text-[15px] leading-relaxed text-ink-900">{activity}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-auto pt-7">
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center rounded-sm font-sans text-sm font-medium text-ink-900 underline decoration-border-focus underline-offset-4 transition-colors hover:decoration-ink-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink-900"
+                  >
+                    Visita il sito →<span className="sr-only"> di {item.client} (si apre in una nuova scheda)</span>
+                  </a>
+                </div>
+              </article>
+            );
+          })}
         </div>
+
+        <p className="mt-8 max-w-3xl font-body text-sm leading-relaxed text-ink-500">
+          Le descrizioni riportano gli ambiti di intervento e i servizi forniti. I risultati operativi di ogni progetto
+          vengono condivisi in sede di colloquio.
+        </p>
       </div>
     </section>
   );

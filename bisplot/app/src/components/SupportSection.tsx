@@ -20,7 +20,7 @@ const GUARANTEES: Guarantee[] = [
   {
     icon: Clock,
     title: 'Misurazione periodica',
-    text: 'Monitoriamo i tempi di elaborazione e il tasso di errore per mostrarti esattamente quanto tempo il tuo team sta recuperando.',
+    text: 'Monitoriamo i tempi di elaborazione e il tasso di errore per mostrarti esattamente come sta evolvendo il tuo organico di lavoro.',
   },
 ];
 

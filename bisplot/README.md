@@ -52,6 +52,13 @@ Three values in `app/src/config.ts` are still at their staging defaults:
 
 The form collects names and email addresses, so it needs a privacy notice before it goes live. The page also shows no company details (registered name, VAT number) yet.
 
+## Content integrity (from the brief — takes precedence)
+
+- **No invented metrics.** No result figures (hours saved, percentages, reduced times, ROI) unless the client has supplied them.
+- **Case studies are real clients only** (`CaseStudiesSection.tsx`): client, sector and services actually delivered are verified; the context is descriptive; no measured results. Each case carries a `// [DA CONFERMARE: eventuale metrica di risultato — in attesa di validazione cliente]` marker — search for `DA CONFERMARE` to find every placeholder to complete once a client validates a figure.
+- Client links open in a new tab with `rel="noopener noreferrer"`. Centro Servizi Negri currently points to a Vercel preview URL (`nuovo-sito-…-hg-matts-projects.vercel.app`): swap in the definitive domain when it is live.
+- Sober, engineering tone: no marketing superlatives.
+
 ## Design rules (from the brief)
 
 - Positioning: Bisplot is not a software product. No fake dashboards, UI screenshots or generic charts.

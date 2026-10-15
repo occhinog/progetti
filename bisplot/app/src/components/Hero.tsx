@@ -63,7 +63,7 @@ export default function Hero() {
             href="#casi-studio"
             className="rounded-md px-5 py-3.5 font-sans text-base font-medium text-ink-900 transition-colors hover:text-ink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink-900"
           >
-            Guarda come cambia la giornata in azienda <span aria-hidden="true">↓</span>
+            Guarda i nostri casi operativi <span aria-hidden="true">↓</span>
           </a>
         </div>
 

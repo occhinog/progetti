@@ -5,7 +5,7 @@ import { LogoMark } from './Logo';
 const USUAL = [
   'Si acquista una nuova piattaforma o un tool AI sperando risolva tutto.',
   'Il personale è costretto a fare corsi di formazione, cambiare abitudini e riempire doppie schermate.',
-  'Dopo tre mesi il nuovo programma viene abbandonato o usato solo a metà, e i file Excel continuano a moltiplicarsi.',
+  'Dopo qualche mese il nuovo programma viene abbandonato o usato solo a metà, e i file Excel continuano a moltiplicarsi.',
 ];
 
 const BISPLOT = [
