@@ -1,82 +1,54 @@
-import { Clock } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 
-type Step = {
+type Phase = {
   number: string;
   title: string;
-  duration?: string;
   text: string;
 };
 
-const STEPS: Step[] = [
+const PHASES: Phase[] = [
   {
     number: '01',
-    title: 'Mappatura dei colli di bottiglia',
-    duration: '1 settimana',
-    text: 'Individuiamo dove si concentrano le perdite di tempo più costose e quali passaggi manuali causano il maggior numero di errori.',
+    title: 'Diagnosi sul campo',
+    text: 'Ci sediamo accanto a chi fa il lavoro ogni giorno. Guardiamo quali email aprono, dove si interrompe il flusso e quali documenti creano ansia o rallentamento.',
   },
   {
     number: '02',
-    title: 'Prototipo su un singolo flusso',
-    duration: '2–3 settimane',
-    text: 'Costruiamo una soluzione funzionante su un solo processo circoscritto, per misurare il risparmio effettivo sul campo prima di espandere.',
+    title: 'Riscrittura della procedura',
+    text: 'Prima di automatizzare, eliminiamo i passaggi inutili. Definiamo chi deve convalidare il dato, chi prende la decisione e cosa può essere svolto in background.',
   },
   {
     number: '03',
-    title: 'Messa in produzione e integrazione',
-    text: 'Colleghiamo lo strumento ai sistemi aziendali correnti. Nessuna interruzione delle attività ordinarie.',
+    title: 'Connessione invisibile',
+    text: "Colleghiamo i sistemi esistenti tramite automazioni e modelli AI dedicati. L'infrastruttura lavora nel retrobottega digitale dell'azienda.",
   },
   {
     number: '04',
-    title: 'Formazione pratica',
-    text: "Sessioni dirette con chi userà lo strumento ogni giorno, con interfaccia ridotta all'essenziale per azzerare la curva di apprendimento.",
+    title: 'Affiancamento e taratura',
+    text: 'Seguiamo il team durante le prime settimane di utilizzo reale. Aggiustiamo i dettagli, raccogliamo il feedback di chi lavora e garantiamo che tutti si sentano sicuri.',
   },
 ];
 
 export default function MethodSection() {
   return (
-    <section id="fasi" aria-labelledby="fasi-title" className="bg-canvas-subtle py-20 sm:py-28">
+    <section id="metodo" aria-labelledby="metodo-title" className="bg-canvas-white py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="IL PERCORSO D'INTERVENTO"
-          title="Un metodo a tappe fisse, a basso rischio operativo."
-          titleId="fasi-title"
+          label="COME LAVORIAMO"
+          title="Dall'ascolto alla routine quotidiana: 4 fasi chiare."
+          titleId="metodo-title"
         />
 
-        <ol className="mt-14 grid gap-10 sm:mt-16 lg:grid-cols-4 lg:gap-8">
-          {STEPS.map((step, index) => {
-            const isLast = index === STEPS.length - 1;
-            return (
-              <li key={step.number} className="relative pl-9 lg:pl-0 lg:pt-10">
-                {/* Node on the timeline */}
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-[5px] h-[11px] w-[11px] rounded-full border border-ink-900 bg-white lg:top-0"
-                />
-                {/* Connector to the next node: vertical on mobile, horizontal on desktop */}
-                {!isLast && (
-                  <span
-                    aria-hidden="true"
-                    className="absolute -bottom-[2.5rem] left-[5px] top-[22px] w-px bg-border-focus lg:-right-[27px] lg:bottom-auto lg:left-[16px] lg:top-[5px] lg:h-px lg:w-auto"
-                  />
-                )}
-
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="font-mono text-sm text-ink-900">{step.number}</span>
-                  {step.duration && (
-                    <span className="inline-flex items-center gap-1.5 rounded-sm border border-border-light bg-white px-2 py-0.5 font-mono text-[11px] text-ink-500">
-                      <Clock className="h-3 w-3" strokeWidth={1.75} aria-hidden="true" />
-                      {step.duration}
-                    </span>
-                  )}
-                </div>
-                <h3 className="mt-3 font-sans text-lg font-semibold leading-snug tracking-tight text-ink-900">
-                  {step.title}
-                </h3>
-                <p className="mt-2 font-body text-[15px] leading-relaxed text-ink-500">{step.text}</p>
-              </li>
-            );
-          })}
+        <ol className="mt-12 grid gap-10 sm:mt-16 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-4">
+          {PHASES.map((phase) => (
+            <li key={phase.number} className="border-t border-border-light pt-6">
+              <span className="font-mono text-sm text-terracotta">{phase.number}</span>
+              <h3 className="mt-4 font-sans text-lg font-semibold leading-snug tracking-tight text-ink-900">
+                {phase.title}
+              </h3>
+              <p className="mt-3 font-body text-[15px] leading-relaxed text-ink-500">{phase.text}</p>
+            </li>
+          ))}
         </ol>
       </div>
     </section>

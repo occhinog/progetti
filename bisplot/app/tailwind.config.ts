@@ -9,26 +9,26 @@ export default {
   theme: {
     extend: {
       colors: {
+        // ---- Brief tokens ----
         canvas: {
-          white: '#FFFFFF', // main background
-          subtle: '#F0F5FA', // alternate sections, cards
-          muted: '#DFEBF6', // highlighted elements, focus rings
+          white: '#FFFFFF',
+          subtle: '#F0F5FA', // light-contrast section backgrounds
+          muted: '#DFEBF6', // functional: input focus ring
         },
         ink: {
-          900: '#0A1118', // headings, primary text, header
-          800: '#131F2B', // dark borders, badges
-          500: '#5D7185', // secondary text, captions
+          900: '#0A1118', // primary text, strong headings, logo structure
+          500: '#5D7185', // paragraphs, explanations, secondary labels
         },
-        'border-light': borderLight,
-        'border-focus': borderFocus,
-        // Accent: logo detail and primary actions ONLY.
+        'border-light': borderLight, // 1px hairlines
+        // Accent: logo detail and primary contact buttons ONLY.
         terracotta: {
           DEFAULT: '#D96B43',
           hover: '#C35B34',
         },
-        // Functional colour for form validation messages.
+        // ---- Functional additions ----
+        'border-focus': borderFocus, // hover/focus borders on inputs
         signal: {
-          error: '#B42318',
+          error: '#B42318', // form validation messages
         },
       },
       // Lets `border-light` / `border-focus` work as well as `border-border-light`.
@@ -37,9 +37,9 @@ export default {
         focus: borderFocus,
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', ...defaultTheme.fontFamily.sans],
-        body: ['Inter', ...defaultTheme.fontFamily.sans],
-        mono: ['"JetBrains Mono"', ...defaultTheme.fontFamily.mono],
+        sans: ['"Plus Jakarta Sans"', ...defaultTheme.fontFamily.sans], // headings
+        body: ['Inter', ...defaultTheme.fontFamily.sans], // text
+        mono: ['"JetBrains Mono"', ...defaultTheme.fontFamily.mono], // tags, phases, metrics
       },
       borderRadius: {
         sm: '4px', // badges, tags

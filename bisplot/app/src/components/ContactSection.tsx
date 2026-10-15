@@ -5,14 +5,15 @@ import { siteConfig } from '../config';
 type Fields = {
   name: string;
   email: string;
-  message: string;
+  procedure: string;
 };
 
 type FieldName = keyof Fields;
 type FieldErrors = Partial<Record<FieldName, string>>;
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
-const EMPTY_FIELDS: Fields = { name: '', email: '', message: '' };
+const EMPTY_FIELDS: Fields = { name: '', email: '', procedure: '' };
+const FIELD_ORDER: FieldName[] = ['name', 'email', 'procedure'];
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function validate(values: Fields): FieldErrors {
@@ -27,6 +28,10 @@ function validate(values: Fields): FieldErrors {
     errors.email = "Inserisci l'email aziendale.";
   } else if (!EMAIL_PATTERN.test(email)) {
     errors.email = 'Inserisci un indirizzo email valido.';
+  }
+
+  if (values.procedure.trim().length < 3) {
+    errors.procedure = 'Descrivi brevemente la procedura o l’attività.';
   }
 
   return errors;
@@ -55,6 +60,7 @@ const inputBase =
   'block w-full rounded-md border bg-white px-3.5 py-3 font-body text-base text-ink-900 placeholder:text-ink-500/60 transition-[border-color,box-shadow] focus:outline-none focus:ring-4 focus:ring-canvas-muted disabled:cursor-not-allowed disabled:bg-canvas-subtle';
 const inputValid = 'border-border-light hover:border-border-focus focus:border-border-focus';
 const inputInvalid = 'border-signal-error focus:border-signal-error';
+const labelClasses = 'mb-2 block font-body text-sm font-medium text-ink-900';
 
 export default function ContactSection() {
   const [values, setValues] = useState<Fields>(EMPTY_FIELDS);
@@ -64,7 +70,7 @@ export default function ContactSection() {
   const fieldRefs = {
     name: useRef<HTMLInputElement>(null),
     email: useRef<HTMLInputElement>(null),
-    message: useRef<HTMLTextAreaElement>(null),
+    procedure: useRef<HTMLTextAreaElement>(null),
   };
   const successRef = useRef<HTMLDivElement>(null);
 
@@ -91,7 +97,7 @@ export default function ContactSection() {
     const nextErrors = validate(values);
     setErrors(nextErrors);
 
-    const firstInvalid = (Object.keys(fieldRefs) as FieldName[]).find((field) => nextErrors[field]);
+    const firstInvalid = FIELD_ORDER.find((field) => nextErrors[field]);
     if (firstInvalid) {
       fieldRefs[firstInvalid].current?.focus();
       return;
@@ -102,7 +108,7 @@ export default function ContactSection() {
       await sendRequest({
         name: values.name.trim(),
         email: values.email.trim(),
-        message: values.message.trim(),
+        procedure: values.procedure.trim(),
       });
       setValues(EMPTY_FIELDS);
       setStatus('success');
@@ -117,7 +123,7 @@ export default function ContactSection() {
 
   return (
     <section id="contatto" aria-labelledby="contatto-title" className="bg-canvas-white px-4 py-20 sm:px-6 sm:py-28">
-      <div className="max-w-2xl mx-auto bg-white border border-border-light rounded-lg p-8 sm:p-12 shadow-sm">
+      <div className="max-w-2xl mx-auto border border-border-light rounded-lg p-8 sm:p-12 shadow-sm bg-white">
         {status === 'success' ? (
           <div ref={successRef} tabIndex={-1} role="status" className="py-6 text-center focus:outline-none sm:py-10">
             <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-md border border-border-light bg-canvas-subtle">
@@ -136,17 +142,16 @@ export default function ContactSection() {
               id="contatto-title"
               className="text-balance font-sans text-2xl font-semibold leading-[1.25] tracking-tight text-ink-900 sm:text-3xl"
             >
-              Un’analisi chiara dei tuoi processi, senza impegno.
+              Analizziamo una procedura della tua azienda.
             </h2>
             <p className="mt-4 font-body text-base leading-relaxed text-ink-500 sm:text-lg">
-              In 45 minuti esaminiamo insieme il flusso di lavoro più critico della tua azienda. Ti diremo apertamente
-              se l'intervento ha un ritorno economico misurabile o se è sufficiente riorganizzare gli strumenti che già
-              possiedi.
+              Scegli un'attività che oggi fa perdere tempo o crea confusione al tuo team. In 45 minuti di colloquio ti
+              diciamo con totale franchezza come risolverla e se ha senso automatizzarla.
             </p>
 
             <form className="mt-8 space-y-6 sm:mt-10" onSubmit={handleSubmit} noValidate aria-busy={isSubmitting}>
               <div>
-                <label htmlFor="name" className="mb-2 block font-body text-sm font-medium text-ink-900">
+                <label htmlFor="name" className={labelClasses}>
                   Nome, Cognome e Azienda
                 </label>
                 <input
@@ -168,7 +173,7 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="email" className="mb-2 block font-body text-sm font-medium text-ink-900">
+                <label htmlFor="email" className={labelClasses}>
                   Email aziendale
                 </label>
                 <input
@@ -191,20 +196,24 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="message" className="mb-2 block font-body text-sm font-medium text-ink-900">
-                  Quale attività manuale oggi ruba più ore al tuo team ogni settimana?
+                <label htmlFor="procedure" className={labelClasses}>
+                  Qual è la procedura o l'attività che oggi crea più attrito nel lavoro quotidiano?
                 </label>
                 <textarea
-                  ref={fieldRefs.message}
-                  id="message"
-                  name="message"
-                  rows={3}
-                  value={values.message}
+                  ref={fieldRefs.procedure}
+                  id="procedure"
+                  name="procedure"
+                  rows={4}
+                  required
+                  value={values.procedure}
                   onChange={handleChange}
                   disabled={isSubmitting}
                   placeholder="es. Ricopiare i codici degli ordini fornitori dai PDF al gestionale..."
-                  className={`${inputClasses('message')} resize-y`}
+                  aria-invalid={errors.procedure ? true : undefined}
+                  aria-describedby={describedBy('procedure')}
+                  className={`${inputClasses('procedure')} resize-y`}
                 />
+                {errors.procedure && <FieldError id="procedure-errore" message={errors.procedure} />}
               </div>
 
               {status === 'error' && (
@@ -221,7 +230,7 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-terracotta hover:bg-terracotta-hover text-white py-3.5 rounded-md font-medium transition-colors font-sans inline-flex items-center justify-center gap-2 disabled:cursor-wait disabled:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-900"
+                  className="bg-terracotta hover:bg-terracotta-hover text-white font-medium py-3.5 rounded-md w-full transition-colors font-sans inline-flex items-center justify-center gap-2 disabled:cursor-wait disabled:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-900"
                 >
                   {isSubmitting ? (
                     <>
@@ -229,11 +238,11 @@ export default function ContactSection() {
                       Invio in corso…
                     </>
                   ) : (
-                    'Richiedi diagnosi operativa'
+                    'Prenota la diagnosi operativa'
                   )}
                 </button>
-                <p className="mt-4 text-center font-body text-xs text-ink-500">
-                  Rispondiamo entro 24 ore lavorative. Nessuna insistenza commerciale.
+                <p className="mt-4 text-center font-body text-xs leading-relaxed text-ink-500">
+                  Nessuna demo commerciale standard. Parliamo direttamente dei tuoi processi.
                 </p>
               </div>
             </form>

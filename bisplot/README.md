@@ -1,6 +1,6 @@
 # Bisplot — landing page
 
-Single-page site for Bisplot (data systems and AI tools for SMEs). React 19 + TypeScript + Tailwind CSS 3, built with Vite into **one self-contained `index.html`** — JS and CSS inlined — because this repo has no build step: what is committed is what GitHub Pages serves.
+Single-page site for Bisplot — operational consulting and process engineering for SMEs: clear procedures, ongoing on-site support, and automation that runs in the background. React 19 + TypeScript + Tailwind CSS 3, built with Vite into **one self-contained `index.html`** — JS and CSS inlined — because this repo has no build step: what is committed is what GitHub Pages serves.
 
 | | |
 | --- | --- |
@@ -22,10 +22,10 @@ bisplot/
     ├── tailwind.config.ts   design tokens (colours, fonts, radii)
     ├── vite.config.ts       outDir '..' + vite-plugin-singlefile
     └── src/
-        ├── config.ts        form endpoint + privacy URL  ← edit before production
+        ├── config.ts        form endpoint + privacy / legal URLs  ← edit before production
         ├── App.tsx
-        └── components/      Navbar, Hero, ProblemSection, SolutionsSection,
-                             HumanFactorSection, MethodSection, ContactSection,
+        └── components/      Navbar, Hero, PhilosophySection, CaseStudiesSection,
+                             MethodSection, SupportSection, ContactSection,
                              Footer, Logo, SectionHeader
 ```
 
@@ -42,23 +42,26 @@ npm run build     # typecheck, then writes ../index.html
 
 ## Before real use
 
-Two values in `app/src/config.ts` are still at their staging defaults:
+Three values in `app/src/config.ts` are still at their staging defaults:
 
 | Setting | Default | Effect |
 | --- | --- | --- |
-| `contactEndpoint` | `''` | **Demo mode.** The "diagnosi operativa" form validates and shows the success screen, but sends nothing (a console notice says so). Set a URL that accepts a JSON POST `{ name, email, message }` — e.g. a Formspree endpoint. |
+| `contactEndpoint` | `''` | **Demo mode.** The "diagnosi operativa" form validates and shows the success screen, but sends nothing (a console notice says so). Set a URL that accepts a JSON POST `{ name, email, procedure }` — e.g. a Formspree endpoint. |
 | `privacyUrl` | `'#'` | Target of the footer "Privacy" link. Point it at the privacy policy. |
+| `legalNotesUrl` | `'#'` | Target of the footer "Note legali" link (company details). |
 
-The form collects names and email addresses, so it needs a privacy notice before it goes live.
+The form collects names and email addresses, so it needs a privacy notice before it goes live. The page also shows no company details (registered name, VAT number) yet.
 
 ## Design rules (from the brief)
 
-- Light canvas (`canvas-white`, `canvas-subtle`, `canvas-muted`), text in `ink-900` / `ink-500`, 1px hairlines (`border-border-light`).
-- Terracotta `#D96B43` is reserved for the logo and primary actions (plus the 01–03 numbers in "Cosa realizziamo", as specified).
+- Positioning: Bisplot is not a software product. No fake dashboards, UI screenshots or generic charts.
+- Light canvas (`canvas-white`, `canvas-subtle`), text in `ink-900` / `ink-500`, 1px hairlines (`border-border-light`). `canvas-muted`, `border-focus` and `signal-error` are functional extras for form focus and validation.
+- Terracotta `#D96B43` is reserved for the logo and the primary contact buttons (plus the mono 01–04 phase numbers in "Come lavoriamo", as specified).
 - Radii: 4px badges, 8px inputs/buttons, 12px cards. No pill shapes.
 - All copy is the client's wording — change it only on request.
-- Icons: `lucide-react`. Logo: inline SVG in `Logo.tsx`; the favicon in `app/index.html` is the same mark as a data URI.
+- Icons: `lucide-react`, used sparingly.
+- Logo: `Logo.tsx` holds the monogram as inline SVG — a geometric redraw of the master artwork (331 × 424 units: grid-aligned straight edges, parallel 45° cuts, elliptical bowls, constant 13.5-unit gap; ≥99% pixel overlap with the source PNG). Structure `#0A1118`, lower bowl `#D96B43`. The favicon in `app/index.html` is the same mark as a data URI. The wordmark is live text in Plus Jakarta Sans Bold.
 
 ## Build provenance
 
-The first committed `index.html` was produced in a sandbox without npm access, using an equivalent pipeline: Tailwind 3.4.17 standalone CLI with the same config, the same sources bundled by Bun (React 19.2.8, lucide 1.57.0 icon geometry), inlined into one file the way `vite-plugin-singlefile` does. Typecheck passed under TypeScript 6.0. The first `npm run build` replaces it with Vite's output; the page should look identical.
+The committed `index.html` was produced in a sandbox without npm access, using an equivalent pipeline: Tailwind 3.4.17 standalone CLI with the same config, the same sources bundled by Bun (React 19.2.8, lucide 1.57.0 icon geometry), inlined into one file the way `vite-plugin-singlefile` does. Typecheck passed under TypeScript 6.0. The first `npm run build` replaces it with Vite's output; the page should look identical.

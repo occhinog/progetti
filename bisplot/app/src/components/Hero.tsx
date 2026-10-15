@@ -1,70 +1,79 @@
-import { ArrowRight, CircleCheck } from 'lucide-react';
+import { ArrowRight, FileText, Layers, Users, type LucideIcon } from 'lucide-react';
 
-const GUARANTEES = [
+type Point = {
+  icon: LucideIcon;
+  title: string;
+  text: string;
+};
+
+const POINTS: Point[] = [
   {
-    title: 'Zero sostituzioni',
-    text: 'Lavoriamo sui gestionali e sui formati che già usi',
+    icon: FileText,
+    title: 'Zero nuove schermate:',
+    text: 'il personale continua a usare le email e i gestionali di sempre.',
   },
   {
-    title: 'Dati prima degli algoritmi',
-    text: 'Pulizia e coerenza prima di qualsiasi automazione',
+    icon: Layers,
+    title: 'Tecnologia sotto il cofano:',
+    text: "i dati si muovono da soli, verificati e pronti all'uso.",
   },
   {
-    title: 'Controllo umano',
-    text: 'Nessun processo critico viene eseguito alla cieca',
+    icon: Users,
+    title: 'Affiancamento continuo:',
+    text: 'siamo al fianco delle tue persone, prima, durante e dopo.',
   },
-] as const;
+];
 
 export default function Hero() {
   return (
     <section
       id="inizio"
       aria-labelledby="hero-title"
-      className="border-b border-border-light bg-gradient-to-b from-[#FFFFFF] to-[#F0F5FA]"
+      className="border-b border-border-light bg-gradient-to-b from-white to-canvas-subtle"
     >
-      <div className="max-w-4xl mx-auto text-center pt-24 pb-20 px-4 sm:px-6">
-        <p className="font-mono text-xs uppercase tracking-wider text-ink-500 bg-white border border-border-light px-3 py-1 rounded-sm inline-block mb-6 text-balance">
-          SISTEMI DATI E STRUMENTI AI SU MISURA PER LE PMI
+      <div className="mx-auto max-w-5xl px-4 pb-20 pt-20 text-center sm:px-6 sm:pt-28">
+        <p className="font-mono text-xs uppercase tracking-wider text-ink-500 bg-canvas-subtle border border-border-light px-3 py-1 rounded-sm inline-block mb-6 text-balance">
+          ORGANIZZAZIONE DEI PROCESSI &amp; TECNOLOGIA INVISIBILE PER LE PMI
         </p>
 
         <h1
           id="hero-title"
-          className="font-sans text-4xl sm:text-5xl lg:text-6xl font-semibold text-ink-900 tracking-tight leading-[1.15] mb-6 text-balance"
+          className="mx-auto max-w-5xl text-balance font-sans text-4xl font-semibold leading-[1.12] tracking-tight text-ink-900 sm:text-5xl lg:text-[3.25rem]"
         >
-          L’intelligenza artificiale al&nbsp;servizio del lavoro umano.
+          Nessun nuovo software da imparare.
           <br />
-          Non il contrario.
+          <span className="text-ink-500">Solo procedure più veloci e persone libere di lavorare.</span>
         </h1>
 
-        <p className="font-body text-lg sm:text-xl text-ink-500 max-w-2xl mx-auto leading-relaxed mb-10">
-          Eliminiamo il tempo sprecato a ricopiare dati, rincorrere documenti e riconciliare file. Sviluppiamo
-          strumenti che velocizzano i compiti ripetitivi e lasciano alle persone il controllo e la decisione.
+        <p className="mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-ink-500 sm:text-xl">
+          Non ti vendiamo un'altra piattaforma da aprire la mattina. Entriamo nei tuoi flussi aziendali, eliminiamo le
+          ore perse tra documenti e fogli di calcolo, e facciamo lavorare l'automazione in background, mentre il tuo
+          team fa il suo lavoro.
         </p>
 
-        <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
+        <div className="mt-10 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:items-center sm:gap-3">
           <a
             href="#contatto"
-            className="bg-terracotta text-white hover:bg-terracotta-hover px-6 py-3.5 rounded-md font-medium shadow-sm transition-all text-base inline-flex items-center gap-2 font-sans focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-900"
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-terracotta px-6 py-3.5 font-sans text-base font-medium text-white shadow-sm transition-colors hover:bg-terracotta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-900"
           >
             Richiedi una diagnosi operativa
             <ArrowRight className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden="true" />
           </a>
           <a
-            href="#metodo"
-            className="text-ink-900 hover:text-ink-500 font-medium px-5 py-3.5 transition-colors text-base font-sans rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink-900"
+            href="#casi-studio"
+            className="rounded-md px-5 py-3.5 font-sans text-base font-medium text-ink-900 transition-colors hover:text-ink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink-900"
           >
-            Il nostro metodo <span aria-hidden="true">↓</span>
+            Guarda come cambia la giornata in azienda <span aria-hidden="true">↓</span>
           </a>
         </div>
 
-        <ul className="mt-16 grid gap-8 border-t border-border-light pt-10 text-left sm:grid-cols-3 sm:gap-6">
-          {GUARANTEES.map((item) => (
-            <li key={item.title} className="flex gap-3">
-              <CircleCheck className="mt-0.5 h-[18px] w-[18px] shrink-0 text-ink-500" strokeWidth={1.5} aria-hidden="true" />
-              <div>
-                <p className="font-sans text-sm font-semibold text-ink-900">{item.title}</p>
-                <p className="mt-1 font-body text-sm leading-relaxed text-ink-500">{item.text}</p>
-              </div>
+        <ul className="mt-16 grid gap-6 border-t border-border-light pt-10 text-left sm:grid-cols-3 sm:gap-8">
+          {POINTS.map(({ icon: Icon, title, text }) => (
+            <li key={title} className="flex gap-3">
+              <Icon className="mt-0.5 h-[18px] w-[18px] shrink-0 text-ink-500" strokeWidth={1.5} aria-hidden="true" />
+              <p className="font-body text-sm leading-relaxed text-ink-500">
+                <strong className="font-sans font-semibold text-ink-900">{title}</strong> {text}
+              </p>
             </li>
           ))}
         </ul>

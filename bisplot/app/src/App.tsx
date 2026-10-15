@@ -1,9 +1,9 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import ProblemSection from './components/ProblemSection';
-import SolutionsSection from './components/SolutionsSection';
-import HumanFactorSection from './components/HumanFactorSection';
+import PhilosophySection from './components/PhilosophySection';
+import CaseStudiesSection from './components/CaseStudiesSection';
 import MethodSection from './components/MethodSection';
+import SupportSection from './components/SupportSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
@@ -19,10 +19,10 @@ export default function App() {
       <Navbar />
       <main id="contenuto">
         <Hero />
-        <ProblemSection />
-        <SolutionsSection />
-        <HumanFactorSection />
+        <PhilosophySection />
+        <CaseStudiesSection />
         <MethodSection />
+        <SupportSection />
         <ContactSection />
       </main>
       <Footer />
