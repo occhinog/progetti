@@ -61,7 +61,9 @@ The form collects names and email addresses, so it needs a privacy notice before
 - **Client logos** are the clients' own files in `app/src/assets/clients/`, never redrawn. They sit above the client name, in greyscale at 80% opacity, and turn full colour when the card is hovered or focused. They are decorative (`alt=""`) because the client's name is the heading right below.
   - SAIL Group: `sail-group.jpg` — `sailgroup-logo.jpg` from the SAIL website's WordPress theme, unchanged (white background, blended away with `mix-blend-multiply`).
   - Centro Servizi Negri: `centro-servizi-negri.svg` — the CSN v2 vector (`csn-centro-servizi-negri-v2.svg`) with the paths untouched, keeping the N monogram + CSN lettering. The "CENTRO SERVIZI NEGRI" descriptor line is left out and the viewBox is cropped to the artwork: at card size the descriptor would be about 2 px tall.
-  - Helio H2 and Pintore: **no logo yet** — search for `LOGO DA RICEVERE`. To add one, put the file in `assets/clients/`, import it in `CaseStudiesSection.tsx` and set `logo: { src, width, height, heightClass }` (the file's intrinsic size, plus a Tailwind height: `h-9` suits a wide wordmark, `h-12` a compact or stacked mark). Cards without a logo simply omit the slot.
+  - Helio H2: `helio-h2.png` — the supplied logo (`originals/helio-h2.png`), trimmed of its padding and downscaled to 192 px tall.
+  - Pietro Pintore editore: `pietro-pintore-editore.png` — the supplied logo (`originals/pietro-pintore-editore.png`) with the mirror reflection under the wordmark removed (it would read as a smudge at 36 px), trimmed, downscaled to 128 px tall and saved with a 256-colour palette.
+  - `originals/` keeps the files as received; they are not imported, so they don't reach the page. To add or swap a logo, import the file in `CaseStudiesSection.tsx` and set `logo: { src, width, height, heightClass }`: the file's intrinsic size, plus a Tailwind height (`h-9` for a wide wordmark, `h-12`–`h-14` for a compact or stacked mark). A card without `logo` simply omits the slot.
 - Sober, engineering tone: no marketing superlatives.
 
 ## Design rules (from the brief)

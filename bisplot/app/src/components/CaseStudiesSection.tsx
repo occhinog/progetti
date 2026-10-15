@@ -3,14 +3,16 @@ import { Check } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import sailGroupLogo from '../assets/clients/sail-group.jpg';
 import centroServiziNegriLogo from '../assets/clients/centro-servizi-negri.svg';
+import helioH2Logo from '../assets/clients/helio-h2.png';
+import pintoreLogo from '../assets/clients/pietro-pintore-editore.png';
 
 /*
  * Real clients only. Integrity rule: each card states what is VERIFIED (client, sector, services
  * actually delivered) and DESCRIPTIVE context — never a measured result. Result metrics stay out of
  * the copy until the client validates them (see the DA CONFERMARE markers).
  *
- * Logos are the clients' own files (src/assets/clients/), never redrawn. A card without a logo
- * simply omits the slot — search for LOGO DA RICEVERE.
+ * Logos are the clients' own files (src/assets/clients/, untouched originals in originals/), never
+ * redrawn. The logo slot is optional: a card without `logo` simply omits it.
  */
 
 type ClientLogo = {
@@ -64,7 +66,7 @@ const CASES: CaseStudy[] = [
     client: 'Helio H2',
     sector: "Soluzioni per l'idrogeno e l'energia",
     url: 'https://www.helioh2.com',
-    // [LOGO DA RICEVERE: file ufficiale non ancora disponibile]
+    logo: { src: helioH2Logo, width: 226, height: 192, heightClass: 'h-14' },
     scope:
       'Gestire il flusso di richieste e offerte in un settore tecnico altamente specializzato, con bisogno di visibilità digitale.',
     intervention: [
@@ -78,7 +80,7 @@ const CASES: CaseStudy[] = [
     client: 'Pintore',
     sector: 'Editoria e gestione manoscritti',
     url: 'https://www.pintore.com',
-    // [LOGO DA RICEVERE: file ufficiale non ancora disponibile]
+    logo: { src: pintoreLogo, width: 717, height: 128, heightClass: 'h-9' },
     scope:
       "Un flusso editoriale con manoscritti da valutare, riassumere e promuovere, dove l'organizzazione del lavoro di revisione incide direttamente sui tempi.",
     intervention: [
@@ -115,7 +117,7 @@ export default function CaseStudiesSection() {
                 <header>
                   {item.logo && (
                     // Decorative: the client's name is the heading right below.
-                    <div className="mb-6 flex h-12 items-center">
+                    <div className="mb-6 flex h-14 items-center">
                       <img
                         src={item.logo.src}
                         width={item.logo.width}
