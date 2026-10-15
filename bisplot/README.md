@@ -64,13 +64,13 @@ The form collects names and email addresses, so it needs a privacy notice before
 
 ## Business Second Brain (`BrainSection.tsx`)
 
-The one dark band on the page (`#cervello`, ink-900): an interactive SVG animation of a company's operating "brain" — six departments (Finance, Operations, Marketing, Knowledge, HR, Sales) around an AI core that carries the Bisplot mark.
+The one dark band on the page (`#cervello`, ink-900): an interactive animation of a company's operating "brain" — six departments (Finance, Operations, Marketing, Knowledge, HR, Sales) around an AI core that carries the Bisplot mark.
 
-- Four phases, ~17 s, then a continuous loop: 01 Frammentazione (nodes pulse on their own, data goes nowhere) → 02 Connessione (spokes draw to the core, packets flow in) → 03 Intelligenza (the core sends each department its result) → 04 Automazione (continuous flow, department-to-department links).
-- Interaction: hover, focus or tap a department to highlight its link and result and fire a round trip; click the core to send results to every department; the stepper jumps between phases; Pausa / Ricomincia.
-- Starts when the scene's top reaches the upper ~65% of the viewport; the animation loop stops whenever the scene is off screen. `prefers-reduced-motion` draws the finished scene statically.
-- Two layouts (`WIDE` from 860px of scene width, `TALL` below); department content and phase timings are the constants at the top of the file.
-- Implementation: React renders the scene once per layout; a `requestAnimationFrame` loop writes SVG attributes directly from fixed element pools — no per-frame React renders.
+- **Story (~18 s, then a loop).** 01 Frammentazione: departments drift in disorder, data goes nowhere, the core is dormant · 02 Connessione: the core wakes, pulls the departments into formation and reaches out to each with a spark-led connection · 03 Intelligenza: ignition — white/ember flash, a shockwave that lights the grid and each department as it passes, then result comets fly out and each result types itself in · 04 Automazione: continuous flow, department-to-department links, a synchronised heartbeat every 6 s.
+- **Interaction.** Cursor light and parallax on the particle field (particles move away from the pointer and orbit the core once it wakes); hover, focus or tap a department for its link, result and a round trip; click the core for a pulse to every department; stepper to jump phases; Pausa / Ricomincia.
+- **Layers.** A `<canvas>` underneath draws the light (pre-rendered dot grid, particles, bloom, shockwave, comet-trailed packets with additive blending), edge-faded with a CSS mask. The SVG on top holds the structure and text — crisp, focusable, accessible. Terracotta appears only as the core's ember glow (the logo's colour) and in the logo.
+- **Cost.** One `requestAnimationFrame` loop; ~1 ms JS + ~1 ms style/layout per frame measured in Chrome. It starts when the scene's top reaches the upper ~65% of the viewport and stops whenever the scene is off screen. `prefers-reduced-motion` draws the finished scene statically.
+- **Tuning.** Department content, phase captions and the choreography timings are constants at the top of the file; `WIDE` (≥ 960px of scene width) and `TALL` layouts each define home and "chaos" positions per department.
 
 ## Build provenance
 
